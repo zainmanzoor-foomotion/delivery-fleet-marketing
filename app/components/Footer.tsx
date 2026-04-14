@@ -74,14 +74,14 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col gap-3 border-t border-border py-10 sm:flex-row items-center sm:justify-between">
-          <p className="text-xs text-text-2">
+          <p className="text-xs text-text-1">
             &copy; {new Date().getFullYear()} My Delivery Fleet. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#privacy" className="text-xs text-text-2 hover:text-text-1 transition-colors">
+            <Link href="#privacy" className="text-xs text-text-1 hover:text-text-2 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#terms" className="text-xs text-text-2 hover:text-text-1 transition-colors">
+            <Link href="#terms" className="text-xs text-text-1 hover:text-text-2 transition-colors">
               Terms of Service
             </Link>
           </div>
