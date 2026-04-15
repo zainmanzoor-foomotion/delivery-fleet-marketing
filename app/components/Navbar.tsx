@@ -21,14 +21,12 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex h-25 items-center justify-between">
 
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <span className="text-lg font-bold text-text-1 tracking-tight italic">
               My Delivery Fleet
             </span>
           </Link>
 
-          {/* Desktop nav links — centered */}
           <nav className="hidden lg:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
@@ -41,7 +39,6 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Button
               variant='ghost'
@@ -55,7 +52,6 @@ export default function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             className="lg:hidden rounded-md p-2 text-text-1 hover:text-text-1/70 hover:bg-gray-100 transition-colors"
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -67,7 +63,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={cn(
           'lg:hidden overflow-hidden transition-all duration-200',
