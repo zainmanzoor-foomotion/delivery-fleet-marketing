@@ -279,7 +279,7 @@ export default function SavingsCalculator() {
             {/* Growth Engines */}
             <div className="rounded-xl py-4">
               <h3 className="text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col md:flex-row gap-3">
 
                 {/* Smart Marketing */}
                 <label className="flex cursor-pointer gap-3 rounded-lg border border-[##E5E7EB] bg-white p-3 hover:border-primary/40 transition-colors">
