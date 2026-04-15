@@ -17,10 +17,8 @@ export default function Footer() {
     <footer className="w-full bg-[#FAFAFB]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 mt-20">
 
-        {/* Main footer content */}
         <div className="flex flex-col items-start gap-10 py-14 sm:flex-row sm:justify-between max-w-5xl">
 
-          {/* Brand column */}
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <span className="text-2xl font-bold text-text-1">
@@ -32,10 +30,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links columns */}
           <div className="flex gap-16 sm:gap-20">
 
-            {/* Product */}
             <div>
               <h3 className="mb-4 text-md font-semibold text-text-1">Product</h3>
               <ul className="flex flex-col gap-3">
@@ -52,7 +48,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Company */}
             <div>
               <h3 className="mb-4 text-md font-semibold text-text-1">Company</h3>
               <ul className="flex flex-col gap-3">
@@ -72,7 +67,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="flex flex-col gap-3 border-t border-border py-10 sm:flex-row items-center sm:justify-between">
           <p className="text-xs text-text-1">
             &copy; {new Date().getFullYear()} My Delivery Fleet. All rights reserved.
