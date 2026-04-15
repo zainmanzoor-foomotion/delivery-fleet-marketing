@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <section className="flex flex-col items-center justify-center px-4 pt-12 sm:pt-16 md:pt-20 lg:pt-28 text-center">
+    <section className="flex flex-col items-center justify-center px-4 pt-12 sm:pt-16 md:pt-20 text-center">
 
       {/* Badge pill */}
       <div className="mb-8 bg-green-100 inline-flex items-center rounded-full border border-[#3FC060] px-4 py-1.5">
