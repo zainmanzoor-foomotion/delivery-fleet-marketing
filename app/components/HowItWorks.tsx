@@ -1,8 +1,7 @@
 'use client'
 
 import { Truck, MapPin, RefreshCw, DollarSign } from 'lucide-react'
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 const steps = [
   { icon: Truck, title: 'We Auto-Dispatch' },
@@ -11,9 +10,6 @@ const steps = [
 ]
 
 export default function HowItWorks() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
     <section className="w-full px-4 py-16 sm:py-20 overflow-hidden">
       <div className="mx-auto max-w-3xl text-center mb-14">
@@ -25,10 +21,7 @@ export default function HowItWorks() {
         </p>
       </div>
 
-      <div
-        ref={ref}
-        className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-      >
+      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="flex flex-col gap-10 relative">
           {steps.map(({ icon: Icon, title }) => (
             <div key={title} className="flex items-center gap-4 relative z-10 pl-5">
@@ -59,24 +52,27 @@ export default function HowItWorks() {
           <div className="relative" style={{ width: 370, height: 420 }}>
             <motion.div
               className="absolute rounded-2xl bg-white border border-[#E2E8F0]"
-              style={{ transformOrigin: 'bottom center', rotate: 6, translateY: -4, top: -8, left: 0, right: 0, height: 400 }}
+              style={{ transformOrigin: 'bottom center', top: -8, left: 0, right: 0, height: 400 }}
               initial={{ opacity: 0, x: -120, rotate: 0 }}
-              animate={inView ? { opacity: 1, x: 0, rotate: 6 } : {}}
+              whileInView={{ opacity: 1, x: 0, rotate: 6 }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             />
 
             <motion.div
               className="absolute rounded-2xl bg-white border border-[#E2E8F0]"
-              style={{ transformOrigin: 'bottom center', rotate: 3, top: -10, left: 0, right: 0, height: 400 }}
+              style={{ transformOrigin: 'bottom center', top: -10, left: 0, right: 0, height: 400 }}
               initial={{ opacity: 0, x: -120, rotate: 0 }}
-              animate={inView ? { opacity: 1, x: 0, rotate: 3 } : {}}
+              whileInView={{ opacity: 1, x: 0, rotate: 3 }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             />
 
             <motion.div
               className="absolute inset-0 rounded-2xl bg-white border border-[#E2E8F0]"
               initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="p-6 h-full flex flex-col justify-center">
