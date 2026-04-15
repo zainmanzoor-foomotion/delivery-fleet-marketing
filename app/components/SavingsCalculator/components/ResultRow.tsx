@@ -4,7 +4,6 @@ export function ResultRow({
   label,
   value,
   bold,
-  colored,
 }: {
   label: string
   value: string

@@ -1,12 +1,15 @@
 'use client'
 
-import { Truck, MapPin, RefreshCw, DollarSign } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { TrackingIcon } from '@/components/icons/tracking'
+import { DollarIcon } from '@/components/icons/dollar'
+import { DispatchIcon } from '@/components/icons/dispatch'
+import { DeliveryBoxIcon } from '@/components/icons/delivery'
 
 const steps = [
-  { icon: Truck, title: 'We Auto-Dispatch' },
-  { icon: MapPin, title: 'Branded Tracking & Opt-Ins' },
-  { icon: RefreshCw, title: 'Automate Repeat Business' },
+  { icon: DispatchIcon, title: 'We Auto-Dispatch' },
+  { icon: TrackingIcon, title: 'Branded Tracking & Opt-Ins' },
+  { icon: DeliveryBoxIcon, title: 'Automate Repeat Business' },
 ]
 
 export default function HowItWorks() {
@@ -25,17 +28,15 @@ export default function HowItWorks() {
         <div className="flex flex-col gap-10 relative">
           {steps.map(({ icon: Icon, title }) => (
             <div key={title} className="flex items-center gap-4 relative z-10 pl-5">
-              <div className="h-9 w-9 shrink-0 rounded-lg bg-[#F1F5F9] flex items-center justify-center">
-                <Icon className="h-4 w-4 text-[#334155]" />
-              </div>
+              {/* <div className="h-9 w-9 shrink-0 rounded-lg bg-[#F1F5F9] flex items-center justify-center"> */}
+                <Icon stroke={"#475569"} />
+              {/* </div> */}
               <span className="text-2xl font-medium text-text-2">{title}</span>
             </div>
           ))}
 
           <div className="relative z-10 rounded-2xl border border-[#E2E8F0] bg-white p-8 flex gap-6">
-            <div className="h-10 w-10 shrink-0 rounded-xl bg-primary flex items-center justify-center">
-              <DollarSign className="h-5 w-5 text-white" />
-            </div>
+               <DollarIcon stroke={"#1877F2"} />
             <div>
               <p className="text-2xl font-semibold text-text-2">You Keep the Profit</p>
               <p className="mt-2 text-md text-text-2">
@@ -77,7 +78,7 @@ export default function HowItWorks() {
             >
               <div className="p-6 h-full flex flex-col justify-center">
                 <div className="flex justify-center mb-5">
-                  <div className="h-30 w-30 rounded-full bg-[#EFF6FF] flex items-center justify-center">
+                  <div className="h-30 w-30 rounded-full bg-[#F7F9FB] flex items-center justify-center">
                     <span className="text-[34px] font-bold text-primary">$45</span>
                   </div>
                 </div>
