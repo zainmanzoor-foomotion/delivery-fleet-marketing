@@ -412,18 +412,18 @@ export default function SavingsCalculator() {
               <button
                 type="button"
                 onClick={() => setShowDisclaimer((v) => !v)}
-                className="flex w-full items-center justify-start gap-2 px-4 py-3 text-md font-regular text-text-1"
+                className="flex w-full items-center justify-start gap-2 py-3 text-md font-regular text-text-1"
               >
                 {showDisclaimer ? (
-                  <ChevronUp className="h-4 w-4 text-[#475569]" />
+                  <ChevronUp className="h-4 w-4 text-text-2" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-[#475569]" />
+                  <ChevronDown className="h-4 w-4 text-text-2" />
                 )}
                 <span>Assumptions &amp; Disclaimers</span>
               </button>
 
               {showDisclaimer && (
-                <ul className="px-4 pb-4 space-y-2 pt-3">
+                <ul className="list-disc list-outside pl-5 space-y-1 pt-3">
                   {[
                     'Calculations assume a 5-driveable-mile delivery radius.',
                     'In-House costs include 12% payroll tax, $0.67/mi reimbursement, and $10/day overhead.',
@@ -431,8 +431,7 @@ export default function SavingsCalculator() {
                     'Credit Card Processing fees (approx 2.5–3%) are not included.',
                     'Liability: Results are directional estimates only.',
                   ].map((item) => (
-                    <li key={item} className="text-sm text-text-2 flex gap-2">
-                      <span className="shrink-0 text-text-2">•</span>
+                    <li key={item} className="text-sm text-text-2">
                       {item}
                     </li>
                   ))}
