@@ -1,0 +1,33 @@
+import { cn } from '@/lib/utils'
+
+export function ResultRow({
+  label,
+  value,
+  bold,
+  colored,
+}: {
+  label: string
+  value: string
+  bold?: boolean
+  colored?: boolean
+}) {
+  return (
+    <div className={cn(
+      'flex items-center justify-between py-3.5',
+      bold && 'border-t border-[#E5E7EB]',
+    )}>
+      <span className={cn(
+        'text-md text-text-2',
+        bold && 'font-normal text-text-1',
+      )}>
+        {label}
+      </span>
+      <span className={cn(
+        'text-md',
+        bold ? 'font-normal text-text-1' : 'font-normal text-text-1',
+      )}>
+        {value}
+      </span>
+    </div>
+  )
+}
