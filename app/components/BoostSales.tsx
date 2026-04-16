@@ -6,6 +6,8 @@ import {
   ChartContainer,
 } from '@/components/ui/chart'
 import { TickIcon } from '@/components/icons/tick'
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 
 const chartData = [
   { month: 'Sep', orders: 55 },
@@ -41,6 +43,55 @@ const features = [
   },
 ]
 
+// Animated Counter Component
+function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, { 
+    stiffness: 100, 
+    damping: 20,
+    duration: duration * 1000
+  })
+  const displayValue = useTransform(springValue, (latest) => Math.round(latest))
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value)
+    }
+  }, [isInView, motionValue, value])
+
+  return <motion.span ref={ref}>{displayValue}</motion.span>
+}
+
+// Animated Revenue Counter Component
+function AnimatedRevenueCounter({ value, duration = 2 }: { value: number; duration?: number }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, { 
+    stiffness: 100, 
+    damping: 20,
+    duration: duration * 1000
+  })
+  const displayValue = useTransform(springValue, (latest) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(latest)
+  })
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value)
+    }
+  }, [isInView, motionValue, value])
+
+  return <motion.span ref={ref}>{displayValue}</motion.span>
+}
+
 export default function BoostSales() {
   return (
     <section className="w-full px-4 py-16 sm:py-20">
@@ -49,21 +100,37 @@ export default function BoostSales() {
 
           <div className="flex flex-col gap-5 bg-[#FAFAFB] p-6 rounded-xl">
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-xl space-y-2 border border-[#E5E7EB] bg-white p-6">
+              <motion.div 
+                className="rounded-xl space-y-2 border border-[#E5E7EB] bg-white p-6"
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
                 <p className="text-sm font-medium text-text-1">Live Orders</p>
-                <p className="text-[32px] font-medium text-text-1">7</p>
+                <p className="text-[32px] font-medium text-text-1">
+                  <AnimatedCounter value={7} />
+                </p>
                 <p className="flex items-center gap-0.5 text-sm font-semibold text-[#3FC060]">
                   <ArrowUp className="h-4 w-4 font-bold" />
                   Updating live
                 </p>
-              </div>
-              <div className="rounded-xl space-y-2 border border-[#E5E7EB] bg-white p-6">
+              </motion.div>
+              <motion.div 
+                className="rounded-xl space-y-2 border border-[#E5E7EB] bg-white p-6"
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              >
                 <p className="text-sm font-medium text-text-1">Revenue this month</p>
-                <p className="text-[32px] font-medium text-text-1">$17,327</p>
+                <p className="text-[32px] font-medium text-text-1">
+                  <AnimatedRevenueCounter value={17327} />
+                </p>
                 <p className="flex items-center gap-0.5 text-sm font-semibold text-[#3FC060]">
                   <Plus className="h-4 w-4 font-bold" />
                   18% vs last month</p>
-              </div>
+              </motion.div>
             </div>
 
             <div className="rounded-xl border border-[#E5E7EB] bg-white p-5">
