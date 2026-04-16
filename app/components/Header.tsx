@@ -55,7 +55,7 @@ export default function Header() {
         </motion.div>
 
         <motion.div
-          className="absolute -left-20 top-1/2 -translate-y-1/2 w-85 max-w-85"
+          className="absolute -left-20 top-3/5 -translate-y-1/2 w-85 max-w-85"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.75 }}
