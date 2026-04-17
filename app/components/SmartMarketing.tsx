@@ -33,7 +33,7 @@ const features = [
 
 export default function SmartMarketing() {
   return (
-    <section id="marketing" className="w-full px-4 py-16 sm:py-20">
+    <section id="marketing" className="w-full px-4 py-16 sm:py-22">
       <div className="mx-auto max-w-4xl text-center mb-14">
         <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">
           Smart Marketing Built-In
@@ -44,8 +44,8 @@ export default function SmartMarketing() {
         </p>
       </div>
 
-      <div className="mx-auto max-w-7xl mb-16 rounded-2xl bg-[#FAFAFB] px-4 sm:px-10 pt-6 sm:pt-10 flex flex-col md:flex-row items-center md:items-end justify-center gap-2 overflow-hidden">
-        <div className="w-40 sm:w-52 md:w-60 shrink-0">
+      <div className="mx-auto max-w-7xl mb-16 rounded-2xl bg-[#FAFAFB] px-4 sm:px-10 pt-6 sm:pt-10 flex items-center md:items-end justify-center gap-2 overflow-hidden">
+        <div className="w-30 sm:w-52 md:w-60 shrink-0">
           <Image
             src="/11 1.png"
             alt="Google review prompt"
@@ -54,7 +54,7 @@ export default function SmartMarketing() {
             className="w-full h-auto drop-shadow-xl"
           />
         </div>
-        <div className="w-48 sm:w-60 md:w-70 shrink-0">
+        <div className="w-36 sm:w-60 md:w-70 shrink-0">
           <Image
             src="/22 2.png"
             alt="Delivery tracking"
@@ -63,7 +63,7 @@ export default function SmartMarketing() {
             className="w-full h-auto drop-shadow-xl"
           />
         </div>
-        <div className="w-40 sm:w-52 md:w-60 shrink-0">
+        <div className="w-30 sm:w-52 md:w-60 shrink-0">
           <Image
             src="/33 1.png"
             alt="SMS marketing"

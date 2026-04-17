@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 export default function Header() {
   return (
-    <section className="flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-20 text-center">
+    <section className="flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-18.75 text-center">
 
       <div className="mb-8 bg-green-100 inline-flex items-center rounded-full border border-[#3FC060] px-4 py-1.5">
         <span className="text-sm font-medium text-green-700 tracking-wide">
@@ -27,15 +27,17 @@ export default function Header() {
         <Button className="w-full sm:w-60 h-12 sm:h-15 text-base sm:text-lg px-6">
           Start Free Trial
         </Button>
-        <Button
-          variant="ghost"
-          className="text-text-1 w-full sm:w-60 h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
-        >
-          How it&apos;s works
-        </Button>
+        <a href="#how-it-works">
+          <Button
+            variant="ghost"
+            className="text-text-1 w-full sm:w-60 h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
+          >
+            How it&apos;s works
+          </Button>
+        </a>
       </div>
 
-      <div className="relative w-full max-w-6xl h-150 py-8 sm:py-12 md:mt-16 hidden md:block">
+      <div className="relative w-full max-w-6xl h-150 py-8 sm:py-12 md:mt-25 hidden md:block">
 
         <motion.div
           className="absolute left-1/2 -translate-x-1/2 w-200 max-w-200"
@@ -55,7 +57,7 @@ export default function Header() {
         </motion.div>
 
         <motion.div
-          className="absolute -left-20 top-3/5 -translate-y-1/2 w-85 max-w-85"
+          className="absolute left-0 lg:-left-10 xl:-left-20 top-3/5 -translate-y-1/2 w-56 md:w-60 lg:w-72 xl:w-85"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.75 }}
@@ -71,7 +73,7 @@ export default function Header() {
         </motion.div>
 
         <motion.div
-          className="absolute -right-20 top-1/2 -translate-y-1/2 w-85 max-w-85"
+          className="absolute right-0 lg:-right-10 xl:-right-20 top-1/2 -translate-y-1/2 w-56 md:w-60 lg:w-72 xl:w-85"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.75 }}

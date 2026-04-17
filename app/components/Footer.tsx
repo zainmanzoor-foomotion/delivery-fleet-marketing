@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const productLinks = [
   { label: 'How it Works', href: '#how-it-works' },
@@ -21,6 +22,14 @@ export default function Footer() {
 
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2 mb-4">
+            <Image
+              src="/Logo.png"
+              alt="Logo"
+              width={80}
+              height={80}
+              className="w-12 h-9.5"
+              priority
+            />
               <span className="text-xl sm:text-2xl font-bold text-text-1">
                 My Delivery Fleet
               </span>

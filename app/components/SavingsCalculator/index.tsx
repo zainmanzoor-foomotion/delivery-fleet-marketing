@@ -79,7 +79,7 @@ export default function SavingsCalculator() {
   const thirdPartyCurrentCost = thirdPartyEnabled ? thirdPartyCPO * thirdPartyOrders : 0
 
   return (
-    <section id="calculator" className="w-full px-4 py-16 sm:py-20">
+    <section id="calculator" className="w-full px-4 py-16 sm:py-32">
       {/* Title */}
       <div className="mx-auto max-w-4xl text-center mb-10">
         <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">

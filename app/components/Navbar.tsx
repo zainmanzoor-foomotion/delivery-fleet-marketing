@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 const navLinks = [
   { label: 'How it Works', href: '#how-it-works' },
@@ -22,6 +23,14 @@ export default function Navbar() {
         <div className="flex h-25 items-center justify-between">
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Image
+              src="/Logo.png"
+              alt="Logo"
+              width={80}
+              height={80}
+              className="w-10 h-8"
+              priority
+            />
             <span className="text-lg font-bold text-text-1 tracking-tight italic">
               My Delivery Fleet
             </span>
