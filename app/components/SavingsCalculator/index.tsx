@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { CurrencyInput } from './components/CurrencyInput'
 import { NumInput } from './components/NumInput'
@@ -421,16 +421,26 @@ export default function SavingsCalculator() {
                 onClick={() => setShowDisclaimer((v) => !v)}
                 className="flex w-full items-center justify-start gap-2 py-3 text-md font-regular text-text-1"
               >
-                {showDisclaimer ? (
-                  <ChevronUp className="h-4 w-4 text-text-2" />
-                ) : (
+                <motion.span
+                  animate={{ rotate: showDisclaimer ? 180 : 0 }}
+                  transition={{ duration: 0.25, ease: 'easeInOut' }}
+                  className="inline-flex"
+                >
                   <ChevronDown className="h-4 w-4 text-text-2" />
-                )}
+                </motion.span>
                 <span>Assumptions &amp; Disclaimers</span>
               </button>
 
-              {showDisclaimer && (
-                <ul className="list-disc list-outside pl-5 space-y-1 pt-3">
+              <motion.div
+                initial={false}
+                animate={showDisclaimer
+                  ? { height: 'auto', opacity: 1 }
+                  : { height: 0, opacity: 0 }
+                }
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                style={{ overflow: 'hidden' }}
+              >
+                <ul className="list-disc list-outside pl-5 space-y-1 pt-1 pb-2">
                   {[
                     'Calculations assume a 5-driveable-mile delivery radius.',
                     'In-House costs include 12% payroll tax, $0.67/mi reimbursement, and $10/day overhead.',
@@ -443,7 +453,7 @@ export default function SavingsCalculator() {
                     </li>
                   ))}
                 </ul>
-              )}
+              </motion.div>
             </div>
           </div>
         </div>
