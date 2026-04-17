@@ -48,8 +48,8 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, { 
-    stiffness: 100, 
+  const springValue = useSpring(motionValue, {
+    stiffness: 100,
     damping: 20,
     duration: duration * 1000
   })
@@ -69,8 +69,8 @@ function AnimatedRevenueCounter({ value, duration = 2 }: { value: number; durati
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, { 
-    stiffness: 100, 
+  const springValue = useSpring(motionValue, {
+    stiffness: 100,
     damping: 20,
     duration: duration * 1000
   })
@@ -100,35 +100,35 @@ export default function BoostSales() {
 
           <div className="flex flex-col gap-5 bg-[#FAFAFB] p-6 rounded-xl">
             <div className="grid grid-cols-2 gap-4">
-              <motion.div 
-                className="rounded-xl space-y-2 border border-[#E5E7EB] bg-white p-6"
+              <motion.div
+                className="rounded-xl space-y-3 border border-[#E5E7EB] bg-white p-4 sm:p-6"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <p className="text-sm font-medium text-text-1">Live Orders</p>
-                <p className="text-[32px] font-medium text-text-1">
+                <p className="text-xs sm:text-sm font-medium text-text-1">Live Orders</p>
+                <p className="text-2xl sm:text-[32px] font-medium text-text-1">
                   <AnimatedCounter value={7} />
                 </p>
-                <p className="flex items-center gap-0.5 text-sm font-semibold text-[#3FC060]">
-                  <ArrowUp className="h-4 w-4 font-bold" />
+                <p className="flex items-center gap-0.5 text-xs sm:text-sm font-semibold text-[#3FC060]">
+                  <ArrowUp className="h-3 w-3 sm:h-4 sm:w-4 font-bold" />
                   Updating live
                 </p>
               </motion.div>
-              <motion.div 
-                className="rounded-xl space-y-2 border border-[#E5E7EB] bg-white p-6"
+              <motion.div
+                className="rounded-xl space-y-3 border border-[#E5E7EB] bg-white p-4 sm:p-6"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
               >
-                <p className="text-sm font-medium text-text-1">Revenue this month</p>
-                <p className="text-[32px] font-medium text-text-1">
+                <p className="text-xs sm:text-sm font-medium text-text-1">Revenue this month</p>
+                <p className="text-2xl sm:text-[32px] font-medium text-text-1">
                   <AnimatedRevenueCounter value={17327} />
                 </p>
-                <p className="flex items-center gap-0.5 text-sm font-semibold text-[#3FC060]">
-                  <Plus className="h-4 w-4 font-bold" />
+                <p className="flex items-center gap-0.5 text-xs sm:text-sm font-semibold text-[#3FC060]">
+                  <Plus className="h-3 w-3 sm:h-4 sm:w-4 font-bold" />
                   18% vs last month</p>
               </motion.div>
             </div>
@@ -171,13 +171,13 @@ export default function BoostSales() {
 
             <div className="flex flex-col gap-8">
               {features.map(({ title, description }) => (
-                <div key={title} className="flex gap-4">
+                <div key={title} className="flex gap-6">
                   <div className="mt-0.5 shrink-0 h-fit p-2 border border-[#E5E7EB] rounded-md bg-[#F0FDF4]">
                     <Check className="h-4 w-4 text-[#3FC060]" strokeWidth={3} />
                   </div>
                   <div>
-                    <p className="text-2xl font-semibold text-text-1 mb-1">{title}</p>
-                    <p className="text-md text-text-2 leading-relaxed">{description}</p>
+                    <p className="text-lg sm:text-2xl font-semibold text-text-1 mb-1">{title}</p>
+                    <p className="text-sm sm:text-md text-text-2 leading-relaxed">{description}</p>
                   </div>
                 </div>
               ))}

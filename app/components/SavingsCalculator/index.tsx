@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -91,7 +92,13 @@ export default function SavingsCalculator() {
       </div>
 
       {/* Calculator card */}
-      <div className="mx-auto max-w-7xl rounded-[20px] border border-[#E5E7EB] overflow-hidden">
+      <motion.div
+        className="mx-auto max-w-7xl rounded-[20px] border border-[#E5E7EB] overflow-hidden"
+        initial={{ scale: 1.05, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] divide-y lg:divide-y-0 lg:divide-x divide-[##E5E7EB]">
 
           {/* ── LEFT PANEL ───────────────────────────────────────────────── */}
@@ -99,7 +106,7 @@ export default function SavingsCalculator() {
 
             {/* Operational Basics */}
             <div className="rounded-xl py-4">
-              <h3 className="text-lg font-medium text-text-1 mb-4">Operational Basics</h3>
+              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Operational Basics</h3>
               <div className="grid grid-cols-2 gap-4">
                 <CurrencyInput
                   label="Average Order Value"
@@ -118,7 +125,7 @@ export default function SavingsCalculator() {
 
             {/* Delivery methods */}
             <div className="rounded-xl py-4">
-              <p className="text-lg font-medium text-text-1 mb-4">
+              <p className="text-base sm:text-lg font-medium text-text-1 mb-4">
                 How do you currently deliver your orders?
               </p>
 
@@ -126,7 +133,7 @@ export default function SavingsCalculator() {
               <div className="mb-4">
                 <div>
                   <div className="flex items-center justify-between">
-                    <p className="text-md font-medium text-text-1">In-House Drivers</p>
+                    <p className="text-sm sm:text-md font-medium text-text-1">In-House Drivers</p>
                     <button
                       type="button"
                       role="switch"
@@ -180,7 +187,7 @@ export default function SavingsCalculator() {
               <div className="mb-4">
                 <div>
                   <div className="flex items-center justify-between">
-                    <p className="text-md font-medium text-text-1">Current On-Demand Service</p>
+                    <p className="text-sm sm:text-md font-medium text-text-1">Current On-Demand Service</p>
                     <button
                       type="button"
                       role="switch"
@@ -216,7 +223,7 @@ export default function SavingsCalculator() {
               <div>
                 <div>
                   <div className="flex items-center justify-between">
-                    <p className="text-md font-medium text-text-1">3rd Party Orders</p>
+                    <p className="text-sm sm:text-md font-medium text-text-1">3rd Party Orders</p>
                     <button
                       type="button"
                       role="switch"
@@ -278,7 +285,7 @@ export default function SavingsCalculator() {
 
             {/* Growth Engines */}
             <div className="rounded-xl py-4">
-              <h3 className="text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
+              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
               <div className="flex flex-col md:flex-row gap-3">
 
                 {/* Smart Marketing */}
@@ -300,7 +307,7 @@ export default function SavingsCalculator() {
                     )}
                   </div>
                   <div>
-                    <p className="text-md font-medium text-text-1">Smart Marketing</p>
+                    <p className="text-sm sm:text-md font-medium text-text-1">Smart Marketing</p>
                     <p className="text-sm text-text-2 mt-0.5">
                       Engage customers on the live tracking page to drive repeat orders.
                     </p>
@@ -326,7 +333,7 @@ export default function SavingsCalculator() {
                     )}
                   </div>
                   <div>
-                    <p className="text-md font-medium text-text-1">Radius Expansion</p>
+                    <p className="text-sm sm:text-md font-medium text-text-1">Radius Expansion</p>
                     <p className="text-sm text-text-2 mt-0.5">
                       Leverage on-demand drivers to deliver farther and reach new zip codes.
                     </p>
@@ -342,7 +349,7 @@ export default function SavingsCalculator() {
 
             {/* Estimated Results */}
             <div>
-              <h3 className="text-lg font-medium text-text-1 mb-3 pt-4">Estimated Results</h3>
+              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-3 pt-4">Estimated Results</h3>
               <div className="rounded-xl py-4 px-6 border border-[#E5E7EB] overflow-hidden">
                 <ResultRow label="Current Avg Cost / Order" value={fmt(currentAvgCPO)} />
                 <ResultRow label="MDF Cost / Order" value={fmt(mdfCPO)} />
@@ -440,7 +447,7 @@ export default function SavingsCalculator() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
