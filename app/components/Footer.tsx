@@ -21,11 +21,11 @@ export default function Footer() {
 
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <span className="text-2xl font-bold text-text-1">
+              <span className="text-xl sm:text-2xl font-bold text-text-1">
                 My Delivery Fleet
               </span>
             </Link>
-            <p className="text-md text-text-2 font-normal">
+            <p className="text-sm sm:text-md text-text-2 font-normal">
               Boost sales and cut costs with AI-powered On-Demand Drivers that expand your reach.
             </p>
           </div>
@@ -33,13 +33,13 @@ export default function Footer() {
           <div className="flex gap-16 sm:gap-20">
 
             <div>
-              <h3 className="mb-4 text-md font-semibold text-text-1">Product</h3>
+              <h3 className="mb-4 text-sm sm:text-md font-semibold text-text-1">Product</h3>
               <ul className="flex flex-col gap-3">
                 {productLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-md text-text-2 hover:text-text-1 transition-colors"
+                      className="text-sm sm:text-md text-text-2 hover:text-text-1 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -49,13 +49,13 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-md font-semibold text-text-1">Company</h3>
+              <h3 className="mb-4 text-sm sm:text-md font-semibold text-text-1">Company</h3>
               <ul className="flex flex-col gap-3">
                 {companyLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-md text-text-2 hover:text-text-1 transition-colors"
+                      className="text-sm sm:text-md text-text-2 hover:text-text-1 transition-colors"
                     >
                       {link.label}
                     </Link>

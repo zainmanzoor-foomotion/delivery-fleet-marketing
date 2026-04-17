@@ -94,12 +94,12 @@ function AnimatedRevenueCounter({ value, duration = 2 }: { value: number; durati
 
 export default function BoostSales() {
   return (
-    <section className="w-full px-4 py-16 sm:py-20">
+    <section id="benefits" className="w-full px-4 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl rounded-2xl border-2 border-[#E5E7EB] p-4 sm:p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
 
           <div className="flex flex-col gap-5 bg-[#FAFAFB] p-6 rounded-xl">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <motion.div
                 className="rounded-xl space-y-3 border border-[#E5E7EB] bg-white p-4 sm:p-6"
                 initial={{ scale: 0.8, opacity: 0 }}

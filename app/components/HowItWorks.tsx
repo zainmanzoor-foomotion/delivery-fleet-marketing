@@ -14,12 +14,12 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="w-full px-4 py-16 sm:py-20 overflow-hidden">
+    <section id="how-it-works" className="w-full px-4 py-16 sm:py-20 overflow-hidden">
       <div className="mx-auto max-w-3xl text-center mb-14">
-        <h2 className="text-[54px] sm:text-4xl md:text-5xl font-bold text-text-1">
+        <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">
           How It Works
         </h2>
-        <p className="mt-4 text-base sm:text-2xl text-text-2 max-w-3xl mx-auto">
+        <p className="mt-4 text-base sm:text-xl md:text-2xl text-text-2 max-w-3xl mx-auto">
           A seamless process designed to maximize your margins and build your customer database.
         </p>
       </div>
@@ -31,15 +31,15 @@ export default function HowItWorks() {
               {/* <div className="h-9 w-9 shrink-0 rounded-lg bg-[#F1F5F9] flex items-center justify-center"> */}
                 <Icon stroke={"#475569"} />
               {/* </div> */}
-              <span className="text-2xl font-medium text-text-2">{title}</span>
+              <span className="text-lg sm:text-2xl font-medium text-text-2">{title}</span>
             </div>
           ))}
 
-          <div className="relative z-10 rounded-2xl border border-[#E2E8F0] bg-white p-8 flex gap-6">
+          <div className="relative z-10 rounded-2xl border border-[#E2E8F0] bg-white p-5 sm:p-8 flex gap-4 sm:gap-6">
                <DollarIcon stroke={"#1877F2"} />
             <div>
-              <p className="text-2xl font-semibold text-text-2">You Keep the Profit</p>
-              <p className="mt-2 text-md text-text-2">
+              <p className="text-lg sm:text-2xl font-semibold text-text-2">You Keep the Profit</p>
+              <p className="mt-2 text-sm sm:text-md text-text-2">
                 Receive the order and keep 100% of the ticket price. No commissions, no percentage
                 fees—just pure revenue.
               </p>
@@ -47,10 +47,10 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <div className="relative min-h-150 min-w-sm flex items-center justify-center">
+        <div className="relative min-h-64 sm:min-h-150 w-full flex items-center justify-center">
           <div className="absolute inset-0 rounded-3xl bg-[#FAFAFB]" />
 
-          <div className="relative" style={{ width: 370, height: 420 }}>
+          <div className="relative w-full max-w-[370px]" style={{ height: 420 }}>
             <motion.div
               className="absolute rounded-2xl bg-white border border-[#E2E8F0]"
               style={{ transformOrigin: 'bottom center', top: -8, left: 0, right: 0, height: 400 }}
@@ -83,7 +83,7 @@ export default function HowItWorks() {
                   </div>
                 </div>
 
-                <p className="text-center text-2xl font-semibold text-text-1">
+                <p className="text-center text-lg sm:text-2xl font-semibold text-text-1">
                   New Order Received
                 </p>
 

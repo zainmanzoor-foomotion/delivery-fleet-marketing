@@ -141,11 +141,12 @@ export default function CutCosts() {
 
                         {/* Stats bar */}
                         <motion.div
-                            className="rounded-xl bg-[#1877F2] p-4 sm:p-4"
-                            initial={{ opacity: 0, y: 16 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-80px' }}
-                            transition={{ duration: 0.5, ease: 'easeOut' }}
+                            className="rounded-xl bg-primary p-4 sm:p-4"
+                            initial={{ opacity: 0, scale: 0.85 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, amount: 0.75 }}
+                            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                            style={{ transformOrigin: 'center' }}
                         >
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 items-center">
                                 {([
