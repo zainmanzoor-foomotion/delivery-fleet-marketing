@@ -39,6 +39,7 @@ export default function Header() {
 
       <div className="relative w-full max-w-6xl h-150 py-8 sm:py-12 md:mt-25 hidden md:block">
 
+        {/* Main dashboard — entrance + infinite gentle float */}
         <motion.div
           className="absolute left-1/2 -translate-x-1/2 w-200 max-w-200"
           initial={{ opacity: 0, scale: 0.85 }}
@@ -46,16 +47,22 @@ export default function Header() {
           viewport={{ once: true, amount: 0.75 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
-            src="/Mask group.png"
-            alt="Dashboard overview"
-            width={800}
-            height={500}
-            className="w-full h-auto drop-shadow-xl"
-            priority
-          />
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          >
+            <Image
+              src="/Mask group.png"
+              alt="Dashboard overview"
+              width={800}
+              height={500}
+              className="w-full h-auto drop-shadow-xl"
+              priority
+            />
+          </motion.div>
         </motion.div>
 
+        {/* Left panel — entrance + infinite float (offset phase) */}
         <motion.div
           className="absolute left-0 lg:-left-10 xl:-left-20 top-3/5 -translate-y-1/2 w-56 md:w-60 lg:w-72 xl:w-85"
           initial={{ opacity: 0, x: -40 }}
@@ -63,15 +70,21 @@ export default function Header() {
           viewport={{ once: true, amount: 0.75 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
-            src="/Group 5817.png"
-            alt="Order details panel"
-            width={260}
-            height={390}
-            className="w-full h-auto drop-shadow-xl"
-          />
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 1.3 }}
+          >
+            <Image
+              src="/Group 5817.png"
+              alt="Order details panel"
+              width={260}
+              height={390}
+              className="w-full h-auto drop-shadow-xl"
+            />
+          </motion.div>
         </motion.div>
 
+        {/* Right panel — entrance + infinite float (different phase) */}
         <motion.div
           className="absolute right-0 lg:-right-10 xl:-right-20 top-1/2 -translate-y-1/2 w-56 md:w-60 lg:w-72 xl:w-85"
           initial={{ opacity: 0, x: 40 }}
@@ -79,15 +92,21 @@ export default function Header() {
           viewport={{ once: true, amount: 0.75 }}
           transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
-            src="/Group 5614.png"
-            alt="Delivery charge summary"
-            width={260}
-            height={390}
-            className="w-full h-auto drop-shadow-xl"
-          />
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1.6 }}
+          >
+            <Image
+              src="/Group 5614.png"
+              alt="Delivery charge summary"
+              width={260}
+              height={390}
+              className="w-full h-auto drop-shadow-xl"
+            />
+          </motion.div>
         </motion.div>
 
+        {/* Top panel — entrance + infinite float (fastest) */}
         <motion.div
           className="absolute left-1/2 -top-10 -translate-x-1/2 w-85 max-w-85"
           initial={{ opacity: 0, y: -30 }}
@@ -95,13 +114,18 @@ export default function Header() {
           viewport={{ once: true, amount: 0.75 }}
           transition={{ duration: 0.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
-            src="/Group 5833.png"
-            alt="Driver assignment panel"
-            width={260}
-            height={130}
-            className="w-full h-auto drop-shadow-xl"
-          />
+          <motion.div
+            animate={{ y: [0, -7, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.9 }}
+          >
+            <Image
+              src="/Group 5833.png"
+              alt="Driver assignment panel"
+              width={260}
+              height={130}
+              className="w-full h-auto drop-shadow-xl"
+            />
+          </motion.div>
         </motion.div>
 
       </div>

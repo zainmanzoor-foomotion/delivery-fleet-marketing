@@ -1,18 +1,69 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
 import { TrackingIcon } from '@/components/icons/tracking'
 import { DollarIcon } from '@/components/icons/dollar'
 import { DispatchIcon } from '@/components/icons/dispatch'
 import { DeliveryBoxIcon } from '@/components/icons/delivery'
 
 const steps = [
-  { icon: DispatchIcon, title: 'We Auto-Dispatch' },
-  { icon: TrackingIcon, title: 'Branded Tracking & Opt-Ins' },
-  { icon: DeliveryBoxIcon, title: 'Automate Repeat Business' },
+  {
+    icon: DispatchIcon,
+    title: 'We Auto-Dispatch',
+    description: "Our system instantly assigns a driver for a predictable flat fee, handling the logistics so you don't have to.",
+    image: '/22 2.png',
+    imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
+    imgStyle: { height: '90%' },
+  },
+  {
+    icon: TrackingIcon,
+    title: 'Branded Tracking & Opt-Ins',
+    description: 'Customers track their driver on a branded map that looks like you. We use this high-engagement moment to capture SMS opt-ins for your list.',
+    image: '/Tracking.png',
+    imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
+    imgStyle: { height: '90%' },
+  },
+  {
+    icon: DeliveryBoxIcon,
+    title: 'Automate Repeat Business',
+    description: 'We turn that data into revenue. Our system automatically texts customers to drive Google Reviews and trigger their next order.',
+    image: '/Automate.png',
+    imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
+    imgStyle: { height: '90%' },
+  },
+  {
+    icon: DollarIcon,
+    title: 'You Keep the Profit',
+    description: 'Receive the order and keep 100% of the ticket price. No commissions, no percentage fees—just pure revenue.',
+    image: '/money.png',
+    imgClassName: 'absolute z-10 left-0 right-0 px-16',
+    imgStyle: { height: '75%', top: '10%', transform: 'translateY(-50%)' },
+  },
 ]
 
 export default function HowItWorks() {
+  const [active, setActive] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const startTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % steps.length)
+    }, 10000)
+  }
+
+  useEffect(() => {
+    startTimer()
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [])
+
+  const handleClick = (index: number) => {
+    setActive(index)
+    startTimer()
+  }
+
   return (
     <section id="how-it-works" className="w-full px-4 py-16 sm:py-18.75 overflow-hidden">
       <div className="mx-auto max-w-3xl text-center mb-14">
@@ -25,85 +76,61 @@ export default function HowItWorks() {
       </div>
 
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="flex flex-col gap-10 relative">
-          {steps.map(({ icon: Icon, title }) => (
-            <div key={title} className="flex items-center gap-4 relative z-10 pl-5">
-              {/* <div className="h-9 w-9 shrink-0 rounded-lg bg-[#F1F5F9] flex items-center justify-center"> */}
-                <Icon stroke={"#475569"} />
-              {/* </div> */}
-              <span className="text-lg sm:text-2xl font-medium text-text-2">{title}</span>
-            </div>
-          ))}
 
-          <div className="relative z-10 rounded-2xl border border-[#E2E8F0] bg-white p-5 sm:p-8 flex gap-4 sm:gap-6">
-               <DollarIcon stroke={"#1877F2"} />
-            <div>
-              <p className="text-lg sm:text-2xl font-semibold text-text-2">You Keep the Profit</p>
-              <p className="mt-2 text-sm sm:text-md text-text-2">
-                Receive the order and keep 100% of the ticket price. No commissions, no percentage
-                fees—just pure revenue.
-              </p>
-            </div>
-          </div>
+        {/* Left — clickable steps */}
+        <div className="flex flex-col gap-3">
+          {steps.map(({ icon: Icon, title, description }, index) => {
+            const isActive = active === index
+            return (
+              <button
+                key={title}
+                onClick={() => handleClick(index)}
+                className={`flex items-start gap-4 sm:gap-6 rounded-2xl border text-left transition-all duration-200 p-5 sm:p-6 w-full ${isActive
+                    ? 'border-[#E2E8F0] bg-white shadow-sm'
+                    : 'border-transparent hover:bg-[#F8FAFC]'
+                  }`}
+              >
+                <div className="shrink-0 mt-0.5">
+                  <Icon stroke={isActive ? '#1877F2' : '#475569'} />
+                </div>
+                <div>
+                  <span
+                    className={`text-lg sm:text-2xl font-medium transition-colors duration-200 ${isActive ? 'text-text-1 font-semibold' : 'text-text-2'
+                      }`}
+                  >
+                    {title}
+                  </span>
+                  {isActive && (
+                    <p className="mt-2 text-sm sm:text-md text-text-2">{description}</p>
+                  )}
+                </div>
+              </button>
+            )
+          })}
         </div>
 
+        {/* Right — image / card panel */}
         <div className="relative min-h-64 sm:min-h-150 w-full flex items-center justify-center">
           <div className="absolute inset-0 rounded-3xl bg-[#FAFAFB]" />
 
-          <div className="relative w-full max-w-[370px]" style={{ height: 420 }}>
+          <AnimatePresence mode="wait">
             <motion.div
-              className="absolute rounded-2xl bg-white border border-[#E2E8F0]"
-              style={{ transformOrigin: 'bottom center', top: -8, left: 0, right: 0, height: 400 }}
-              initial={{ opacity: 0, x: -120, rotate: 0 }}
-              whileInView={{ opacity: 1, x: 0, rotate: 6 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            />
-
-            <motion.div
-              className="absolute rounded-2xl bg-white border border-[#E2E8F0]"
-              style={{ transformOrigin: 'bottom center', top: -10, left: 0, right: 0, height: 400 }}
-              initial={{ opacity: 0, x: -120, rotate: 0 }}
-              whileInView={{ opacity: 1, x: 0, rotate: 3 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            />
-
-            <motion.div
-              className="absolute inset-0 rounded-2xl bg-white border border-[#E2E8F0]"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              key={active}
+              className={steps[active].imgClassName}
+              style={steps[active].imgStyle}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="p-6 h-full flex flex-col justify-center">
-                <div className="flex justify-center mb-5">
-                  <div className="h-30 w-30 rounded-full bg-[#F7F9FB] flex items-center justify-center">
-                    <span className="text-[34px] font-bold text-primary">$45</span>
-                  </div>
-                </div>
-
-                <p className="text-center text-lg sm:text-2xl font-semibold text-text-1">
-                  New Order Received
-                </p>
-
-                <div className="space-y-3 mt-8">
-                  <div className="flex items-center justify-between">
-                    <span className="text-md text-text-2">Order Total</span>
-                    <span className="text-md text-text-1">$45.00</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-md text-text-2">Commission</span>
-                    <span className="text-md text-primary">$0.00</span>
-                  </div>
-                  <div className="border-t border-[#E2E8F0] mt-6 pt-6 flex items-center justify-between">
-                    <span className="text-md font-bold text-text-1">You Keep</span>
-                    <span className="text-md font-semibold text-primary">$45.00</span>
-                  </div>
-                </div>
-              </div>
+              <Image
+                src={steps[active].image!}
+                alt={steps[active].title}
+                fill
+                className="object-contain object-center rounded-xl"
+              />
             </motion.div>
-          </div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

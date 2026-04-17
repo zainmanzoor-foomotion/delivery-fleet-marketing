@@ -81,10 +81,10 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} My Delivery Fleet. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#privacy" className="text-xs text-text-1 hover:text-text-2 transition-colors">
+            <Link href="/privacy" className="text-xs text-text-1 hover:text-text-2 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#terms" className="text-xs text-text-1 hover:text-text-2 transition-colors">
+            <Link href="/terms" className="text-xs text-text-1 hover:text-text-2 transition-colors">
               Terms of Service
             </Link>
           </div>
