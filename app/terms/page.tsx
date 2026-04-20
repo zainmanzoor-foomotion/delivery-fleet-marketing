@@ -32,11 +32,9 @@ const sections = [
   {
     title: '4. Fees and Payment',
     content: [
-      'Our pricing is based on a flat per-delivery fee. Current pricing is available on our pricing page and may be updated with 30 days\' notice.',
-      'Fees are charged per completed delivery. Failed or cancelled deliveries before driver pickup are not charged.',
-      'You authorize us to charge your payment method on file for all fees incurred.',
+      'Fees are charged on a weekly basis and invoiced accordingly. Failed or cancelled deliveries before driver pickup are not charged.',
+      'You authorize us to charge your payment method on file for all fees reflected in your weekly invoice.',
       'All fees are exclusive of applicable taxes. You are responsible for any taxes applicable to your use of the Platform.',
-      'Disputed charges must be raised within 30 days. We are not obligated to issue refunds for charges you did not dispute within this period.',
       'We reserve the right to suspend service for accounts with overdue balances.',
     ],
   },
@@ -110,7 +108,7 @@ const sections = [
     title: '12. Contact',
     content: [
       'For legal inquiries or questions about these Terms, please contact us:',
-      'Email: legal@mydeliveryfleet.com',
+      'Email: support@mydeliveryfleet.com',
       'Address: My Delivery Fleet, Inc.',
     ],
   },
@@ -159,8 +157,8 @@ export default function TermsPage() {
         <div className="mt-10 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE] p-6">
           <p className="text-sm text-text-2">
             For questions about these Terms, contact us at{' '}
-            <a href="mailto:legal@mydeliveryfleet.com" className="text-[#1877F2] font-medium hover:underline">
-              legal@mydeliveryfleet.com
+            <a href="mailto:support@mydeliveryfleet.com" className="text-[#1877F2] font-medium hover:underline">
+              support@mydeliveryfleet.com
             </a>
             . You can also review our{' '}
             <Link href="/privacy" className="text-[#1877F2] font-medium hover:underline">

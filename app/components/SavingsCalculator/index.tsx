@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ArrowRight, ChevronDown } from 'lucide-react'
+import { generatePDF } from './components/generatePDF'
 import { cn } from '@/lib/utils'
 import { CurrencyInput } from './components/CurrencyInput'
 import { NumInput } from './components/NumInput'
@@ -403,6 +404,16 @@ export default function SavingsCalculator() {
               <Button
                 variant='ghost'
                 className="text-text-1 w-full h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
+                onClick={() => generatePDF({
+                  currentAvgCPO,
+                  mdfCPO,
+                  savingCPO,
+                  opSavingsDaily,
+                  marketingRevDaily,
+                  radiusRevDaily,
+                  totalDailyProfit,
+                  totalAnnualProfit,
+                })}
               >
                 Download PDF Report
               </Button>

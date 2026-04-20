@@ -6,7 +6,6 @@ const sections = [
     content: [
       'Account Information: When you sign up for My Delivery Fleet, we collect your name, email address, business name, phone number, and billing information.',
       'Order & Delivery Data: We collect data related to orders placed, delivery routes, driver assignments, customer delivery addresses, and order values to operate our platform.',
-      'Usage Data: We automatically collect information about how you interact with our platform, including log data, device information, IP address, browser type, and pages visited.',
       'Customer Data: As part of our service, we process customer information (such as delivery addresses and contact details) on behalf of your restaurant. You are the data controller for this information.',
       'Marketing Opt-In Data: With explicit customer consent collected during the delivery tracking experience, we store marketing preferences and contact details for SMS campaigns.',
     ],
@@ -15,7 +14,7 @@ const sections = [
     title: '2. How We Use Your Information',
     content: [
       'To provide, maintain, and improve the My Delivery Fleet platform and services.',
-      'To process payments and manage your subscription.',
+      'To process payments and manage your per-delivery billing.',
       'To dispatch on-demand drivers and facilitate deliveries.',
       'To power branded tracking pages and customer-facing delivery experiences.',
       'To send SMS marketing campaigns on your behalf to opted-in customers.',
@@ -36,45 +35,15 @@ const sections = [
     ],
   },
   {
-    title: '4. Data Retention',
-    content: [
-      'We retain your account and business data for as long as your account is active or as needed to provide services.',
-      'Delivery and order records are retained for up to 3 years for accounting and dispute resolution purposes.',
-      'Customer marketing opt-in data is retained until a customer opts out or you request deletion.',
-      'Upon account termination, we will delete or anonymize your data within 90 days, unless retention is required by law.',
-    ],
-  },
-  {
-    title: '5. Security',
-    content: [
-      'We implement industry-standard security measures including encryption in transit (TLS), encryption at rest, and access controls to protect your data.',
-      'We conduct regular security reviews and vulnerability assessments.',
-      'While we take all reasonable steps to protect your information, no method of transmission over the internet is 100% secure. We cannot guarantee absolute security.',
-      'You are responsible for maintaining the confidentiality of your account credentials.',
-    ],
-  },
-  {
-    title: '6. Your Rights',
-    content: [
-      'Access: You may request a copy of the personal data we hold about you.',
-      'Correction: You may request correction of inaccurate or incomplete data.',
-      'Deletion: You may request deletion of your personal data, subject to legal retention requirements.',
-      'Portability: You may request a machine-readable export of your data.',
-      'Opt-Out: You may opt out of marketing communications at any time via account settings or by contacting us.',
-      'To exercise any of these rights, please contact us at privacy@mydeliveryfleet.com.',
-    ],
-  },
-  {
-    title: '7. Cookies',
+    title: '4. Cookies',
     content: [
       'We use cookies and similar tracking technologies to maintain session state, remember your preferences, and analyze platform usage.',
       'Essential cookies are required for the platform to function and cannot be disabled.',
-      'Analytics cookies help us understand usage patterns. You may opt out via your browser settings.',
       'We do not use cookies for third-party advertising.',
     ],
   },
   {
-    title: '8. Changes to This Policy',
+    title: '5. Changes to This Policy',
     content: [
       'We may update this Privacy Policy from time to time. We will notify you of material changes via email or a prominent notice on the platform.',
       'Your continued use of My Delivery Fleet after changes take effect constitutes acceptance of the updated policy.',
@@ -82,11 +51,10 @@ const sections = [
     ],
   },
   {
-    title: '9. Contact Us',
+    title: '6. Contact Us',
     content: [
       'If you have questions, concerns, or requests regarding this Privacy Policy, please contact us:',
-      'Email: privacy@mydeliveryfleet.com',
-      'Address: My Delivery Fleet, Inc.',
+      'Email: support@mydeliveryfleet.com',
     ],
   },
 ]
@@ -135,8 +103,8 @@ export default function PrivacyPage() {
         <div className="mt-10 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE] p-6">
           <p className="text-sm text-text-2">
             For questions about this Privacy Policy, contact us at{' '}
-            <a href="mailto:privacy@mydeliveryfleet.com" className="text-[#1877F2] font-medium hover:underline">
-              privacy@mydeliveryfleet.com
+            <a href="mailto:support@mydeliveryfleet.com" className="text-[#1877F2] font-medium hover:underline">
+              support@mydeliveryfleet.com
             </a>
             . You can also review our{' '}
             <Link href="/terms" className="text-[#1877F2] font-medium hover:underline">
