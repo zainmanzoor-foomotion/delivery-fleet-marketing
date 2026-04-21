@@ -24,7 +24,7 @@ export default function Navbar() {
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
-              src="/Logo.png"
+              src="/Logo.svg"
               alt="Logo"
               width={80}
               height={80}
@@ -49,16 +49,20 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <Button
-              variant='ghost'
-              className="text-md text-text-1 hover:bg-transparent">
-              Login
-            </Button>
-            <Button
-              className="w-35 text-md px-6"
-            >
-              Get Started
-            </Button>
+            <a href='https://app.mydeliveryfleet.com/sign-in' target='_blank'>
+              <Button
+                variant='ghost'
+                className="text-md text-text-1 hover:bg-transparent">
+                Login
+              </Button>
+            </a>
+            <a href='https://app.mydeliveryfleet.com/sign-up' target='_blank'>
+              <Button
+                className="w-35 text-md px-6"
+              >
+                Get Started
+              </Button>
+            </a>
           </div>
 
           <button
@@ -83,21 +87,25 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-md px-3 py-2 text-md font-medium text-text-1 hover:text-text-1/90 hover:bg-gray-50 transition-colors"
+              className="rounded-md px-3 py-2 text-sm font-medium text-text-1 hover:text-text-1/90 hover:bg-gray-50 transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
           ))}
           <div className="mt-3 flex flex-col gap-2 pt-3">
-            <Button
-              variant='ghost'
-              className="w-full px-3 py-2 text-md text-text-1">
-              Login
-            </Button>
-            <Button className="w-full text-md">
-              Get Started
-            </Button>
+            <a href='https://app.mydeliveryfleet.com/sign-in' target='_blank'>
+              <Button
+                variant='ghost'
+                className="w-full px-3 py-2 text-sm text-text-1">
+                Login
+              </Button>
+            </a>
+            <a href='https://app.mydeliveryfleet.com/sign-up' target='_blank'>
+              <Button className="w-full text-sm">
+                Get Started
+              </Button>
+            </a>
           </div>
         </nav>
       </div>

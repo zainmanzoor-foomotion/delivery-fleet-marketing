@@ -29,7 +29,7 @@ const steps = [
     icon: DeliveryBoxIcon,
     title: 'Automate Repeat Business',
     description: 'We turn that data into revenue. Our system automatically texts customers to drive Google Reviews and trigger their next order.',
-    image: '/Automate.png',
+    image: '/33 1.png',
     imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
     imgStyle: { height: '90%' },
   },
@@ -65,29 +65,29 @@ export default function HowItWorks() {
   }
 
   return (
-    <section id="how-it-works" className="w-full px-4 py-16 sm:py-18.75 overflow-hidden">
-      <div className="mx-auto max-w-3xl text-center mb-14">
-        <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">
+    <section id="how-it-works" className="w-full px-4 py-10 sm:py-16 overflow-hidden">
+      <div className="mx-auto max-w-3xl text-center mb-8 sm:mb-14">
+        <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           How It Works
         </h2>
-        <p className="mt-4 text-base sm:text-xl md:text-2xl text-text-2 max-w-3xl mx-auto">
+        <p className="mt-3 text-sm sm:text-base md:text-2xl text-text-2 max-w-3xl mx-auto">
           A seamless process designed to maximize your margins and build your customer database.
         </p>
       </div>
 
-      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
 
         {/* Left — clickable steps */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2 sm:gap-3">
           {steps.map(({ icon: Icon, title, description }, index) => {
             const isActive = active === index
             return (
               <button
                 key={title}
                 onClick={() => handleClick(index)}
-                className={`flex items-start gap-4 sm:gap-6 rounded-2xl border text-left transition-all duration-200 p-5 sm:p-6 w-full ${isActive
-                    ? 'border-[#E2E8F0] bg-white shadow-sm'
-                    : 'border-transparent hover:bg-[#F8FAFC]'
+                className={`flex items-start gap-3 sm:gap-6 rounded-2xl border text-left transition-all duration-200 p-3 sm:p-6 w-full ${isActive
+                  ? 'border-[#E2E8F0] bg-white shadow-sm'
+                  : 'border-transparent hover:bg-[#F8FAFC]'
                   }`}
               >
                 <div className="shrink-0 mt-0.5">
@@ -95,13 +95,13 @@ export default function HowItWorks() {
                 </div>
                 <div>
                   <span
-                    className={`text-lg sm:text-2xl font-medium transition-colors duration-200 ${isActive ? 'text-text-1 font-semibold' : 'text-text-2'
+                    className={`text-base sm:text-2xl font-medium transition-colors duration-200 ${isActive ? 'text-text-1 font-semibold' : 'text-text-2'
                       }`}
                   >
                     {title}
                   </span>
                   {isActive && (
-                    <p className="mt-2 text-sm sm:text-md text-text-2">{description}</p>
+                    <p className="mt-1.5 text-xs sm:text-[16px] text-text-2">{description}</p>
                   )}
                 </div>
               </button>
@@ -109,10 +109,9 @@ export default function HowItWorks() {
           })}
         </div>
 
-        {/* Right — image / card panel */}
-        <div className="relative min-h-64 sm:min-h-150 w-full flex items-center justify-center">
+        {/* Right — image panel (hidden on mobile, shown on lg+) */}
+        <div className="hidden lg:block relative min-h-150 w-full">
           <div className="absolute inset-0 rounded-3xl bg-[#FAFAFB]" />
-
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -132,6 +131,30 @@ export default function HowItWorks() {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Mobile image panel — compact height */}
+        <div className="lg:hidden relative w-full" style={{ height: 260 }}>
+          <div className="absolute inset-0 rounded-2xl bg-[#FAFAFB]" />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              className={steps[active].imgClassName}
+              style={steps[active].imgStyle}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image
+                src={steps[active].image!}
+                alt={steps[active].title}
+                fill
+                className="object-contain object-center rounded-xl"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
       </div>
     </section>
   )

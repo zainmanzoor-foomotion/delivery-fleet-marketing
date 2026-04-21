@@ -33,37 +33,37 @@ const features = [
 
 export default function SmartMarketing() {
   return (
-    <section id="marketing" className="w-full px-4 py-16 sm:py-22">
-      <div className="mx-auto max-w-4xl text-center mb-14">
-        <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">
+    <section id="marketing" className="w-full px-4 py-10 sm:py-16">
+      <div className="mx-auto max-w-4xl text-center mb-8 sm:mb-14">
+        <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           Smart Marketing Built-In
         </h2>
-        <p className="mt-4 text-base sm:text-2xl text-text-2 max-w-4xl mx-auto">
+        <p className="mt-3 text-sm sm:text-base md:text-2xl text-text-2 max-w-4xl mx-auto">
           Don&apos;t just deliver food. Deliver experiences that turn first-time customers into
           loyal fans with our automated marketing suite.
         </p>
       </div>
 
-      <div className="mx-auto max-w-7xl mb-16 rounded-2xl bg-[#FAFAFB] px-4 sm:px-10 pt-6 sm:pt-10 flex items-center md:items-end justify-center gap-2 overflow-hidden">
-        <div className="w-30 sm:w-52 md:w-60 shrink-0">
+      <div className="mx-auto max-w-7xl mb-10 sm:mb-16 rounded-2xl bg-[#FAFAFB] px-3 sm:px-10 pt-5 sm:pt-10 flex items-center md:items-end justify-center gap-2 overflow-hidden">
+        <div className="w-24 sm:w-52 md:w-60 shrink-0">
           <Image
-            src="/11 1.png"
+            src="/22 2.png"
             alt="Google review prompt"
             width={190}
             height={380}
             className="w-full h-auto drop-shadow-xl"
           />
         </div>
-        <div className="w-36 sm:w-60 md:w-70 shrink-0">
+        <div className="w-28 sm:w-60 md:w-70 shrink-0">
           <Image
-            src="/22 2.png"
+            src="/11 1.png"
             alt="Delivery tracking"
             width={230}
             height={460}
             className="w-full h-auto drop-shadow-xl"
           />
         </div>
-        <div className="w-30 sm:w-52 md:w-60 shrink-0">
+        <div className="w-24 sm:w-52 md:w-60 shrink-0">
           <Image
             src="/33 1.png"
             alt="SMS marketing"
@@ -74,13 +74,13 @@ export default function SmartMarketing() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-7xl grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-10">
         {features.map(({ icon: Icon, title, description }) => (
-          <div key={title} className="flex flex-col items-center text-center gap-3">
-            <div className={`h-14 w-14 border border-[#E5E7EB] rounded-2xl flex items-center justify-center`}>
-              <Icon size={34} />
+          <div key={title} className="flex flex-col items-center text-center gap-2 sm:gap-3">
+            <div className="h-11 w-11 sm:h-14 sm:w-14 border border-[#E5E7EB] rounded-2xl flex items-center justify-center">
+              <Icon size={28} />
             </div>
-            <p className="text-base sm:text-xl font-semibold text-text-1">{title}</p>
+            <p className="text-sm sm:text-xl font-semibold text-text-1">{title}</p>
             <p className="text-xs sm:text-sm text-text-2">{description}</p>
           </div>
         ))}

@@ -27,7 +27,7 @@ const SPRING = { stiffness: 100, damping: 20 }
 
 function AnimatedCurrency({ value, decimals = 2 }: { value: number; decimals?: number }) {
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-80px' })
+    const isInView = useInView(ref, { once: true, margin: '0px' })
     const mv = useMotionValue(0)
     const spring = useSpring(mv, SPRING)
     const display = useTransform(spring, (v) =>
@@ -44,7 +44,7 @@ function AnimatedCurrency({ value, decimals = 2 }: { value: number; decimals?: n
 
 function AnimatedPercent({ value }: { value: number }) {
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-80px' })
+    const isInView = useInView(ref, { once: true, margin: '0px' })
     const mv = useMotionValue(0)
     const spring = useSpring(mv, SPRING)
     const display = useTransform(spring, (v) => `${Math.round(v)}%`)
@@ -55,7 +55,7 @@ function AnimatedPercent({ value }: { value: number }) {
 function RangeSlider({ label, pct: targetPct }: { label: string; pct: number }) {
     const thumbSize = 20
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-80px' })
+    const isInView = useInView(ref, { once: true, margin: '0px' })
     const mv = useMotionValue(0)
     const spring = useSpring(mv, SPRING)
     const fillWidth = useTransform(spring, (v) => `${v}%`)
@@ -64,9 +64,8 @@ function RangeSlider({ label, pct: targetPct }: { label: string; pct: number }) 
     useEffect(() => { if (isInView) mv.set(targetPct) }, [isInView, mv, targetPct])
 
     return (
-        <div ref={ref} className="rounded-xl border border-[#E5E7EB] bg-white p-4 flex flex-col gap-3">
-            <p className="text-sm font-medium text-text-1">{label}</p>
-
+        <div ref={ref} className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-3">
+            <p className="text-xs sm:text-sm font-medium text-text-1">{label}</p>
             <div className="relative flex items-center" style={{ height: thumbSize }}>
                 <div className="absolute inset-x-0 h-1.5 rounded-full bg-[#E5E7EB]" />
                 <motion.div
@@ -84,30 +83,30 @@ function RangeSlider({ label, pct: targetPct }: { label: string; pct: number }) 
 
 export default function CutCosts() {
     return (
-        <section className="w-full px-4 py-16 sm:py-18.75">
-            <div className="mx-auto max-w-7xl rounded-2xl border-2 border-[#E5E7EB] p-4 sm:p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+        <section className="w-full px-4 py-10 sm:py-16">
+            <div className="mx-auto max-w-7xl rounded-2xl border-2 border-[#E5E7EB] p-3 sm:p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
 
                     {/* Left */}
-                    <div className="flex flex-col gap-12 p-6 rounded-xl">
-                        <div className="flex items-center gap-8">
-                            <div className='border border-[#E5E7EB] rounded-xl p-5'>
-                                <div className="h-12 w-12 shrink-0 rounded-full bg-[#2563EB] flex items-center justify-center">
+                    <div className="flex flex-col gap-5 sm:gap-10 p-3 sm:p-6 rounded-xl">
+                        <div className="flex items-center gap-4 sm:gap-8">
+                            <div className='border border-[#E5E7EB] rounded-xl p-3 sm:p-5'>
+                                <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full bg-[#2563EB] flex items-center justify-center">
                                     <TickDownIcon stroke='white' />
                                 </div>
                             </div>
-                            <h2 className="text-4xl sm:text-[44px] font-bold text-text-1">Cut Costs</h2>
+                            <h2 className="text-3xl sm:text-[44px] font-bold text-text-1">Cut Costs</h2>
                         </div>
 
-                        <div className="flex flex-col gap-8">
+                        <div className="flex flex-col gap-5 sm:gap-8">
                             {features.map(({ title, description }) => (
-                                <div key={title} className="flex gap-6">
-                                    <div className="mt-0.5 shrink-0 h-fit p-2 border border-[#E5E7EB] rounded-md bg-[#EFF6FF]">
-                                        <Check className="h-4 w-4 text-[#2563EB]" strokeWidth={3} />
+                                <div key={title} className="flex gap-3 sm:gap-6">
+                                    <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 border border-[#E5E7EB] rounded-md bg-[#EFF6FF]">
+                                        <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#2563EB]" strokeWidth={3} />
                                     </div>
                                     <div>
-                                        <p className="text-lg sm:text-2xl font-semibold text-text-1 mb-1">{title}</p>
-                                        <p className="text-sm sm:text-md text-text-2 leading-relaxed">{description}</p>
+                                        <p className="text-base sm:text-2xl font-semibold text-text-1 mb-1">{title}</p>
+                                        <p className="text-xs sm:text-[16px] text-text-2 leading-relaxed">{description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -115,62 +114,57 @@ export default function CutCosts() {
                     </div>
 
                     {/* Right */}
-                    <div className="flex flex-col gap-4 p-6 bg-[#FAFAFB] rounded-xl">
-
-                        {/* Sliders – animate from 0 → target pct on scroll into view */}
+                    <div className="flex flex-col gap-3 p-3 sm:p-6 bg-[#FAFAFB] rounded-xl">
                         <RangeSlider label="Average Order Value" pct={28} />
                         <RangeSlider label="Average Orders per Day" pct={15} />
 
-                        {/* Comparison cards */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 flex flex-col gap-2">
-                                <p className="text-xs sm:text-sm font-medium text-text-1">Third-party Apps</p>
-                                <p className="text-2xl sm:text-[32px] font-bold text-text-1">
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-2">
+                                <p className="text-cm font-medium text-text-1">Third-party Apps</p>
+                                <p className="text-xl sm:text-[32px] font-bold text-text-1">
                                     <AnimatedCurrency value={15} />
                                 </p>
-                                <p className="text-xs sm:text-sm text-text-2">30% per order</p>
+                                <p className="text-sm text-text-2">30% per order</p>
                             </div>
-                            <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 flex flex-col gap-2">
-                                <p className="text-xs sm:text-sm font-medium text-text-1">With Us</p>
-                                <p className="text-2xl sm:text-[32px] font-bold text-text-1">
+                            <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-2">
+                                <p className="text-sm font-medium text-text-1">With Us</p>
+                                <p className="text-xl sm:text-[32px] font-bold text-text-1">
                                     <AnimatedCurrency value={6.49} />
                                 </p>
-                                <p className="text-xs sm:text-sm font-medium text-[#3FC060]">Flat Fee Always (As low as $6.49)</p>
+                                <p className="text-sm font-medium text-[#3FC060]">Flat Fee Always (As low as $6.49)</p>
                             </div>
                         </div>
 
-                        {/* Stats bar */}
                         <motion.div
-                            className="rounded-xl bg-primary p-4 sm:p-4"
+                            className="rounded-xl bg-primary p-3 sm:p-4"
                             initial={{ opacity: 0, scale: 0.85 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, amount: 0.75 }}
                             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                             style={{ transformOrigin: 'center' }}
                         >
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 items-center">
+                            <div className="grid grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-3 items-center">
                                 {([
                                     { label: 'You Save Per Order', value: 8.51, decimals: 2 },
                                     { label: 'Savings Per Day', value: 42.55, decimals: 2 },
                                     { label: 'Savings Per Year', value: 15531, decimals: 0 },
                                 ] as const).map(({ label, value, decimals }) => (
-                                    <div key={label} className="flex flex-col gap-1 py-2 sm:gap-3">
-                                        <p className="text-[10px] sm:text-[12px] font-medium text-white leading-tight">{label}</p>
-                                        <p className="text-lg sm:text-[28px] font-medium text-white">
+                                    <div key={label} className="flex flex-col gap-1 py-1 sm:py-2">
+                                        <p className="text-[9px] sm:text-xs font-medium text-white leading-tight">{label}</p>
+                                        <p className="text-base sm:text-[28px] font-medium text-white">
                                             <AnimatedCurrency value={value} decimals={decimals} />
                                         </p>
                                     </div>
                                 ))}
-                                <div className="flex flex-col gap-1 sm:gap-3 bg-[#0E6CE6] rounded-xl p-2 py-4 items-center justify-center">
-                                    <p className="text-[10px] sm:text-[12px] font-medium text-white">Savings</p>
-                                    <p className="text-2xl sm:text-[32px] font-medium text-white">
+                                <div className="flex flex-col gap-1 bg-[#0E6CE6] rounded-xl p-2 py-3 items-start xl:items-center justify-center">
+                                    <p className="text-[9px] sm:text-xs font-medium text-white">Savings</p>
+                                    <p className="text-xl sm:text-[28px] font-medium text-white">
                                         <AnimatedPercent value={57} />
                                     </p>
                                 </div>
                             </div>
                         </motion.div>
-                        <p className="text-xs text-text-2 pl-1 -mt-2">Estimated</p>
-
+                        <p className="text-xs text-text-2 pl-1 -mt-1">Estimated</p>
                     </div>
 
                 </div>

@@ -97,7 +97,7 @@ export default function SavingsCalculator() {
         className="mx-auto max-w-7xl rounded-[20px] border border-[#E5E7EB] overflow-hidden"
         initial={{ scale: 1.05, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] divide-y lg:divide-y-0 lg:divide-x divide-[##E5E7EB]">
@@ -248,8 +248,8 @@ export default function SavingsCalculator() {
 
                 {thirdPartyEnabled && (
                   <div className="mt-3 space-y-3">
-                    <div className="flex items-end gap-3">
-                      <div className="flex-1">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div className="col-span-1">
                         <NumInput
                           label="Orders/Day"
                           value={thirdPartyOrders}
@@ -257,7 +257,7 @@ export default function SavingsCalculator() {
                         />
                       </div>
                       <div className="flex-1 flex items-end gap-2">
-                        <div className="flex-1">
+                        <div className="flex-2/2">
                           <NumInput
                             label="Current %"
                             value={thirdPartyCurrentPct}
@@ -265,7 +265,7 @@ export default function SavingsCalculator() {
                           />
                         </div>
                         <ArrowRight className="mb-2.5 shrink-0 h-4 w-4 text-primary" />
-                        <div className="flex-1">
+                        <div className="flex-2/2">
                           <NumInput
                             label="Self Delivery %"
                             value={thirdPartySelfDeliveryPct}
@@ -308,7 +308,7 @@ export default function SavingsCalculator() {
                     )}
                   </div>
                   <div>
-                    <p className="text-sm sm:text-md font-medium text-text-1">Smart Marketing</p>
+                    <p className="text-sm sm:text-[16px] font-medium text-text-1">Smart Marketing</p>
                     <p className="text-sm text-text-2 mt-0.5">
                       Engage customers on the live tracking page to drive repeat orders.
                     </p>
@@ -334,7 +334,7 @@ export default function SavingsCalculator() {
                     )}
                   </div>
                   <div>
-                    <p className="text-sm sm:text-md font-medium text-text-1">Radius Expansion</p>
+                    <p className="text-sm sm:text-[16px] font-medium text-text-1">Radius Expansion</p>
                     <p className="text-sm text-text-2 mt-0.5">
                       Leverage on-demand drivers to deliver farther and reach new zip codes.
                     </p>

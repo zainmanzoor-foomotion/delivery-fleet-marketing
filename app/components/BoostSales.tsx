@@ -43,10 +43,9 @@ const features = [
   },
 ]
 
-// Animated Counter Component
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "0px" })
   const motionValue = useMotionValue(0)
   const springValue = useSpring(motionValue, {
     stiffness: 100,
@@ -56,37 +55,32 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
   const displayValue = useTransform(springValue, (latest) => Math.round(latest))
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(value)
-    }
+    if (isInView) motionValue.set(value)
   }, [isInView, motionValue, value])
 
   return <motion.span ref={ref}>{displayValue}</motion.span>
 }
 
-// Animated Revenue Counter Component
 function AnimatedRevenueCounter({ value, duration = 2 }: { value: number; duration?: number }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "0px" })
   const motionValue = useMotionValue(0)
   const springValue = useSpring(motionValue, {
     stiffness: 100,
     damping: 20,
     duration: duration * 1000
   })
-  const displayValue = useTransform(springValue, (latest) => {
-    return new Intl.NumberFormat('en-US', {
+  const displayValue = useTransform(springValue, (latest) =>
+    new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(latest)
-  })
+  )
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(value)
-    }
+    if (isInView) motionValue.set(value)
   }, [isInView, motionValue, value])
 
   return <motion.span ref={ref}>{displayValue}</motion.span>
@@ -94,59 +88,58 @@ function AnimatedRevenueCounter({ value, duration = 2 }: { value: number; durati
 
 export default function BoostSales() {
   return (
-    <section id="benefits" className="w-full px-4 py-16 sm:py-18.75">
-      <div className="mx-auto max-w-7xl rounded-2xl border-2 border-[#E5E7EB] p-4 sm:p-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+    <section id="benefits" className="w-full px-4 py-10 sm:py-16">
+      <div className="mx-auto max-w-7xl rounded-2xl border-2 border-[#E5E7EB] p-3 sm:p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
 
-          <div className="flex flex-col gap-5 bg-[#FAFAFB] p-6 rounded-xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Left: stats + chart */}
+          <div className="flex flex-col gap-3 bg-[#FAFAFB] p-3 sm:p-6 rounded-xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <motion.div
-                className="rounded-xl space-y-3 border border-[#E5E7EB] bg-white p-4 sm:p-6"
+                className="rounded-xl space-y-2 sm:space-y-3 border border-[#E5E7EB] bg-white p-3 sm:p-6"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "0px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <p className="text-xs sm:text-sm font-medium text-text-1">Live Orders</p>
-                <p className="text-2xl sm:text-[32px] font-medium text-text-1">
+                <p className="text-sm font-medium text-text-1">Live Orders</p>
+                <p className="text-xl sm:text-[32px] font-medium text-text-1">
                   <AnimatedCounter value={7} />
                 </p>
-                <p className="flex items-center gap-0.5 text-xs sm:text-sm font-semibold text-[#3FC060]">
-                  <ArrowUp className="h-3 w-3 sm:h-4 sm:w-4 font-bold" />
+                <p className="flex items-center gap-0.5 text-sm font-semibold text-[#3FC060]">
+                  <ArrowUp className="h-3 w-3 font-bold" />
                   Updating live
                 </p>
               </motion.div>
               <motion.div
-                className="rounded-xl space-y-3 border border-[#E5E7EB] bg-white p-4 sm:p-6"
+                className="rounded-xl space-y-2 sm:space-y-3 border border-[#E5E7EB] bg-white p-3 sm:p-6"
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "0px" }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
               >
-                <p className="text-xs sm:text-sm font-medium text-text-1">Revenue this month</p>
-                <p className="text-2xl sm:text-[32px] font-medium text-text-1">
+                <p className="text-sm font-medium text-text-1">Revenue this month</p>
+                <p className="text-xl sm:text-[32px] font-medium text-text-1">
                   <AnimatedRevenueCounter value={17327} />
                 </p>
-                <p className="flex items-center gap-0.5 text-xs sm:text-sm font-semibold text-[#3FC060]">
-                  <Plus className="h-3 w-3 sm:h-4 sm:w-4 font-bold" />
-                  18% vs last month</p>
+                <p className="flex items-center gap-0.5 text-sm font-semibold text-[#3FC060]">
+                  <Plus className="h-3 w-3 font-bold" />
+                  18% vs last month
+                </p>
               </motion.div>
             </div>
 
-            <div className="rounded-xl border border-[#E5E7EB] bg-white p-5">
-              <p className="text-xl font-medium text-text-1 mb-4">Monthly Orders</p>
-              <ChartContainer config={chartConfig} className="w-full" style={{ height: 240 }}>
-                <BarChart data={chartData} barSize={70} barCategoryGap="10%">
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-5">
+              <p className="text-base sm:text-xl font-medium text-text-1 mb-3 sm:mb-4">Monthly Orders</p>
+              <ChartContainer config={chartConfig} className="w-full" style={{ height: 220 }}>
+                <BarChart data={chartData} barSize={70} barCategoryGap="5%">
                   <XAxis
                     dataKey="month"
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fontSize: 14, fill: '#475569' }}
+                    tick={{ fontSize: 11, fill: '#475569' }}
                   />
-                  <Bar
-                    dataKey="orders"
-                    radius={[20, 20, 0, 0]}
-                  >
+                  <Bar dataKey="orders" radius={[20, 20, 0, 0]}>
                     {chartData.map((entry, index) => (
                       <Cell
                         key={entry.month}
@@ -159,25 +152,26 @@ export default function BoostSales() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-12 pl-5">
-            <div className="flex items-center gap-8">
-              <div className='border border-[#E5E7EB] rounded-xl p-5'>
-                <div className="h-12 w-12 shrink-0 rounded-full bg-[#3FC060] flex items-center justify-center">
+          {/* Right: heading + features */}
+          <div className="flex flex-col gap-5 sm:gap-10 p-3 sm:p-6 rounded-xl">
+            <div className="flex items-center gap-4 sm:gap-8">
+              <div className='border border-[#E5E7EB] rounded-xl p-3 sm:p-5'>
+                <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full bg-[#3FC060] flex items-center justify-center">
                   <TickIcon stroke='white' />
                 </div>
               </div>
-              <h2 className="text-4xl sm:text-[44px] font-bold text-text-1">Boost Sales</h2>
+              <h2 className="text-3xl sm:text-[44px] font-bold text-text-1">Boost Sales</h2>
             </div>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-5 sm:gap-8">
               {features.map(({ title, description }) => (
-                <div key={title} className="flex gap-6">
-                  <div className="mt-0.5 shrink-0 h-fit p-2 border border-[#E5E7EB] rounded-md bg-[#F0FDF4]">
-                    <Check className="h-4 w-4 text-[#3FC060]" strokeWidth={3} />
+                <div key={title} className="flex gap-3 sm:gap-6">
+                  <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 border border-[#E5E7EB] rounded-md bg-[#F0FDF4]">
+                    <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#3FC060]" strokeWidth={3} />
                   </div>
                   <div>
-                    <p className="text-lg sm:text-2xl font-semibold text-text-1 mb-1">{title}</p>
-                    <p className="text-sm sm:text-md text-text-2 leading-relaxed">{description}</p>
+                    <p className="text-base sm:text-2xl font-semibold text-text-1 mb-1">{title}</p>
+                    <p className="text-xs sm:text-[16px] text-text-2 leading-relaxed">{description}</p>
                   </div>
                 </div>
               ))}
