@@ -21,26 +21,26 @@ import { fmt } from './components/fmt'
 
 export default function SavingsCalculator() {
   // Operational basics
-  const [avgOrderValue, setAvgOrderValue] = useState(12)
-  const [customerDeliveryFee, setCustomerDeliveryFee] = useState(1)
+  const [avgOrderValue, setAvgOrderValue] = useState(0)
+  const [customerDeliveryFee, setCustomerDeliveryFee] = useState(0)
 
   // In-house drivers
-  const [inHouseEnabled, setInHouseEnabled] = useState(true)
-  const [inHouseOrders, setInHouseOrders] = useState(10)
+  const [inHouseEnabled, setInHouseEnabled] = useState(false)
+  const [inHouseOrders, setInHouseOrders] = useState(0)
   const [inHousePayModel, setInHousePayModel] = useState('Hourly Wage')
-  const [inHouseWage, setInHouseWage] = useState(10)
-  const [inHouseHrs, setInHouseHrs] = useState(10)
+  const [inHouseWage, setInHouseWage] = useState(0)
+  const [inHouseHrs, setInHouseHrs] = useState(0)
 
   // On-demand
-  const [onDemandEnabled, setOnDemandEnabled] = useState(true)
-  const [onDemandOrders, setOnDemandOrders] = useState(10)
-  const [onDemandDispatch, setOnDemandDispatch] = useState(7.99)
+  const [onDemandEnabled, setOnDemandEnabled] = useState(false)
+  const [onDemandOrders, setOnDemandOrders] = useState(0)
+  const [onDemandDispatch, setOnDemandDispatch] = useState(0)
 
   // 3rd party
-  const [thirdPartyEnabled, setThirdPartyEnabled] = useState(true)
-  const [thirdPartyOrders, setThirdPartyOrders] = useState(10)
-  const [thirdPartyCurrentPct, setThirdPartyCurrentPct] = useState(10)
-  const [thirdPartySelfDeliveryPct, setThirdPartySelfDeliveryPct] = useState(1)
+  const [thirdPartyEnabled, setThirdPartyEnabled] = useState(false)
+  const [thirdPartyOrders, setThirdPartyOrders] = useState(0)
+  const [thirdPartyCurrentPct, setThirdPartyCurrentPct] = useState(0)
+  const [thirdPartySelfDeliveryPct, setThirdPartySelfDeliveryPct] = useState(0)
 
   // Growth engines
   const [smartMarketing, setSmartMarketing] = useState(false)
