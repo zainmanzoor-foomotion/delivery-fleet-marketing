@@ -2,15 +2,18 @@
 
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 export function CurrencyInput({
   label,
   value,
   onChange,
+  className,
 }: {
   label: string
   value: number
   onChange: (dollars: number) => void
+  className?: string
 }) {
   const [cents, setCents] = useState(() => Math.round(value * 100))
   const [focused, setFocused] = useState(false)
@@ -44,7 +47,7 @@ export function CurrencyInput({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         onKeyDown={handleKeyDown}
-        className="h-10 text-sm text-text-1 rounded-xl"
+        className={cn('h-10 text-sm text-text-1 rounded-xl', className)}
       />
     </div>
   )

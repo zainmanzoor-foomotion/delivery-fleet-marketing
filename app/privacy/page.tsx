@@ -2,59 +2,57 @@ import Link from 'next/link'
 
 const sections = [
   {
-    title: '1. Information We Collect',
-    content: [
-      'Account Information: When you sign up for My Delivery Fleet, we collect your name, email address, business name, phone number, and billing information.',
-      'Order & Delivery Data: We collect data related to orders placed, delivery routes, driver assignments, customer delivery addresses, and order values to operate our platform.',
-      'Customer Data: As part of our service, we process customer information (such as delivery addresses and contact details) on behalf of your restaurant. You are the data controller for this information.',
-      'Marketing Opt-In Data: With explicit customer consent collected during the delivery tracking experience, we store marketing preferences and contact details for SMS campaigns.',
+    title: 'Collection of your Personal Information',
+    paragraphs: [
+      'My Delivery Fleet may collect personally identifiable information, such as your name. If you use My Delivery Fleet\'s products and services, we collect address, phone number, amount purchased, purchase details and primary email address information. This information is used to complete the delivery transaction. We may gather additional personal or non-personal information in the future.',
+      'If you are a driver using our my driver app or My Delivery Fleet drive app, we collect location data, including background location, to track deliveries, geofencing and optimize routes. Location data is collected only when you are online or on shift. When you are offline or not actively delivering, My Delivery Fleet does not collect or store your location data.',
+      'Information about your computer hardware and software may be automatically collected by My Delivery Fleet. This information can include: your IP address, browser type, domain names, access times and referring website addresses. This information is used for the operation of the service, to maintain quality of the service, and to provide general statistics regarding use of the My Delivery Fleet website.',
     ],
   },
   {
-    title: '2. How We Use Your Information',
-    content: [
-      'To provide, maintain, and improve the My Delivery Fleet platform and services.',
-      'To process payments and manage your per-delivery billing.',
-      'To dispatch on-demand drivers and facilitate deliveries.',
-      'To power branded tracking pages and customer-facing delivery experiences.',
-      'To send SMS marketing campaigns on your behalf to opted-in customers.',
-      'To send you service updates, account notifications, and support communications.',
-      'To analyze platform usage and improve our algorithms and features.',
-      'To comply with legal obligations and enforce our Terms of Service.',
+    title: 'Use of your Personal Information',
+    paragraphs: [
+      'My Delivery Fleet collects and uses your personal information to operate its website(s) and deliver the services you have requested. This includes using your phone number to send SMS notifications specifically to notify you in case of an emergency or similar urgent cases regarding the system. My Delivery Fleet may also use your personally identifiable information to inform you of other products or services available from My Delivery Fleet and its affiliates. My Delivery Fleet may also contact you via surveys to conduct research about your opinion of current services. My Delivery Fleet does not sell, rent or lease its customer lists to third parties.',
+      'My Delivery Fleet may share data with trusted partners to help perform statistical analysis, send you email to provide customer support. All such third parties are prohibited from using your personal information except to provide these services to My Delivery Fleet, and they are required to maintain the confidentiality of your information.',
+      'My Delivery Fleet may keep track of the websites and pages our users visit within My Delivery Fleet, in order to determine what My Delivery Fleet services are the most popular. This data is used to deliver customized content and advertising within My Delivery Fleet to customers whose behavior indicates that they are interested in a particular subject area.',
+      'My Delivery Fleet will disclose your personal information, without notice, only if required to do so by law or in the good faith belief that such action is necessary to: (a) conform to the edicts of the law or comply with legal process served on My Delivery Fleet or the site; (b) protect and defend the rights or property of My Delivery Fleet; and, (c) act under exigent circumstances to protect the personal safety of users of My Delivery Fleet, or the public.',
     ],
   },
   {
-    title: '3. Sharing of Information',
-    content: [
-      'Driver Partners: We share necessary order and location information with on-demand drivers to complete deliveries.',
-      'Payment Processors: Billing information is shared with our payment processor (Stripe) to handle transactions securely.',
-      'SMS Providers: Customer contact details and marketing content are shared with our SMS gateway provider to send campaigns.',
-      'Analytics Providers: We use anonymized and aggregated data with analytics services to improve our platform.',
-      'Legal Requirements: We may disclose information if required by law, regulation, or valid legal process.',
-      'We do not sell your personal information or your customers\' personal information to third parties.',
+    title: 'Use of Cookies',
+    paragraphs: [
+      'The My Delivery Fleet website may use "cookies" to help you personalize your online experience. A cookie is a text file that is placed on your hard disk by a web page server. Cookies cannot be used to run programs or deliver viruses to your computer. Cookies are uniquely assigned to you, and can only be read by a web server in the domain that issued the cookie to you.',
+      'You have the ability to accept or decline cookies. Most Web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer. If you choose to decline cookies, you may not be able to fully experience the interactive features of the My Delivery Fleet services or websites you visit.',
     ],
   },
   {
-    title: '4. Cookies',
-    content: [
-      'We use cookies and similar tracking technologies to maintain session state, remember your preferences, and analyze platform usage.',
-      'Essential cookies are required for the platform to function and cannot be disabled.',
-      'We do not use cookies for third-party advertising.',
+    title: 'Security of your Personal Information',
+    paragraphs: [
+      'Your personal information is extremely important to us. My Delivery Fleet secures your personal information from unauthorized access, use or disclosure. When personal information is transmitted to other websites, it is protected through the use of encryption, such as the Secure Sockets Layer (SSL) protocol. Although we try our best to protect your information, we cannot completely eliminate security risks associated with personal information.',
     ],
   },
   {
-    title: '5. Changes to This Policy',
-    content: [
-      'We may update this Privacy Policy from time to time. We will notify you of material changes via email or a prominent notice on the platform.',
-      'Your continued use of My Delivery Fleet after changes take effect constitutes acceptance of the updated policy.',
-      'We encourage you to review this policy periodically.',
+    title: 'Children Under Thirteen',
+    paragraphs: [
+      'My Delivery Fleet does not knowingly collect personally identifiable information from children under the age of thirteen. If you are under the age of thirteen, you must ask your parent or guardian for permission to use this website.',
     ],
   },
   {
-    title: '6. Contact Us',
-    content: [
-      'If you have questions, concerns, or requests regarding this Privacy Policy, please contact us:',
-      'Email: support@mydeliveryfleet.com',
+    title: 'Opt-Out & Unsubscribe',
+    paragraphs: [
+      'We respect your privacy and give you an opportunity to opt-out of receiving announcements of certain information. Users may opt-out of receiving any or all communications from My Delivery Fleet by contacting us at http://www.My Delivery Fleet.com/',
+    ],
+  },
+  {
+    title: 'Changes to this Statement',
+    paragraphs: [
+      'My Delivery Fleet will occasionally update this Statement of Privacy to reflect company and customer feedback. My Delivery Fleet encourages you to periodically review this Statement to be informed of how My Delivery Fleet is protecting your information.',
+    ],
+  },
+  {
+    title: 'Contact Information',
+    paragraphs: [
+      'My Delivery Fleet welcomes your questions or comments regarding this Statement of Privacy. If you believe that My Delivery Fleet has not adhered to this Statement, please contact My Delivery Fleet at info@MyDeliveryFleet.com',
     ],
   },
 ]
@@ -62,58 +60,57 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="bg-[#FAFAFB] border-b border-[#E5E7EB]">
-        <div className="mx-auto max-w-4xl px-6 py-14">
-          <Link href="/" className="text-sm text-text-2 hover:text-text-1 transition-colors mb-6 inline-block">
-            ← Back to Home
-          </Link>
-          <p className="text-sm font-medium text-[#1877F2] mb-2">Legal</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-1">Privacy Policy</h1>
-          <p className="mt-4 text-text-2 text-base sm:text-lg">
-            Last updated: April 17, 2026
+      <div className="mx-auto max-w-4xl px-6 pt-10">
+        <h1 className="text-3xl sm:text-[54px] font-bold text-text-1 mb-3">Privacy Policy</h1>
+        <p className="text-sm sm:text-2xl text-text-2 mb-8">The Effective date of this Policy is April 12, 2025</p>
+      </div>
+
+      {/* Intro */}
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="flex flex-col gap-4 text-sm sm:text-base text-text-2 leading-relaxed">
+          <p>
+            Protecting your private information is our priority. This Statement of Privacy applies to the http://www.dashboard.My Delivery Fleet.com and My Delivery Fleet Inc. and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to My Delivery Fleet include http://www.My Delivery Fleet.com and My Delivery Fleet, Inc. The My Delivery Fleet website is a restaurant food delivery management site. By using the My Delivery Fleet website, you consent to the data practices described in this statement. This Privacy Policy applies to every My Delivery Fleet application, whether accessed directly or through a third party marketplace or platform (collectively, "Platforms").
           </p>
-          <p className="mt-4 text-text-2 text-base sm:text-lg max-w-3xl">
-            My Delivery Fleet (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy.
-            This policy explains how we collect, use, share, and protect your information when you
-            use our platform and services.
+          <p>
+            When a Merchant enables any Company application on a Platform, Company acts as a service provider/processor on behalf of that Merchant. In this role we:
+          </p>
+          <ol className="flex flex-col gap-1.5">
+            {[
+              'Collect only the data the Platform makes available or that the Merchant provides (e.g., order details and limited customer contact info).',
+              'Use that data solely to deliver, secure, and improve the application.',
+              'Disclose it only to the Merchant and to subprocessors and never for our own independent marketing purposes.',
+              'Retain & secure the data.',
+              'Honour data subject rights through the Merchant, who is the data controller.',
+            ].map((item, i) => (
+              <li key={i} className="flex gap-2">
+                <span className="shrink-0 font-medium text-text-2">{i + 1}.</span>
+                {item}
+              </li>
+            ))}
+          </ol>
+          <p>
+            By signing up, you agree to receive SMS messages from us for account verification, onboarding assistance, and updates necessary to help you set up and use your account. Message frequency may vary. Standard message and data rates may apply. You can opt out at any time by replying STOP.
           </p>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="mx-auto max-w-4xl px-6 py-14">
-        <div className="flex flex-col gap-10">
-          {sections.map(({ title, content }) => (
-            <div key={title} className="flex flex-col gap-4">
-              <h2 className="text-xl sm:text-2xl font-semibold text-text-1">{title}</h2>
-              <ul className="flex flex-col gap-3">
-                {content.map((item, i) => (
-                  <li key={i} className="flex gap-3 text-text-2 text-sm sm:text-base leading-relaxed">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1877F2]" />
-                    {item}
-                  </li>
+      {/* Sections */}
+      <div className="mx-auto max-w-4xl px-6 py-10">
+        <div className="flex flex-col gap-8">
+          {sections.map(({ title, paragraphs }) => (
+            <div key={title}>
+              <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">{title}</h2>
+              <div className="flex flex-col gap-3">
+                {paragraphs.map((p, i) => (
+                  <p key={i} className="text-sm sm:text-base text-text-2 leading-relaxed">{p}</p>
                 ))}
-              </ul>
-              <div className="border-b border-[#E5E7EB]" />
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE] p-6">
-          <p className="text-sm text-text-2">
-            For questions about this Privacy Policy, contact us at{' '}
-            <a href="mailto:support@mydeliveryfleet.com" className="text-[#1877F2] font-medium hover:underline">
-              support@mydeliveryfleet.com
-            </a>
-            . You can also review our{' '}
-            <Link href="/terms" className="text-[#1877F2] font-medium hover:underline">
-              Terms of Service
-            </Link>
-            .
-          </p>
-        </div>
       </div>
     </main>
   )
 }
+

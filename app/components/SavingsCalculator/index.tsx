@@ -19,25 +19,36 @@ import { ResultRow } from './components/ResultRow'
 import { ImpactRow } from './components/ImpactRow'
 import { fmt } from './components/fmt'
 
+// ── Constants (matching original) ────────────────────────────────────────────
+const MDF_DISPATCH = 6.49
+const TAX_LOAD = 1.12
+const MILEAGE_PER_ORDER = 5 * 0.67 // 5 miles × $0.67 = $3.35
+const OVERHEAD_PER_DAY = 10
+
 export default function SavingsCalculator() {
   // Operational basics
   const [avgOrderValue, setAvgOrderValue] = useState(0)
   const [customerDeliveryFee, setCustomerDeliveryFee] = useState(0)
 
   // In-house drivers
-  const [inHouseEnabled, setInHouseEnabled] = useState(false)
+  const [inHouseEnabled, setInHouseEnabled] = useState(true)
   const [inHouseOrders, setInHouseOrders] = useState(0)
   const [inHousePayModel, setInHousePayModel] = useState('Hourly Wage')
+  // Hourly fields
   const [inHouseWage, setInHouseWage] = useState(0)
   const [inHouseHrs, setInHouseHrs] = useState(0)
+  // Hybrid fields (Wage + Fee Share)
+  const [inHouseBaseWage, setInHouseBaseWage] = useState(0)
+  const [inHouseHybridHours, setInHouseHybridHours] = useState(0)
+  const [inHouseFeeShare, setInHouseFeeShare] = useState(0)
 
   // On-demand
-  const [onDemandEnabled, setOnDemandEnabled] = useState(false)
+  const [onDemandEnabled, setOnDemandEnabled] = useState(true)
   const [onDemandOrders, setOnDemandOrders] = useState(0)
   const [onDemandDispatch, setOnDemandDispatch] = useState(0)
 
   // 3rd party
-  const [thirdPartyEnabled, setThirdPartyEnabled] = useState(false)
+  const [thirdPartyEnabled, setThirdPartyEnabled] = useState(true)
   const [thirdPartyOrders, setThirdPartyOrders] = useState(0)
   const [thirdPartyCurrentPct, setThirdPartyCurrentPct] = useState(0)
   const [thirdPartySelfDeliveryPct, setThirdPartySelfDeliveryPct] = useState(0)
@@ -49,38 +60,85 @@ export default function SavingsCalculator() {
   // Disclaimer accordion
   const [showDisclaimer, setShowDisclaimer] = useState(false)
 
-  // ── Calculations ─────────────────────────────────────────────────────────────
-  const inHouseCPO =
-    (inHouseWage * inHouseHrs * 1.12 + 10) / Math.max(inHouseOrders, 1) + 0.67 * 5
-  const onDemandCPO = onDemandDispatch
-  const thirdPartyCPO = avgOrderValue * (thirdPartyCurrentPct / 100)
+  // ── Calculations (corrected to match original HTML logic) ─────────────────
 
-  const enabledEntries = [
-    { enabled: inHouseEnabled, cpo: inHouseCPO, orders: inHouseOrders },
-    { enabled: onDemandEnabled, cpo: onDemandCPO, orders: onDemandOrders },
-    { enabled: thirdPartyEnabled, cpo: thirdPartyCPO, orders: thirdPartyOrders },
-  ].filter((e) => e.enabled)
+  // --- IN-HOUSE ---
+  let ihLabor = 0
+  if (inHousePayModel === 'Hourly Wage') {
+    ihLabor = inHouseWage * inHouseHrs * TAX_LOAD
+  } else {
+    // Hybrid: base wage * hours * tax + (orders × fee share per delivery)
+    ihLabor =
+      inHouseBaseWage * inHouseHybridHours * TAX_LOAD +
+      inHouseOrders * inHouseFeeShare
+  }
+  // Total daily net cost = labor + mileage reimbursement + overhead - customer fees collected
+  const ihTotalDailyCost =
+    inHouseOrders > 0
+      ? ihLabor +
+      inHouseOrders * MILEAGE_PER_ORDER +
+      OVERHEAD_PER_DAY -
+      inHouseOrders * customerDeliveryFee
+      : 0
+  const ihCPO = inHouseOrders > 0 ? ihTotalDailyCost / inHouseOrders : 0
+  const ihMDFDailyCost = inHouseOrders * MDF_DISPATCH - inHouseOrders * customerDeliveryFee
 
-  const totalOrders = enabledEntries.reduce((s, e) => s + e.orders, 0)
-  const totalCost = enabledEntries.reduce((s, e) => s + e.cpo * e.orders, 0)
-  const currentAvgCPO = totalOrders > 0 ? totalCost / totalOrders : 0
+  // --- ON-DEMAND ---
+  // Net cost per order = dispatch fee minus what customer pays
+  const odCPO = onDemandDispatch - customerDeliveryFee
+  const odTotalDailyCost = odCPO * onDemandOrders
+  const odMDFDailyCost = onDemandOrders * MDF_DISPATCH - onDemandOrders * customerDeliveryFee
 
-  const mdfCPO = 2.99 + avgOrderValue * 0.22
-  const savingCPO = currentAvgCPO - mdfCPO
-  const opSavingsDaily = Math.max(0, savingCPO * totalOrders)
+  // --- MARKETPLACE (3rd Party) ---
+  // Current cost = commission % of AOV per order
+  const mpCPO = avgOrderValue * (thirdPartyCurrentPct / 100)
+  const mpTotalDailyCost = mpCPO * thirdPartyOrders
+  // MDF cost when switching to Self-Delivery = lower commission + MDF dispatch - customer fee
+  const mpMDFDailyCost =
+    (avgOrderValue * (thirdPartySelfDeliveryPct / 100) + MDF_DISPATCH - customerDeliveryFee) *
+    thirdPartyOrders
 
-  const marketingRevDaily = smartMarketing ? totalOrders * avgOrderValue * 0.583 : 0
-  const radiusRevDaily = radiusExpansion ? totalOrders * avgOrderValue * 0.467 : 0
+  // --- AGGREGATE ---
+  let curTotalCost = 0
+  let mdfTotalCost = 0
+  let totalOrders = 0
+
+  if (inHouseEnabled) {
+    curTotalCost += ihTotalDailyCost
+    mdfTotalCost += ihMDFDailyCost
+    totalOrders += inHouseOrders
+  }
+  if (onDemandEnabled) {
+    curTotalCost += odTotalDailyCost
+    mdfTotalCost += odMDFDailyCost
+    totalOrders += onDemandOrders
+  }
+  if (thirdPartyEnabled) {
+    curTotalCost += mpTotalDailyCost
+    mdfTotalCost += mpMDFDailyCost
+    totalOrders += thirdPartyOrders
+  }
+
+  const currentAvgCPO = totalOrders > 0 ? curTotalCost / totalOrders : 0
+  const mdfAvgCPO = totalOrders > 0 ? mdfTotalCost / totalOrders : 0
+  const savingCPO = currentAvgCPO - mdfAvgCPO
+  const opSavingsDaily = Math.max(0, curTotalCost - mdfTotalCost)
+
+  // --- GROWTH ENGINES (matching original: 25% and 20% of daily revenue) ---
+  const dailyRevenue = totalOrders * avgOrderValue
+  const marketingRevDaily = smartMarketing ? dailyRevenue * 0.25 : 0
+  const radiusRevDaily = radiusExpansion ? dailyRevenue * 0.20 : 0
 
   const totalDailyProfit = opSavingsDaily + marketingRevDaily + radiusRevDaily
   const totalAnnualProfit = totalDailyProfit * 365
 
-  const inHouseCurrentCost = inHouseEnabled ? inHouseCPO * inHouseOrders : 0
-  const onDemandCurrentCost = onDemandEnabled ? onDemandCPO * onDemandOrders : 0
-  const thirdPartyCurrentCost = thirdPartyEnabled ? thirdPartyCPO * thirdPartyOrders : 0
+  // Badge "Current:" values (what each channel costs you net per order today)
+  const inHouseCurrentCost = inHouseEnabled ? ihTotalDailyCost : 0
+  const onDemandCurrentCost = onDemandEnabled ? odTotalDailyCost : 0
+  const thirdPartyCurrentCost = thirdPartyEnabled ? mpTotalDailyCost : 0
 
   return (
-    <section id="calculator" className="w-full px-4 py-16 sm:py-32">
+    <section id="calculator" className="w-full px-4 py-16 sm:py-18.5">
       {/* Title */}
       <div className="mx-auto max-w-4xl text-center mb-10">
         <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">
@@ -106,7 +164,7 @@ export default function SavingsCalculator() {
           <div className="py-6 px-8 flex flex-col gap-5">
 
             {/* Operational Basics */}
-            <div className="rounded-xl py-4">
+            <div className="rounded-xl py-0">
               <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Operational Basics</h3>
               <div className="grid grid-cols-2 gap-4">
                 <CurrencyInput
@@ -125,167 +183,151 @@ export default function SavingsCalculator() {
             <div className="border-t border-[##E5E7EB] mb-0" />
 
             {/* Delivery methods */}
-            <div className="rounded-xl py-4">
+            <div className="rounded-xl py-0">
               <p className="text-base sm:text-lg font-medium text-text-1 mb-4">
                 How do you currently deliver your orders?
               </p>
 
-              {/* ── In-House ── */}
-              <div className="mb-4">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm sm:text-md font-medium text-text-1">In-House Drivers</p>
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={inHouseEnabled}
-                      onClick={() => setInHouseEnabled(!inHouseEnabled)}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${inHouseEnabled ? 'bg-primary' : 'bg-gray-200'}`}
-                    >
-                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${inHouseEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
-                    </button>
-                  </div>
-                  <p className="text-sm font-normal">
-                    Current: <span className="text-[#EA332D]">{fmt(inHouseCurrentCost)}</span>
-                  </p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-                {inHouseEnabled && (
-                  <div className="mt-3 grid grid-cols-2 gap-3">
-                    <NumInput
-                      label="Orders/Day"
-                      value={inHouseOrders}
-                      onChange={setInHouseOrders}
-                    />
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-medium text-text-2">Pay Model</label>
-                      <Select value={inHousePayModel} onValueChange={setInHousePayModel}>
-                        <SelectTrigger className="h-10 w-full rounded-xl text-sm text-text-1">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Hourly Wage">Hourly Wage</SelectItem>
-                          <SelectItem value="Per Delivery">Per Delivery</SelectItem>
-                          <SelectItem value="Salary">Salary</SelectItem>
-                        </SelectContent>
-                      </Select>
+                {/* ── In-House ── */}
+                <div className="border border-[#E5E7EB] rounded-xl p-3 flex flex-col gap-3">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm font-medium text-text-1">In-House Drivers</p>
+                      <button
+                        type="button"
+                        role="switch"
+                        aria-checked={inHouseEnabled}
+                        onClick={() => setInHouseEnabled(!inHouseEnabled)}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${inHouseEnabled ? 'bg-primary' : 'bg-gray-200'}`}
+                      >
+                        <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${inHouseEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
+                      </button>
                     </div>
-                    <CurrencyInput
-                      label="Wage ($/hr)"
-                      value={inHouseWage}
-                      onChange={setInHouseWage}
-                    />
-                    <NumInput
-                      label="Driver Hrs/Day"
-                      value={inHouseHrs}
-                      onChange={setInHouseHrs}
-                    />
-                  </div>
-                )}
-              </div>
-
-              {/* ── On-Demand ── */}
-              <div className="mb-4">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm sm:text-md font-medium text-text-1">Current On-Demand Service</p>
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={onDemandEnabled}
-                      onClick={() => setOnDemandEnabled(!onDemandEnabled)}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${onDemandEnabled ? 'bg-primary' : 'bg-gray-200'}`}
-                    >
-                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${onDemandEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
-                    </button>
-                  </div>
-                  <p className="text-sm font-normal">
-                    Current: <span className="text-[#EA332D]">{fmt(onDemandCurrentCost)}</span>
-                  </p>
-                </div>
-
-                {onDemandEnabled && (
-                  <div className="mt-3 grid grid-cols-2 gap-3">
-                    <NumInput
-                      label="Orders/Day"
-                      value={onDemandOrders}
-                      onChange={setOnDemandOrders}
-                    />
-                    <CurrencyInput
-                      label="Dispatch Fee"
-                      value={onDemandDispatch}
-                      onChange={setOnDemandDispatch}
-                    />
-                  </div>
-                )}
-              </div>
-
-              {/* ── 3rd Party ── */}
-              <div>
-                <div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm sm:text-md font-medium text-text-1">3rd Party Orders</p>
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={thirdPartyEnabled}
-                      onClick={() => setThirdPartyEnabled(!thirdPartyEnabled)}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${thirdPartyEnabled ? 'bg-primary' : 'bg-gray-200'}`}
-                    >
-                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${thirdPartyEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
-                    </button>
-                  </div>
-                  <div className='flex justify-between mt-1 items-center'>
-                    <p className="text-sm font-normal">
-                      Current: <span className="text-[#EA332D]">{fmt(thirdPartyCurrentCost)}</span>
-                    </p>
-                    {!thirdPartyEnabled &&
-                      <p className="text-xs text-text-2">
-                        Enable to calculate savings of switching to Self-Delivery.
-                      </p>}
-                  </div>
-                </div>
-
-                {thirdPartyEnabled && (
-                  <div className="mt-3 space-y-3">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <div className="col-span-1">
-                        <NumInput
-                          label="Orders/Day"
-                          value={thirdPartyOrders}
-                          onChange={setThirdPartyOrders}
-                        />
-                      </div>
-                      <div className="flex-1 flex items-end gap-2">
-                        <div className="flex-2/2">
-                          <NumInput
-                            label="Current %"
-                            value={thirdPartyCurrentPct}
-                            onChange={setThirdPartyCurrentPct}
-                          />
-                        </div>
-                        <ArrowRight className="mb-2.5 shrink-0 h-4 w-4 text-primary" />
-                        <div className="flex-2/2">
-                          <NumInput
-                            label="Self Delivery %"
-                            value={thirdPartySelfDeliveryPct}
-                            onChange={setThirdPartySelfDeliveryPct}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-[10px] text-text-2 text-right">
-                      *Switching to Self-Delivery typically lowers commission to 10–15%.
+                    <p className="text-sm font-normal mt-1">
+                      Current: <span className="text-[#EA332D]">{fmt(inHouseCurrentCost)}</span>
                     </p>
                   </div>
-                )}
+
+                  {inHouseEnabled && (
+                    <div className="flex flex-col gap-3">
+                      <NumInput label="Orders/Day" value={inHouseOrders} onChange={setInHouseOrders} className="h-8" />
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-medium text-text-2">Pay Model</label>
+                        <Select value={inHousePayModel} onValueChange={setInHousePayModel}>
+                          <SelectTrigger className="h-8 w-full rounded-xl text-sm text-text-1">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Hourly Wage">Hourly Wage</SelectItem>
+                            <SelectItem value="Hybrid">Wage + Fee Share</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {inHousePayModel === 'Hourly Wage' && (
+                        <>
+                          <CurrencyInput label="Wage ($/hr)" value={inHouseWage} onChange={setInHouseWage} className="h-8" />
+                          <NumInput label="Driver Hrs/Day" value={inHouseHrs} onChange={setInHouseHrs} className="h-8" />
+                        </>
+                      )}
+
+                      {inHousePayModel === 'Hybrid' && (
+                        <>
+                          <CurrencyInput label="Base Wage ($)" value={inHouseBaseWage} onChange={setInHouseBaseWage} className="h-8" />
+                          <NumInput label="Driver Hrs/Day" value={inHouseHybridHours} onChange={setInHouseHybridHours} className="h-8" />
+                          <CurrencyInput label="Fee Share / Delivery" value={inHouseFeeShare} onChange={setInHouseFeeShare} className="h-8" />
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* ── On-Demand + 3rd Party (right column, 2 rows) ── */}
+                <div className="flex flex-col gap-3">
+
+                  {/* On-Demand */}
+                  <div className="border border-[#E5E7EB] rounded-xl p-3 flex flex-col gap-3">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-medium text-text-1">On-Demand Service</p>
+                        <button
+                          type="button"
+                          role="switch"
+                          aria-checked={onDemandEnabled}
+                          onClick={() => setOnDemandEnabled(!onDemandEnabled)}
+                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${onDemandEnabled ? 'bg-primary' : 'bg-gray-200'}`}
+                        >
+                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${onDemandEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
+                        </button>
+                      </div>
+                      <p className="text-sm font-normal mt-1">
+                        Current: <span className="text-[#EA332D]">{fmt(onDemandCurrentCost)}</span>
+                      </p>
+                    </div>
+
+                    {onDemandEnabled && (
+                      <div className="flex flex-col gap-3">
+                        <NumInput label="Orders/Day" value={onDemandOrders} onChange={setOnDemandOrders} className="h-8" />
+                        <CurrencyInput label="Dispatch Fee" value={onDemandDispatch} onChange={setOnDemandDispatch} className="h-8" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 3rd Party */}
+                  <div className="border border-[#E5E7EB] rounded-xl p-3 flex flex-col gap-3">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-medium text-text-1">3rd Party Orders</p>
+                        <button
+                          type="button"
+                          role="switch"
+                          aria-checked={thirdPartyEnabled}
+                          onClick={() => setThirdPartyEnabled(!thirdPartyEnabled)}
+                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${thirdPartyEnabled ? 'bg-primary' : 'bg-gray-200'}`}
+                        >
+                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${thirdPartyEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
+                        </button>
+                      </div>
+                      <p className="text-sm font-normal mt-1">
+                        Current: <span className="text-[#EA332D]">{fmt(thirdPartyCurrentCost)}</span>
+                      </p>
+                      {!thirdPartyEnabled && (
+                        <p className="text-xs text-text-2 mt-1">
+                          Enable to calculate savings of switching to Self-Delivery.
+                        </p>
+                      )}
+                    </div>
+
+                    {thirdPartyEnabled && (
+                      <div className="flex flex-col gap-3">
+                        <NumInput label="Orders/Day" value={thirdPartyOrders} onChange={setThirdPartyOrders} className="h-8" />
+                        <div className="flex items-end gap-2">
+                          <div className="flex-1">
+                            <NumInput label="Current %" value={thirdPartyCurrentPct} onChange={setThirdPartyCurrentPct} className="h-8" />
+                          </div>
+                          <ArrowRight className="mb-2 shrink-0 h-4 w-4 text-primary" />
+                          <div className="flex-1">
+                            <NumInput label="Self Delivery %" value={thirdPartySelfDeliveryPct} onChange={setThirdPartySelfDeliveryPct} className="h-8" />
+                          </div>
+                        </div>
+                        <p className="text-[10px] text-text-2">
+                          *Switching to Self-Delivery typically lowers commission to 10–15%.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                </div>
+
               </div>
             </div>
 
             <div className="border-t border-[##E5E7EB] mb-0" />
 
             {/* Growth Engines */}
-            <div className="rounded-xl py-4">
+            <div className="rounded-xl py-0">
               <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
               <div className="flex flex-col md:flex-row gap-3">
 
@@ -350,10 +392,10 @@ export default function SavingsCalculator() {
 
             {/* Estimated Results */}
             <div>
-              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-3 pt-4">Estimated Results</h3>
+              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-3 pt-0">Estimated Results</h3>
               <div className="rounded-xl py-4 px-6 border border-[#E5E7EB] overflow-hidden">
                 <ResultRow label="Current Avg Cost / Order" value={fmt(currentAvgCPO)} />
-                <ResultRow label="MDF Cost / Order" value={fmt(mdfCPO)} />
+                <ResultRow label="MDF Cost / Order" value={fmt(mdfAvgCPO)} />
                 <ResultRow
                   label="Saving / Order"
                   value={fmt(savingCPO)}
@@ -382,16 +424,20 @@ export default function SavingsCalculator() {
                 daily={fmt(opSavingsDaily)}
                 annual={fmt(opSavingsDaily * 365)}
               />
-              <ImpactRow
-                label="+ Marketing Revenue"
-                daily={fmt(marketingRevDaily)}
-                annual={fmt(marketingRevDaily * 365)}
-              />
-              <ImpactRow
-                label="+ Radius Revenue"
-                daily={fmt(radiusRevDaily)}
-                annual={fmt(radiusRevDaily * 365)}
-              />
+              {smartMarketing && (
+                <ImpactRow
+                  label="+ Marketing Revenue"
+                  daily={fmt(marketingRevDaily)}
+                  annual={fmt(marketingRevDaily * 365)}
+                />
+              )}
+              {radiusExpansion && (
+                <ImpactRow
+                  label="+ Radius Revenue"
+                  daily={fmt(radiusRevDaily)}
+                  annual={fmt(radiusRevDaily * 365)}
+                />
+              )}
               <ImpactRow
                 label="Total Profit Increase"
                 daily={fmt(totalDailyProfit)}
@@ -403,10 +449,10 @@ export default function SavingsCalculator() {
             <div className="flex flex-col gap-3 mt-4">
               <Button
                 variant='ghost'
-                className="text-text-1 w-full h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
+                className="text-text-1 w-full h-12 sm:h-15 text-base sm:text-md px-6 border border-[#CBD5E1]"
                 onClick={() => generatePDF({
                   currentAvgCPO,
-                  mdfCPO,
+                  mdfCPO: mdfAvgCPO,
                   savingCPO,
                   opSavingsDaily,
                   marketingRevDaily,
@@ -419,14 +465,14 @@ export default function SavingsCalculator() {
               </Button>
 
               <Button
-                className="w-full h-12 sm:h-15 text-base sm:text-lg px-6"
+                className="w-full h-12 sm:h-15 text-base sm:text-md px-6"
               >
                 Sign up for Free
               </Button>
             </div>
 
             {/* Assumptions & Disclaimers */}
-            <div className="mt-8">
+            <div className="mt-4">
               <button
                 type="button"
                 onClick={() => setShowDisclaimer((v) => !v)}

@@ -13,31 +13,31 @@ const steps = [
     icon: DispatchIcon,
     title: 'We Auto-Dispatch',
     description: "Our system instantly assigns a driver for a predictable flat fee, handling the logistics so you don't have to.",
-    image: '/22 2.png',
+    image: '/22 2.svg',
     imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
-    imgStyle: { height: '90%' },
+    imgStyle: { height: '95%' },
   },
   {
     icon: TrackingIcon,
     title: 'Branded Tracking & Opt-Ins',
     description: 'Customers track their driver on a branded map that looks like you. We use this high-engagement moment to capture SMS opt-ins for your list.',
-    image: '/Tracking.png',
+    image: '/Tracking.svg',
     imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
-    imgStyle: { height: '90%' },
+    imgStyle: { height: '95%' },
   },
   {
     icon: DeliveryBoxIcon,
     title: 'Automate Repeat Business',
     description: 'We turn that data into revenue. Our system automatically texts customers to drive Google Reviews and trigger their next order.',
-    image: '/33 1.png',
-    imgClassName: 'absolute z-10 bottom-0 left-0 right-0 px-8',
-    imgStyle: { height: '90%' },
+    image: '/33 1.svg',
+    imgClassName: 'absolute z-10  bottom-0 left-0 right-0 px-8',
+    imgStyle: { height: '95%' },
   },
   {
     icon: DollarIcon,
     title: 'You Keep the Profit',
     description: 'Receive the order and keep 100% of the ticket price. No commissions, no percentage fees—just pure revenue.',
-    image: '/money.png',
+    image: '/Group 5943.svg',
     imgClassName: 'absolute z-10 left-0 right-0 px-16',
     imgStyle: { height: '75%', top: '10%', transform: 'translateY(-50%)' },
   },
@@ -65,8 +65,8 @@ export default function HowItWorks() {
   }
 
   return (
-    <section id="how-it-works" className="w-full px-4 py-10 sm:py-16 overflow-hidden">
-      <div className="mx-auto max-w-3xl text-center mb-8 sm:mb-14">
+    <section id="how-it-works" className="w-full px-4 py-9 sm:py-14 overflow-hidden">
+      <div className="mx-auto max-w-3xl text-center mb-7 sm:mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           How It Works
         </h2>
@@ -75,17 +75,17 @@ export default function HowItWorks() {
         </p>
       </div>
 
-      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10 items-center">
 
         {/* Left — clickable steps */}
-        <div className="flex flex-col gap-2 sm:gap-3">
+        <div className="flex flex-col gap-1.5 sm:gap-2.5">
           {steps.map(({ icon: Icon, title, description }, index) => {
             const isActive = active === index
             return (
               <button
                 key={title}
                 onClick={() => handleClick(index)}
-                className={`flex items-start gap-3 sm:gap-6 rounded-2xl border text-left transition-all duration-200 p-3 sm:p-6 w-full ${isActive
+                className={`flex items-start gap-3 sm:gap-5 rounded-2xl border text-left transition-all duration-200 p-3 sm:p-5 w-full ${isActive
                   ? 'border-[#E2E8F0] bg-white shadow-sm'
                   : 'border-transparent hover:bg-[#F8FAFC]'
                   }`}
@@ -110,7 +110,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Right — image panel (hidden on mobile, shown on lg+) */}
-        <div className="hidden lg:block relative min-h-150 w-full">
+        <div className="hidden lg:block relative min-h-125 w-full">
           <div className="absolute inset-0 rounded-3xl bg-[#FAFAFB]" />
           <AnimatePresence mode="wait">
             <motion.div
@@ -133,7 +133,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Mobile image panel — compact height */}
-        <div className="lg:hidden relative w-full" style={{ height: 260 }}>
+        <div className="lg:hidden relative w-full" style={{ height: 234 }}>
           <div className="absolute inset-0 rounded-2xl bg-[#FAFAFB]" />
           <AnimatePresence mode="wait">
             <motion.div

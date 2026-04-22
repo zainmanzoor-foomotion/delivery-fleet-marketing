@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button'
 import { useState, useEffect, useRef } from 'react'
 
 const mobileScreens = [
-  '/22 2.png',
-  '/11 1.png',
-  '/33 1.png',
+  '/22 2.svg',
+  '/11 1.svg',
+  '/33 1.svg',
 ]
 
 export default function Header() {
@@ -28,12 +28,12 @@ export default function Header() {
     if (!mobileStarted) return
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % mobileScreens.length)
-    }, 3200)
+    }, 5000)
     return () => clearInterval(timer)
   }, [mobileStarted])
 
   return (
-    <section className="flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-18.75 text-center overflow-x-hidden">
+    <section className="flex flex-col items-center justify-center px-4 py-8 md:py-10 text-center overflow-x-hidden">
 
       <div className="mb-8 bg-green-100 inline-flex items-center rounded-full border border-[#3FC060] px-4 py-1.5">
         <span className="text-sm font-medium text-green-700 tracking-wide">
@@ -41,16 +41,16 @@ export default function Header() {
         </span>
       </div>
 
-      <h1 className="max-w-6xl text-4xl sm:text-5xl md:text-6xl lg:text-[74px] font-bold text-text-1">
+      <h1 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
         Deliver More, Spend Less.
       </h1>
 
-      <p className="mt-4 max-w-5xl text-base sm:text-lg md:text-xl lg:text-[24px] text-text-2">
+      <p className="mt-2 max-w-5xl text-base sm:text-lg md:text-xl lg:text-[24px] text-text-2">
         Boost sales and cut costs with AI-powered On-Demand Drivers that expand your reach —{' '}
         paired with smart marketing to turn every delivery into a direct, loyal customer.
       </p>
 
-      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+      <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row">
         <a href='https://app.mydeliveryfleet.com/sign-up' target='_blank'>
           <Button className="w-full sm:w-60 h-12 sm:h-15 text-base sm:text-lg px-6">
             Start Free Trial
@@ -66,7 +66,7 @@ export default function Header() {
         </a>
       </div>
 
-      <div ref={containerRef} className='mt-10 w-full max-w-6xl relative h-46 sm:h-82 md:h-110 lg:h-155 overflow-hidden'>
+      <div ref={containerRef} className='mt-5 w-full max-w-6xl relative h-40 sm:h-70 md:h-90 lg:h-130 overflow-hidden'>
 
         {/* Step 1: Center dashboard — zoom in immediately on viewport enter */}
         <motion.div
@@ -76,7 +76,7 @@ export default function Header() {
           transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
         >
           <Image
-            src='/Group 5961.png'
+            src='/Group 5961.svg'
             alt='Dashboard'
             width={800}
             height={600}
@@ -92,7 +92,7 @@ export default function Header() {
           transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] }}
         >
           <Image
-            src='/Group 5847.png'
+            src='/Group 5847.svg'
             alt='Order details'
             width={260}
             height={400}

@@ -34,7 +34,7 @@ const features = [
 export default function SmartMarketing() {
   return (
     <section id="marketing" className="w-full px-4 py-10 sm:py-16">
-      <div className="mx-auto max-w-4xl text-center mb-8 sm:mb-14">
+      <div className="mx-auto max-w-4xl text-center mb-8 sm:mb-10">
         <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           Smart Marketing Built-In
         </h2>
@@ -44,32 +44,32 @@ export default function SmartMarketing() {
         </p>
       </div>
 
-      <div className="mx-auto max-w-7xl mb-10 sm:mb-16 rounded-2xl bg-[#FAFAFB] px-3 sm:px-10 pt-5 sm:pt-10 flex items-center md:items-end justify-center gap-2 overflow-hidden">
-        <div className="w-24 sm:w-52 md:w-60 shrink-0">
+      <div className="mx-auto max-w-7xl mb-10 sm:mb-12 rounded-2xl bg-[#FAFAFB] px-3 sm:px-10 pt-5 sm:pt-10 flex items-end justify-center gap-0 md:gap-2 overflow-hidden">
+        <div className="w-auto shrink-0 flex justify-end">
           <Image
-            src="/22 2.png"
+            src="/11 1.svg"
             alt="Google review prompt"
-            width={190}
-            height={380}
-            className="w-full h-auto drop-shadow-xl"
+            width={150}
+            height={200}
+            className="w-[85%] h-60 md:w-full md:h-90 drop-shadow-xl"
           />
         </div>
-        <div className="w-28 sm:w-60 md:w-70 shrink-0">
+        <div className="w-auto shrink-0 flex justify-center items-end">
           <Image
-            src="/11 1.png"
+            src="/22 2.svg"
             alt="Delivery tracking"
-            width={230}
-            height={460}
-            className="w-full h-auto drop-shadow-xl"
+            width={190}
+            height={400}
+            className="w-[90%] h-70 md:w-full md:h-100 drop-shadow-xl"
           />
         </div>
-        <div className="w-24 sm:w-52 md:w-60 shrink-0">
+        <div className="w-auto shrink-0 flex justify-start">
           <Image
-            src="/33 1.png"
+            src="/33 1.svg"
             alt="SMS marketing"
-            width={190}
-            height={380}
-            className="w-full h-auto drop-shadow-xl"
+            width={150}
+            height={200}
+            className="w-[85%] h-60 md:w-full md:h-90 drop-shadow-xl"
           />
         </div>
       </div>
