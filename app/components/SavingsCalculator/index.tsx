@@ -80,7 +80,7 @@ export default function SavingsCalculator() {
       OVERHEAD_PER_DAY -
       inHouseOrders * customerDeliveryFee
       : 0
-  const ihCPO = inHouseOrders > 0 ? ihTotalDailyCost / inHouseOrders : 0
+
   const ihMDFDailyCost = inHouseOrders * MDF_DISPATCH - inHouseOrders * customerDeliveryFee
 
   // --- ON-DEMAND ---

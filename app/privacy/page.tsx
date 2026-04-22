@@ -1,4 +1,3 @@
-import Link from 'next/link'
 
 const sections = [
   {
@@ -69,7 +68,7 @@ export default function PrivacyPage() {
       <div className="mx-auto max-w-4xl px-6">
         <div className="flex flex-col gap-4 text-sm sm:text-base text-text-2 leading-relaxed">
           <p>
-            Protecting your private information is our priority. This Statement of Privacy applies to the http://www.dashboard.My Delivery Fleet.com and My Delivery Fleet Inc. and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to My Delivery Fleet include http://www.My Delivery Fleet.com and My Delivery Fleet, Inc. The My Delivery Fleet website is a restaurant food delivery management site. By using the My Delivery Fleet website, you consent to the data practices described in this statement. This Privacy Policy applies to every My Delivery Fleet application, whether accessed directly or through a third party marketplace or platform (collectively, "Platforms").
+            Protecting your private information is our priority. This Statement of Privacy applies to the http://www.dashboard.My Delivery Fleet.com and My Delivery Fleet Inc. and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to My Delivery Fleet include http://www.My Delivery Fleet.com and My Delivery Fleet, Inc. The My Delivery Fleet website is a restaurant food delivery management site. By using the My Delivery Fleet website, you consent to the data practices described in this statement. This Privacy Policy applies to every My Delivery Fleet application, whether accessed directly or through a third party marketplace or platform (collectively, &ldquo;Platforms&rdquo;).
           </p>
           <p>
             When a Merchant enables any Company application on a Platform, Company acts as a service provider/processor on behalf of that Merchant. In this role we:
