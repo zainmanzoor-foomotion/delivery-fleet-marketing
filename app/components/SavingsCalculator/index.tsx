@@ -474,7 +474,7 @@ export default function SavingsCalculator() {
             </div>
 
             {/* Assumptions & Disclaimers */}
-            <div className="mt-0">
+            <div className="mt-1">
               <button
                 type="button"
                 onClick={() => setShowDisclaimer((v) => !v)}
