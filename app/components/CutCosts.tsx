@@ -88,9 +88,9 @@ function InteractiveSlider({
                 <p className="text-xs sm:text-sm font-semibold text-primary">{format(value)}</p>
             </div>
             <div className="relative flex items-center" style={{ height: 20 }}>
-                <div className="absolute inset-x-0 h-1.5 rounded-full bg-[#E5E7EB]" />
+                <div className="absolute inset-x-0 h-1 rounded-full bg-[#E5E7EB]" />
                 <div
-                    className="absolute left-0 h-1.5 rounded-full bg-primary"
+                    className="absolute left-0 h-1 rounded-full bg-primary"
                     style={{ width: `${pct}%` }}
                 />
                 <input
@@ -141,7 +141,7 @@ export default function CutCosts() {
                         <div className="flex flex-col gap-5 sm:gap-8">
                             {features.map(({ title, description }) => (
                                 <div key={title} className="flex gap-3 sm:gap-6">
-                                    <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 border border-[#E5E7EB] rounded-md bg-[#EFF6FF]">
+                                    <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 rounded-md bg-[#EFF6FF]">
                                         <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#2563EB]" strokeWidth={3} />
                                     </div>
                                     <div>
@@ -177,14 +177,14 @@ export default function CutCosts() {
                         <div className="grid grid-cols-2 gap-3">
                             <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-2">
                                 <p className="text-sm font-medium text-text-1">Third-party Apps</p>
-                                <p className="text-xl sm:text-[32px] font-bold text-text-1">
+                                <p className="text-xl sm:text-[32px] font-medium text-text-1">
                                     <AnimatedCurrency value={thirdPartyCost} />
                                 </p>
                                 <p className="text-sm text-text-2">30% per order</p>
                             </div>
                             <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-2">
                                 <p className="text-sm font-medium text-text-1">With Us</p>
-                                <p className="text-xl sm:text-[32px] font-bold text-text-1">
+                                <p className="text-xl sm:text-[32px] font-medium text-text-1">
                                     <AnimatedCurrency value={MDF_FEE} />
                                 </p>
                                 <p className="text-sm font-medium text-[#3FC060]">Flat Fee Always (As low as $6.49)</p>
@@ -192,7 +192,7 @@ export default function CutCosts() {
                         </div>
 
                         <motion.div
-                            className="rounded-xl bg-primary p-3 sm:p-4"
+                            className="rounded-xl bg-primary p-3 sm:p-4 sm:py-6"
                             initial={{ opacity: 0, scale: 0.85 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, amount: 0.75 }}
@@ -205,7 +205,7 @@ export default function CutCosts() {
                                     { label: 'Savings Per Day', value: savingsPerDay, decimals: 2 },
                                     { label: 'Savings Per Year', value: savingsPerYear, decimals: 0 },
                                 ] as const).map(({ label, value, decimals }) => (
-                                    <div key={label} className="flex flex-col gap-1 py-1 sm:py-2">
+                                    <div key={label} className="flex flex-col gap-4 py-1 sm:py-2">
                                         <p className="text-[9px] sm:text-xs font-medium text-white leading-tight">{label}</p>
                                         <p className="text-base sm:text-[28px] font-medium text-white">
                                             <AnimatedCurrency value={value} decimals={decimals} compact />

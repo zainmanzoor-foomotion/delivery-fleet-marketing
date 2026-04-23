@@ -39,7 +39,7 @@ export default function ContactPage() {
           <h1 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
             Deliver faster. Cut costs.<br />Own your customers.
           </h1>
-          <p className="mt-4 text-sm sm:text-base md:text-2xl text-text-2 max-w-4xl mx-auto">
+          <p className="mt-4 text-sm sm:text-base md:text-xl text-text-2 max-w-4xl mx-auto">
             My Delivery Fleet platform helps restaurants, couriers, and local shops automate dispatch,
             delight customers, and grow — commission-free.
           </p>

@@ -70,7 +70,7 @@ export default function HowItWorks() {
         <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           How It Works
         </h2>
-        <p className="mt-3 text-sm sm:text-base md:text-2xl text-text-2 max-w-3xl mx-auto">
+        <p className="mt-3 text-sm sm:text-base md:text-xl text-text-2 max-w-3xl mx-auto">
           A seamless process designed to maximize your margins and build your customer database.
         </p>
       </div>
@@ -85,12 +85,12 @@ export default function HowItWorks() {
               <button
                 key={title}
                 onClick={() => handleClick(index)}
-                className={`flex items-start gap-3 sm:gap-5 rounded-2xl border text-left transition-all duration-200 p-3 sm:p-5 w-full ${isActive
+                className={`flex gap-3 sm:gap-5 rounded-2xl border text-left transition-all duration-200 p-3 sm:p-5 w-full ${isActive
                   ? 'border-[#E2E8F0] bg-white shadow-sm'
-                  : 'border-transparent hover:bg-[#F8FAFC]'
+                  : 'border-transparent hover:bg-[#F8FAFC] items-center'
                   }`}
               >
-                <div className="shrink-0 mt-0.5">
+                <div className="shrink-0">
                   <Icon stroke={isActive ? '#1877F2' : '#475569'} />
                 </div>
                 <div>

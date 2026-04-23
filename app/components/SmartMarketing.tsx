@@ -38,7 +38,7 @@ export default function SmartMarketing() {
         <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           Smart Marketing Built-In
         </h2>
-        <p className="mt-3 text-sm sm:text-base md:text-2xl text-text-2 max-w-4xl mx-auto">
+        <p className="mt-3 text-sm sm:text-base md:text-xl text-text-2 max-w-4xl mx-auto">
           Don&apos;t just deliver food. Deliver experiences that turn first-time customers into
           loyal fans with our automated marketing suite.
         </p>

@@ -36,7 +36,7 @@ export default function Header() {
     <section className="flex flex-col items-center justify-center px-4 py-8 md:py-10 text-center overflow-x-hidden">
 
       <div className="mb-8 bg-green-100 inline-flex items-center rounded-full border border-[#3FC060] px-4 py-1.5">
-        <span className="text-sm font-medium text-green-700 tracking-wide">
+        <span className="text-sm font-medium text-text-1 tracking-wide">
           $0 Commissions. $0 Subscription.
         </span>
       </div>
@@ -45,7 +45,7 @@ export default function Header() {
         Deliver More, Spend Less.
       </h1>
 
-      <p className="mt-2 max-w-5xl text-base sm:text-lg md:text-xl lg:text-[24px] text-text-2">
+      <p className="mt-2 max-w-5xl text-base sm:text-lg md:text-xl text-text-2">
         Boost sales and cut costs with AI-powered On-Demand Drivers that expand your reach —{' '}
         paired with smart marketing to turn every delivery into a direct, loyal customer.
       </p>
@@ -59,7 +59,7 @@ export default function Header() {
         <a href="#how-it-works">
           <Button
             variant="ghost"
-            className="text-text-1 w-full sm:w-60 h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
+            className="text-text-1 w-full sm:w-50 h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
           >
             How it&apos;s works
           </Button>

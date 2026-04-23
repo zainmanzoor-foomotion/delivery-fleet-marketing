@@ -144,7 +144,7 @@ export default function SavingsCalculator() {
         <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold text-text-1">
           See Your Savings Potential
         </h2>
-        <p className="mt-4 text-base sm:text-2xl text-text-2">
+        <p className="mt-4 text-base sm:text-xl text-text-2">
           Don&apos;t take our word for it. Run the numbers yourself and see how our flat-rate
           delivery compares to less profitable methods of delivery
         </p>
@@ -442,6 +442,8 @@ export default function SavingsCalculator() {
                 label="Total Profit Increase"
                 daily={fmt(totalDailyProfit)}
                 annual={fmt(totalAnnualProfit)}
+                muted
+                divider
               />
             </div>
 

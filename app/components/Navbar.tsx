@@ -41,7 +41,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-md font-medium text-text-1 transition-colors hover:text-text-1/90"
+                className="text-md font-medium text-text-1 transition-colors hover:text-text-2"
               >
                 {link.label}
               </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
             <a href='https://app.mydeliveryfleet.com/sign-in' target='_blank'>
               <Button
                 variant='ghost'
-                className="text-md text-text-1 hover:bg-transparent">
+                className="transition-colors hover:text-text-2 text-md text-text-1 hover:bg-transparent">
                 Login
               </Button>
             </a>
@@ -87,7 +87,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-text-1 hover:text-text-1/90 hover:bg-gray-50 transition-colors"
+              className="rounded-md px-3 py-2 text-sm font-medium text-text-1 hover:text-text-2 hover:bg-gray-50 transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}

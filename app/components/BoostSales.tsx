@@ -137,7 +137,7 @@ export default function BoostSales() {
                     dataKey="month"
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fontSize: 11, fill: '#475569' }}
+                    tick={{ fontSize: 14, fill: '#475569' }}
                   />
                   <Bar dataKey="orders" radius={[20, 20, 0, 0]}>
                     {chartData.map((entry, index) => (
@@ -166,7 +166,7 @@ export default function BoostSales() {
             <div className="flex flex-col gap-5 sm:gap-8">
               {features.map(({ title, description }) => (
                 <div key={title} className="flex gap-3 sm:gap-6">
-                  <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 border border-[#E5E7EB] rounded-md bg-[#F0FDF4]">
+                  <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 rounded-md bg-[#F0FDF4]">
                     <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#3FC060]" strokeWidth={3} />
                   </div>
                   <div>
