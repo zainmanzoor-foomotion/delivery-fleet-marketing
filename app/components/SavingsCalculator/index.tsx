@@ -164,7 +164,7 @@ export default function SavingsCalculator() {
           <div className="py-6 px-8 flex flex-col gap-5">
 
             {/* Operational Basics */}
-            <div className="rounded-xl py-0">
+            <div className="rounded-xl py-2">
               <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Operational Basics</h3>
               <div className="grid grid-cols-2 gap-4">
                 <CurrencyInput
@@ -183,7 +183,7 @@ export default function SavingsCalculator() {
             <div className="border-t border-[##E5E7EB] mb-0" />
 
             {/* Delivery methods */}
-            <div className="rounded-xl py-0">
+            <div className="rounded-xl py-2">
               <p className="text-base sm:text-lg font-medium text-text-1 mb-4">
                 How do you currently deliver your orders?
               </p>
@@ -327,7 +327,7 @@ export default function SavingsCalculator() {
             <div className="border-t border-[##E5E7EB] mb-0" />
 
             {/* Growth Engines */}
-            <div className="rounded-xl py-0">
+            <div className="rounded-xl py-2">
               <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
               <div className="flex flex-col md:flex-row gap-3">
 
@@ -351,7 +351,7 @@ export default function SavingsCalculator() {
                   </div>
                   <div>
                     <p className="text-sm sm:text-[16px] font-medium text-text-1">Smart Marketing</p>
-                    <p className="text-sm text-text-2 mt-0.5">
+                    <p className="text-sm text-text-2 mt-1">
                       Engage customers on the live tracking page to drive repeat orders.
                     </p>
                   </div>
@@ -377,7 +377,7 @@ export default function SavingsCalculator() {
                   </div>
                   <div>
                     <p className="text-sm sm:text-[16px] font-medium text-text-1">Radius Expansion</p>
-                    <p className="text-sm text-text-2 mt-0.5">
+                    <p className="text-sm text-text-2 mt-1">
                       Leverage on-demand drivers to deliver farther and reach new zip codes.
                     </p>
                   </div>
@@ -448,10 +448,10 @@ export default function SavingsCalculator() {
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col gap-3 mt-4">
+            <div className="flex flex-col gap-3">
               <Button
                 variant='ghost'
-                className="text-text-1 w-full h-12 sm:h-15 text-base sm:text-md px-6 border border-[#CBD5E1]"
+                className="text-text-1 w-full h-10 sm:h-12 text-base sm:text-md px-6 border border-[#CBD5E1]"
                 onClick={() => generatePDF({
                   currentAvgCPO,
                   mdfCPO: mdfAvgCPO,
@@ -467,14 +467,14 @@ export default function SavingsCalculator() {
               </Button>
 
               <Button
-                className="w-full h-12 sm:h-15 text-base sm:text-md px-6"
+                className="w-full h-10 sm:h-12 text-base sm:text-md px-6"
               >
                 Sign up for Free
               </Button>
             </div>
 
             {/* Assumptions & Disclaimers */}
-            <div className="mt-4">
+            <div className="mt-0">
               <button
                 type="button"
                 onClick={() => setShowDisclaimer((v) => !v)}
