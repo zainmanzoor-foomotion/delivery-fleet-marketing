@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button'
 import { useState, useEffect, useRef } from 'react'
 
 const mobileScreens = [
-  '/22 2.svg',
-  '/11 1.svg',
-  '/33 1.svg',
+  '/22 2.png',
+  '/11 1.png',
+  '/33 1.png',
 ]
 
 export default function Header() {
@@ -76,7 +76,7 @@ export default function Header() {
           transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
         >
           <Image
-            src='/Group 5961.svg'
+            src='/Group 5961.png'
             alt='Dashboard'
             width={800}
             height={600}
@@ -92,7 +92,7 @@ export default function Header() {
           transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] }}
         >
           <Image
-            src='/Group 5847.svg'
+            src='/Group 5847.png'
             alt='Order details'
             width={260}
             height={400}

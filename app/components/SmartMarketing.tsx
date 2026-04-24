@@ -47,7 +47,7 @@ export default function SmartMarketing() {
       <div className="mx-auto max-w-7xl mb-10 sm:mb-12 rounded-2xl bg-[#FAFAFB] px-3 sm:px-10 pt-5 sm:pt-10 flex items-end justify-center gap-0 md:gap-2 overflow-hidden">
         <div className="w-auto shrink-0 flex justify-end">
           <Image
-            src="/11 1.svg"
+            src="/11 1.png"
             alt="Google review prompt"
             width={150}
             height={200}
@@ -56,7 +56,7 @@ export default function SmartMarketing() {
         </div>
         <div className="w-auto shrink-0 flex justify-center items-end">
           <Image
-            src="/22 2.svg"
+            src="/22 2.png"
             alt="Delivery tracking"
             width={190}
             height={400}
@@ -65,7 +65,7 @@ export default function SmartMarketing() {
         </div>
         <div className="w-auto shrink-0 flex justify-start">
           <Image
-            src="/33 1.svg"
+            src="/33 1.png"
             alt="SMS marketing"
             width={150}
             height={200}
