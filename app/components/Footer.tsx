@@ -10,7 +10,7 @@ const productLinks = [
 ]
 
 const companyLinks = [
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Footer() {

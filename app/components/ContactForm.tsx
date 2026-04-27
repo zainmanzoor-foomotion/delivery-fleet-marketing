@@ -15,6 +15,8 @@ export default function ContactForm() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,10 +24,31 @@ export default function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    setForm({ name: '', email: '', companyName: '', phone: '', message: '' })
+    setLoading(true)
+    setError('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        setError(data.error || 'Something went wrong. Please try again.')
+        return
+      }
+
+      setSubmitted(true)
+      setForm({ name: '', email: '', companyName: '', phone: '', message: '' })
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -111,9 +134,13 @@ export default function ContactForm() {
           />
         </div>
 
+        {error && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+
         <div className="flex justify-end">
-          <Button type="submit" className="px-8 h-11">
-            Submit Form
+          <Button type="submit" className="px-8 h-11" disabled={loading}>
+            {loading ? 'Sending...' : 'Submit Form'}
           </Button>
         </div>
       </form>
