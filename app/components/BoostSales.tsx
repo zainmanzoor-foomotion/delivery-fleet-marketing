@@ -131,7 +131,7 @@ export default function BoostSales() {
 
             <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-5">
               <p className="text-base sm:text-xl font-medium text-text-1 mb-3 sm:mb-4">Monthly Orders</p>
-              <ChartContainer config={chartConfig} className="w-full" style={{ height: 220 }}>
+              <ChartContainer config={chartConfig} className="w-full pointer-events-none" style={{ height: 220 }}>
                 <BarChart data={chartData} barSize={70} barCategoryGap="5%">
                   <XAxis
                     dataKey="month"
@@ -139,7 +139,7 @@ export default function BoostSales() {
                     tickLine={false}
                     tick={{ fontSize: 14, fill: '#475569' }}
                   />
-                  <Bar dataKey="orders" radius={[20, 20, 0, 0]}>
+                  <Bar dataKey="orders" radius={[20, 20, 0, 0]} cursor="default" activeBar={false}>
                     {chartData.map((entry, index) => (
                       <Cell
                         key={entry.month}

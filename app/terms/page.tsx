@@ -1,171 +1,224 @@
-import Link from 'next/link'
-
-const sections = [
-  {
-    title: '1. Acceptance of Terms',
-    content: [
-      'By accessing or using My Delivery Fleet ("Platform", "Service"), you agree to be bound by these Terms of Service ("Terms") and our Privacy Policy.',
-      'If you are using the Platform on behalf of a business, you represent that you have authority to bind that business to these Terms.',
-      'If you do not agree to these Terms, you may not access or use the Platform.',
-      'We reserve the right to update these Terms at any time. Continued use of the Platform after changes constitutes acceptance.',
-    ],
-  },
-  {
-    title: '2. Description of Service',
-    content: [
-      'My Delivery Fleet provides a restaurant delivery management platform including: on-demand driver dispatch, branded customer tracking pages, delivery cost management, SMS marketing tools, and a savings calculator.',
-      'We charge a flat per-delivery fee with no commissions on order value and no monthly subscription fees.',
-      'We are a technology platform and logistics coordinator. We are not a food delivery marketplace and we do not list your restaurant to consumers.',
-      'Service availability may vary by geographic region. We do not guarantee driver availability in all areas.',
-    ],
-  },
-  {
-    title: '3. Account Registration',
-    content: [
-      'You must create an account to use the Platform. You agree to provide accurate, current, and complete information during registration.',
-      'You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account.',
-      'You must notify us immediately at support@mydeliveryfleet.com if you suspect unauthorized access to your account.',
-      'We reserve the right to suspend or terminate accounts that provide false information or violate these Terms.',
-      'You must be at least 18 years old and legally authorized to enter into contracts to use the Platform.',
-    ],
-  },
-  {
-    title: '4. Fees and Payment',
-    content: [
-      'Fees are charged on a weekly basis and invoiced accordingly. Failed or cancelled deliveries before driver pickup are not charged.',
-      'You authorize us to charge your payment method on file for all fees reflected in your weekly invoice.',
-      'All fees are exclusive of applicable taxes. You are responsible for any taxes applicable to your use of the Platform.',
-      'We reserve the right to suspend service for accounts with overdue balances.',
-    ],
-  },
-  {
-    title: '5. Driver Services',
-    content: [
-      'On-demand drivers made available through our Platform are independent contractors, not employees of My Delivery Fleet.',
-      'We do not guarantee specific delivery times. Estimated delivery windows are provided for reference only.',
-      'You are responsible for ensuring orders are properly packaged and ready for pickup at the designated time.',
-      'Delivery availability is subject to driver supply in your area. We will notify you if no driver is available for a dispatch.',
-      'You may not use our Platform to dispatch drivers for deliveries of illegal goods or substances.',
-    ],
-  },
-  {
-    title: '6. Customer Data and Marketing',
-    content: [
-      'Customer data collected through our branded tracking pages (including marketing opt-ins) is owned by you, the restaurant.',
-      'By using our SMS marketing tools, you represent that all customers you message have provided valid consent to receive marketing messages.',
-      'You are solely responsible for the content of SMS campaigns sent through our platform and for compliance with applicable marketing laws (including the TCPA and CAN-SPAM Act).',
-      'We provide the tools; you are the sender. We will not be liable for regulatory violations arising from your marketing campaigns.',
-      'We may use aggregated, anonymized data from your account to improve our Platform.',
-    ],
-  },
-  {
-    title: '7. Acceptable Use',
-    content: [
-      'You agree not to use the Platform to: violate any applicable law or regulation; infringe the intellectual property rights of others; transmit harmful, fraudulent, or deceptive content; interfere with Platform operations or security.',
-      'You may not reverse-engineer, decompile, or attempt to extract source code from our Platform.',
-      'You may not resell or sublicense access to the Platform without our written consent.',
-      'Automated scraping, crawling, or data extraction from the Platform is prohibited.',
-      'Violation of acceptable use policies may result in immediate account suspension without refund.',
-    ],
-  },
-  {
-    title: '8. Intellectual Property',
-    content: [
-      'The Platform, including all software, algorithms, designs, text, and graphics, is owned by My Delivery Fleet and protected by copyright, trademark, and other laws.',
-      'We grant you a limited, non-exclusive, non-transferable license to use the Platform for your internal business purposes.',
-      'You retain ownership of your business data and customer data. You grant us a license to use this data solely to provide the Service.',
-      'Any feedback or suggestions you provide may be used by us without obligation or compensation to you.',
-    ],
-  },
-  {
-    title: '9. Limitation of Liability',
-    content: [
-      'To the maximum extent permitted by law, My Delivery Fleet shall not be liable for any indirect, incidental, special, consequential, or punitive damages.',
-      'Our total liability to you for any claim arising from use of the Platform shall not exceed the total fees you paid in the 3 months preceding the claim.',
-      'We are not liable for losses arising from: driver unavailability, delivery delays, third-party service outages, or events outside our reasonable control.',
-      'The Platform is provided "as is" without warranties of any kind, express or implied, including fitness for a particular purpose.',
-    ],
-  },
-  {
-    title: '10. Termination',
-    content: [
-      'You may terminate your account at any time via account settings or by contacting support@mydeliveryfleet.com.',
-      'We may suspend or terminate your account immediately for material breach of these Terms, non-payment, or conduct harmful to our platform or other users.',
-      'Upon termination, your right to access the Platform ceases immediately. Outstanding fees remain due.',
-      'Provisions that by their nature should survive termination (including payment obligations, intellectual property, and limitation of liability) will survive.',
-    ],
-  },
-  {
-    title: '11. Governing Law',
-    content: [
-      'These Terms are governed by the laws of the State of Delaware, without regard to conflict of law principles.',
-      'Any disputes arising from these Terms shall be resolved through binding arbitration under the rules of the American Arbitration Association.',
-      'You waive any right to participate in class-action lawsuits or class-wide arbitration against My Delivery Fleet.',
-      'Notwithstanding the above, either party may seek injunctive relief in a court of competent jurisdiction.',
-    ],
-  },
-  {
-    title: '12. Contact',
-    content: [
-      'For legal inquiries or questions about these Terms, please contact us:',
-      'Email: support@mydeliveryfleet.com',
-      'Address: My Delivery Fleet, Inc.',
-    ],
-  },
-]
-
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="bg-[#FAFAFB] border-b border-[#E5E7EB]">
-        <div className="mx-auto max-w-4xl px-6 py-14">
-          <Link href="/" className="text-sm text-text-2 hover:text-text-1 transition-colors mb-6 inline-block">
-            ← Back to Home
-          </Link>
-          <p className="text-sm font-medium text-[#1877F2] mb-2">Legal</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-1">Terms of Service</h1>
-          <p className="mt-4 text-text-2 text-base sm:text-lg">
-            Last updated: April 17, 2026
-          </p>
-          <p className="mt-4 text-text-2 text-base sm:text-lg max-w-3xl">
-            Please read these Terms of Service carefully before using the My Delivery Fleet platform.
-            These Terms govern your access to and use of our services.
-          </p>
-        </div>
+      <div className="mx-auto max-w-7xl px-6 pt-15">
+        <h1 className="text-3xl sm:text-[54px] font-bold text-text-1">Terms of Service</h1>
+        <p className="text-sm sm:text-base text-text-2 mb-8">Last updated: April 17, 2026</p>
       </div>
 
-      {/* Content */}
-      <div className="mx-auto max-w-4xl px-6 py-14">
-        <div className="flex flex-col gap-10">
-          {sections.map(({ title, content }) => (
-            <div key={title} className="flex flex-col gap-4">
-              <h2 className="text-xl sm:text-2xl font-semibold text-text-1">{title}</h2>
-              <ul className="flex flex-col gap-3">
-                {content.map((item, i) => (
-                  <li key={i} className="flex gap-3 text-text-2 text-sm sm:text-base leading-relaxed">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1877F2]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="border-b border-[#E5E7EB]" />
-            </div>
-          ))}
-        </div>
+      <div className="mx-auto max-w-7xl px-6 pb-14">
+        <div className="flex flex-col gap-8">
 
-        <div className="mt-10 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE] p-6">
-          <p className="text-sm text-text-2">
-            For questions about these Terms, contact us at{' '}
-            <a href="mailto:support@mydeliveryfleet.com" className="text-[#1877F2] font-medium hover:underline">
-              support@mydeliveryfleet.com
-            </a>
-            . You can also review our{' '}
-            <Link href="/privacy" className="text-[#1877F2] font-medium hover:underline">
-              Privacy Policy
-            </Link>
-            .
-          </p>
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">User Agreement</h2>
+            <div className="space-y-3 text-sm sm:text-base text-text-2 leading-relaxed">
+              <p>This User Agreement (the &quot;Agreement&quot;) is a legally binding contract between My Delivery Fleet LLC (&quot;My Delivery Fleet&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) and the business entity or individual accessing our services (&quot;User&quot;, &quot;Client&quot;, or &quot;you&quot;).</p>
+              <p className="italic border-l-4 border-yellow-400 pl-3 bg-yellow-50 py-2 rounded-r text-xs">
+                <span className="font-medium not-italic">Notice to User:</span> This agreement includes important information regarding how we resolve disputes through arbitration, a waiver of your right to participate in class actions, and specific limitations on our financial liability. We encourage you to read these sections carefully before using our services.
+              </p>
+              <div>
+                <p className="font-medium text-text-2">Description of Service</p>
+                <p className="mt-1">My Delivery Fleet provides a Software-as-a-Service (SaaS) platform that facilitates on-demand delivery fulfillment by connecting Users to third-party delivery providers (collectively &quot;Delivery Partners&quot;), including but not limited to Uber Direct and DoorDash Drive, and provides marketing tools and order-tracking interfaces. My Delivery Fleet provides software connectivity and routing technology only; we are not a delivery company, a motor carrier, a courier, or a transportation provider.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">Multi-Provider Delivery Fulfillment</h2>
+            <div className="space-y-3 text-sm sm:text-base text-text-2 leading-relaxed">
+              <div>
+                <p className="font-medium text-text-2">Third-Party Provider Terms &amp; User Status</p>
+                <p className="mt-1">My Delivery Fleet acts solely as a technical aggregator. We do not transport goods. By requesting a delivery, you agree to be bound by the terms of the specific Delivery Partner assigned to that order.</p>
+                <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                  <li><span className="font-medium">Uber Direct:</span> You expressly agree to the Uber Direct Terms and Conditions as may be updated or modified from time to time by Uber (&quot;Uber Direct Terms&quot;). By agreeing to this Agreement, you agree to the Uber Direct Terms and all terms referenced therein.</li>
+                  <li><span className="font-medium">User as &quot;Merchant&quot;:</span> You acknowledge that while My Delivery Fleet provides the software API integration, for the purposes of the Uber Direct Terms, you are strictly acting as the &quot;Merchant.&quot; You agree to assume all responsibilities, obligations, warranties, and liabilities imposed on the &quot;Merchant&quot; under the Uber Direct Terms.</li>
+                  <li><span className="font-medium">Pass-Through Liability:</span> Any breach of a Delivery Partner&apos;s terms by you is a breach of this Agreement. You shall indemnify My Delivery Fleet for any fines, penalties, or damages imposed by Delivery Partners due to your conduct or the conduct of your customers.</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Dispatch Fees and Pricing</p>
+                <p className="mt-1"><span className="font-medium">Dispatch Fees:</span> You will be charged a &quot;Dispatch Fee&quot; consisting of the Delivery Partner&apos;s base fee plus our administrative/processing fees, if applicable. Pricing for delivery services is subject to change at any time based on Delivery Partner rates and our administrative costs.</p>
+                <p className="mt-1"><span className="font-medium">Subscription Fees:</span> My Delivery Fleet reserves the right to implement, modify, or increase recurring subscription fees for access to the platform or specific software suites at any time. We will provide at least thirty (30) days&apos; notice of any change in subscription pricing. Continued use of the platform after the effective date of a price change constitutes your agreement to pay the modified amount.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Gratuity Compliance</p>
+                <p className="mt-1">You are responsible for ensuring that tips are distributed in accordance with the policies under which they were collected from your customers. If your ordering system indicates a tip is for the driver, you must ensure that amount is correctly entered into our interface. My Delivery Fleet waives all responsibility for the misallocation or under-reporting of tips by the User.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Service Disputes and Resolution</p>
+                <p className="mt-1">The adjudication and issuance of refunds, credits, or financial adjustments resulting from delivery service failures—including but not limited to delayed fulfillment, missing or damaged items, or non-completion of service—are solely governed by the policies and procedures of the applicable Delivery Partner. My Delivery Fleet is not a provider of transportation services and assumes no liability for delivery performance. You acknowledge that any request for reimbursement must be submitted to the Delivery Partner through their designated channels and is subject to their independent investigation and final determination. My Delivery Fleet does not provide direct refunds for delivery-related incidents and possesses no authority to override a Delivery Partner&apos;s claim decision.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Delivery Protocol, Discretion, and Transfer of Title</p>
+                <p className="mt-1">You acknowledge that delivery instructions passed to Delivery Partners (such as &quot;Hand to me,&quot; &quot;Meet at door,&quot; or &quot;Knock and wait&quot;) are requests and not guarantees of specific performance. The Delivery Partner and their individual drivers (&quot;Delivery Persons&quot;) reserve the right to complete the delivery in accordance with their safety protocols and operational discretion. In events where a recipient is unavailable, unresponsive, or the delivery location is deemed inaccessible or unsafe, the Delivery Person may, at their sole discretion, complete the delivery by leaving the items at the safest available location (e.g., doorstep, lobby, or front desk). Such delivery shall constitute a completed service for which you remain fully liable for payment.</p>
+                <p className="mt-1"><span className="font-medium">Transfer of Title:</span> You acknowledge that you relinquish title to the items upon completion of pickup by a Delivery Person, at which point title transfers directly to your customer. Neither My Delivery Fleet nor the Delivery Partner takes title to any items at any time, no bailment is created, and neither My Delivery Fleet nor the Delivery Partner acts as a bailee of your goods.</p>
+                <p className="mt-1"><span className="font-medium">Catering and Large Orders:</span> If you submit requests for Catering Orders or unusually large volumes, you acknowledge that acceptance of such requests is at the sole discretion of the Delivery Persons. Delivery Persons are not required to provide any additional equipment (e.g., warming trays) or perform any inside setup or assembly of Catering Orders at the destination.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Age-Restricted Items and Alcohol Terms (Strict Compliance)</p>
+                <p className="mt-1">Subject to applicable Laws, you may choose to request the delivery of items subject to age restrictions, including alcohol (&quot;Age-Restricted Items&quot;). By requesting delivery of Age-Restricted Items through the Software, you expressly agree to the following:</p>
+                <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                  <li><span className="font-medium">Licensure Warranty:</span> You represent and warrant that you possess all valid licenses, permits, and approvals (&quot;Required Licenses&quot;) required by applicable local, state, and federal laws to sell and deliver Age-Restricted Items. You agree to provide proof of such Required Licenses to us or the Delivery Partner immediately upon request. My Delivery Fleet does not hold a license to sell alcohol and only facilitates connectivity; you are the sole licensed seller and controller of the sale.</li>
+                  <li><span className="font-medium">Liability for Prohibited Delivery:</span> You are responsible for taking any steps necessary to inform yourself of applicable laws regarding the sale and delivery of Age-Restricted Items. You agree to limit the hours during which Age-Restricted Items are available for purchase and delivery in accordance with applicable Laws.</li>
+                  <li><span className="font-medium">Packaging and Labeling:</span> You will package Age-Restricted Items appropriately for delivery, including any protection necessary to prevent tampering or damage, and any labeling required by Law (including, but not limited to, a statement that the package contains alcohol and may only be delivered to a person 21 years or older with valid proof of age and identity).</li>
+                  <li><span className="font-medium">Promotions and Advertising:</span> You agree to follow all Laws and regulations related to your advertisement and promotion of Age-Restricted Items, including Federal Trade Commission guidelines and industry best practices.</li>
+                  <li><span className="font-medium">Returns &amp; Return Fees:</span> You acknowledge that a Delivery Person or customer may be required to return an Age-Restricted Item to you if the Delivery Person is unable to deliver it pursuant to applicable Law (e.g., the recipient is underage, intoxicated, or unavailable). Unless prohibited by Law, you agree to accept the return of such items. You explicitly agree that you may be charged a fee for the return (the &quot;Return Fee&quot;), which you authorize My Delivery Fleet to charge to your account. You shall not be paid for returned items.</li>
+                  <li>
+                    <span className="font-medium">State Specific Provisions:</span> You represent and warrant compliance with all state-specific laws, including but not limited to:
+                    <ul className="list-disc pl-5 space-y-1 mt-1">
+                      <li><span className="font-medium">Louisiana:</span> If any of your locations are in Louisiana, you acknowledge you will be charged a flat &quot;Alcohol Service Fee&quot; as determined by Uber in place of standard Delivery Charges.</li>
+                      <li><span className="font-medium">Washington:</span> Deliveries of Alcohol Items are permitted only between 6:00 a.m. and 2:00 a.m. You must affix a label on the outside of each package stating: (1) the package contains liquor; (2) the recipient must be 21+; and (3) delivery to intoxicated persons is prohibited.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Prohibited and Substandard Items (Size &amp; Weight Limits)</p>
+                <p className="mt-1">You shall not request delivery for any &quot;Prohibited Items&quot; or unauthorized &quot;Restricted Items&quot; as defined by the Delivery Partner&apos;s terms. You must package all items appropriately (using dry ice, gel packs, sealants, etc.) to prevent tampering, spillage, or damage. If you provide a &quot;Substandard Item&quot; (an item improperly packaged, leaking, unsafe, or non-compliant with food/health codes), you are solely responsible for its disposal. You agree to pay any and all cancellation fees, return fees, or vehicle damage/cleaning fees assessed by the Delivery Partner resulting from your Substandard or Prohibited Items.</p>
+                <p className="mt-1"><span className="font-medium">Size and Weight Restrictions:</span> You agree that all Items provided to a Delivery Person must collectively fit into a standard midsize motor vehicle and must not exceed fifty (50) pounds per package, box, or parcel. If a Delivery Person refuses to accept an Item due to size or weight, you will be solely responsible for any resulting cancellation fees or return fees assessed by the Delivery Partner.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Customer Support Responsibility</p>
+                <p className="mt-1">As between you, My Delivery Fleet, and the Delivery Partners, you retain sole responsibility for providing all frontline customer support to your end-customers (the Designated Recipients). This includes resolving any disputes, complaints, or concerns regarding the quality of the goods, missing items, or delivery delays. You agree not to direct your customers to contact My Delivery Fleet or the Delivery Partners directly for order-level support unless specifically authorized by our platform tools.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">Data Sourcing, Access, and Commercialization</h2>
+            <div className="space-y-3 text-sm sm:text-base text-text-2 leading-relaxed">
+              <div>
+                <p className="font-medium text-text-2">Sourcing &amp; Verification</p>
+                <p className="mt-1">We source data via Virtual Printers, Email Parsing, and Direct Integrations.</p>
+                <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                  <li><span className="font-medium">User Responsibility:</span> You are solely responsible for verifying the accuracy of all order details (address, items, totals, and tips). My Delivery Fleet is not liable for &quot;imperfect data&quot; resulting from automated parsing, OCR errors, or technical glitches.</li>
+                  <li><span className="font-medium">Authorization &amp; Customer Consent:</span> You warrant that you have all necessary rights, licenses, and consents to provide us access to this data (including data from POS systems or third-party marketplaces). You specifically represent and warrant that you have obtained legally adequate consent from your customers (&quot;Delivery-Informed Parties&quot;) to share their personal information (name, address, phone number) with My Delivery Fleet and our Delivery Partners for fulfillment, real-time tracking (SMS), and compliance purposes.</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Grant of Rights &amp; Data Sale</p>
+                <p className="mt-1">By using the service, you grant My Delivery Fleet a perpetual, irrevocable, worldwide, royalty-free license to collect, process, store, and utilize all data sourced through your account.</p>
+                <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                  <li><span className="font-medium">Commercialization:</span> You expressly acknowledge and agree that My Delivery Fleet may sell, lease, license, or otherwise commercialize aggregated or de-identified data, as well as business-level transaction data, to third parties for analytics, marketing, or research purposes, subject to applicable law.</li>
+                  <li><span className="font-medium">Indemnity:</span> You shall hold us harmless from any claims by third-party platforms (e.g., GrubHub, DoorDash, POS providers) regarding our scraping, parsing, or commercial use of data sourced from your integrations.</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Information Display and Reliance</p>
+                <p className="mt-1">The data presented within the My Delivery Fleet dashboard, including but not limited to driver location, estimated times of arrival (ETA), order status, order content, and inventory availability, is provided for informational purposes only and may reflect cached, delayed, or estimated information. You acknowledge that real-time synchronization is subject to network latency, third-party API limitations, and technical variances. It is the User&apos;s sole responsibility to independently verify critical information before taking action or communicating with end customers. My Delivery Fleet assumes no liability for operational decisions, customer disputes, or financial losses resulting from your reliance on data displayed in our system that may not reflect the immediate real-world status.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Auto-Dispatch and Automated Parsing Liability</p>
+                <p className="mt-1">My Delivery Fleet may offer functionality that automatically parses incoming order data and immediately dispatches delivery requests to Delivery Partners without manual review (&quot;Auto-Dispatch&quot;). If you choose to enable Auto-Dispatch, you do so at your own ultimate risk.</p>
+                <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                  <li><span className="font-medium">Data Accuracy and Item Flagging:</span> You acknowledge that automated parsing (including OCR, email parsing, or POS scraping) is subject to technical limitations and may occasionally misinterpret item descriptions, quantities, or special instructions.</li>
+                  <li><span className="font-medium">Strict Liability for Age-Restricted Items:</span> You are solely and strictly responsible for ensuring that your menu items, POS descriptions, and integrated data feeds clearly and unambiguously identify Age-Restricted Items (e.g., Alcohol). My Delivery Fleet explicitly waives all liability if our software fails to parse, flag, or transmit an item as &quot;Age-Restricted&quot; to the Delivery Partner due to ambiguous, non-standard, or unrecognizable item names provided by your sourcing channels.</li>
+                  <li><span className="font-medium">User Duty to Monitor:</span> Even when Auto-Dispatch is enabled, it remains your exclusive responsibility to monitor your dispatch dashboard and ensure that all outbound deliveries containing alcohol or restricted items are properly flagged for mandatory ID verification by the Delivery Person. You shall indemnify and hold My Delivery Fleet harmless against any fines, penalties, or legal action resulting from the delivery of Age-Restricted items that were not properly flagged due to parsing inaccuracies or your failure to monitor auto-dispatched orders.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">Marketing Suite, Messaging &amp; Compliance</h2>
+            <div className="space-y-3 text-sm sm:text-base text-text-2 leading-relaxed">
+              <div>
+                <p className="font-medium text-text-2">Comprehensive Message Liability</p>
+                <p className="mt-1">You acknowledge and agree that you are the sole &quot;sender&quot; of all messages (SMS, MMS, or email) transmitted through the My Delivery Fleet platform, whether such messages are marketing-related, promotional, or transactional in nature (e.g., order updates, delivery tracking). You assume full liability for ensuring that all messaging campaigns, automated triggers, and customer communications comply with: (a) All applicable laws and regulations, including but not limited to the Telephone Consumer Protection Act (TCPA) and the CTIA Messaging Principles and Best Practices; and (b) The terms of service, privacy policies, and restriction guidelines of the ordering platforms, Point of Sale (POS) systems, or marketplaces from which your customer data is sourced.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">User Responsibility for Consent and Content</p>
+                <p className="mt-1">My Delivery Fleet provides the technical infrastructure to send messages but exercises no control over the content, recipient list, or timing of your transmissions. It is your exclusive responsibility to confirm that the recipient has provided the necessary consent to receive the specific type of message being sent. You agree to indemnify and hold My Delivery Fleet harmless against any third-party claims, fines, or carrier penalties arising from your failure to adhere to compliance standards or third-party platform rules regarding text messaging.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">Payments, Collections &amp; Pass-Through Billing</h2>
+            <div className="space-y-2 text-sm sm:text-base text-text-2 leading-relaxed">
+              <p>Users are charged on a weekly basis via Stripe based on usage. All pricing is subject to change.</p>
+              <ul className="list-disc pl-5 space-y-1.5">
+                <li><span className="font-medium">Credit Card:</span> Subject to processing fees.</li>
+                <li><span className="font-medium">ACH:</span> You authorize My Delivery Fleet to perform balance checks via Stripe Financial Connections to confirm sufficient funding.</li>
+                <li><span className="font-medium">Pass-Through Billing:</span> You acknowledge that My Delivery Fleet facilitates payment for delivery services provided by third parties. You explicitly authorize My Delivery Fleet to automatically charge your stored payment method for all Dispatch Fees, Delivery Charges, driver tips, return fees, cancellation fees, and any other penalties or fees assessed by a Delivery Partner in connection with your account activity.</li>
+                <li><span className="font-medium">Failure to Pay:</span> In the event of non-payment, My Delivery Fleet reserves the right to take legal action to recover funds. You agree to pay a 1.5% monthly late fee and all legal/collection costs. You are solely responsible for any chargebacks or payment disputes initiated by your end customers and must reimburse My Delivery Fleet for any reversed funds.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">Hardware and Equipment</h2>
+            <div className="space-y-2 text-sm sm:text-base text-text-2 leading-relaxed">
+              <ul className="list-disc pl-5 space-y-1.5">
+                <li><span className="font-medium">Ownership and Possession:</span> Any hardware provided to the User by My Delivery Fleet, including but not limited to tablets or printers (&quot;Equipment&quot;), remains the sole and exclusive property of My Delivery Fleet. The Equipment is provided to the User on a bailment basis for the sole purpose of accessing the My Delivery Fleet software.</li>
+                <li><span className="font-medium">Mandatory Return Policy:</span> Upon termination of the User&apos;s account for any reason, or if My Delivery Fleet deems the account &quot;Inactive&quot; (defined as thirty consecutive days without a processed delivery), the User must return the Equipment to My Delivery Fleet within seven (7) business days.</li>
+                <li><span className="font-medium">Responsibility for Costs:</span> The User is solely responsible for all costs associated with the return of the Equipment, including professional packaging, insured shipping, and logistics. The User assumes all risk of loss or damage to the Equipment.</li>
+                <li><span className="font-medium">Non-Return Fees:</span> If the Equipment is not received by My Delivery Fleet within the required timeframe, or if the Equipment is returned in a damaged condition (beyond normal wear and tear), the User authorizes My Delivery Fleet to charge the User&apos;s stored payment method for the full MSRP of the Equipment plus a $50.00 administrative processing fee.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">Liability, Indemnification &amp; Arbitration</h2>
+            <div className="space-y-3 text-sm sm:text-base text-text-2 leading-relaxed">
+              <div>
+                <p className="font-medium text-text-2 uppercase">Zero Liability and Waiver — Total Waiver of Liability</p>
+                <p className="mt-1 uppercase text-xs">TO THE FULLEST EXTENT PERMITTED BY LAW, MY DELIVERY FLEET, ITS OWNERS, AFFILIATES, OFFICERS, AND EMPLOYEES SHALL HAVE NO LIABILITY WHATSOEVER TO YOU OR ANY THIRD PARTY FOR ANY LOSSES, DAMAGES, OR CLAIMS ARISING OUT OF OR RELATING TO THIS AGREEMENT OR YOUR USE OF THE SERVICES. THIS INCLUDES, WITHOUT LIMITATION, NO LIABILITY FOR:</p>
+                <ul className="list-disc pl-5 space-y-1 mt-1 uppercase text-xs">
+                  <li>LOST PROFITS, LOST REVENUE, OR LOST DATA.</li>
+                  <li>MISSED, DELAYED, OR INCORRECT DELIVERIES.</li>
+                  <li>ERRORS IN PRICING, TIPPING, OR ADDRESS DATA.</li>
+                  <li>THIRD-PARTY DRIVER CONDUCT (THEFT, DAMAGE, MISCONDUCT).</li>
+                  <li>SPOILAGE, DAMAGE, OR LOSS OF FOOD OR ALCOHOL PRODUCTS.</li>
+                  <li>SERVICE INTERRUPTIONS OR SYSTEM FAILURES.</li>
+                </ul>
+                <p className="mt-2 uppercase text-xs">IF, NOTWITHSTANDING THE TOTAL WAIVER ABOVE, A COURT OF COMPETENT JURISDICTION DETERMINES THAT MY DELIVERY FLEET IS LIABLE TO YOU FOR ANY REASON, YOU AGREE THAT OUR TOTAL AGGREGATE LIABILITY SHALL BE STRICTLY LIMITED TO THE TOTAL ADMINISTRATIVE FEES PAID BY YOU TO US IN THE ONE (1) MONTH PRECEDING THE EVENT GIVING RISE TO THE CLAIM. YOU ACKNOWLEDGE THAT THIS LIMITATION OF LIABILITY IS A FUNDAMENTAL BASIS OF THE BARGAIN AND THAT WE WOULD NOT PROVIDE THE SERVICES TO YOU WITHOUT IT.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2 uppercase">Indemnification and Hold Harmless</p>
+                <p className="mt-1">You shall, at your own expense, indemnify, defend, and hold harmless My Delivery Fleet, its officers, directors, employees, and agents from and against all taxes, losses, liabilities, damages, claims, suits, costs, and expenses (including reasonable attorney&apos;s fees) brought against My Delivery Fleet by a third party (including Uber, DoorDash, or end customers) arising from or in connection with:</p>
+                <ul className="list-disc pl-5 space-y-1 mt-1">
+                  <li>Your violation or alleged violation of Laws governing food or alcohol safety, or other health and safety Laws;</li>
+                  <li>Your violation of the Delivery Partner&apos;s Terms (including Uber Direct Terms) or this Agreement;</li>
+                  <li>Your inclusion of a Prohibited Item, Substandard Item, or failure to properly tag, mark, and package Age-Restricted Items;</li>
+                  <li>Any personal injury, property damage, or vehicle cleaning fees arising from the Items you requested for delivery;</li>
+                  <li>Any failure by you to obtain the legally required consent to share your customers&apos; personal data with My Delivery Fleet or Delivery Partners;</li>
+                  <li>Your failure to comply with local laws requiring you to provide restroom facility access to Delivery Persons who are lawfully on your premises to fulfill delivery requests (including, but not limited to, the requirements of Subdivision b of section 20-563.6 of the Administrative Code of the City of New York, if applicable to your location).</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium text-text-2 uppercase">Arbitration &amp; Class Action Waiver</p>
+                <p className="mt-1">Any dispute arising out of or relating to this Agreement shall be resolved exclusively through binding arbitration on an individual basis. Users waive any right to participate in class actions, collective actions, or representative proceedings.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-text-1 mb-3">General Provisions</h2>
+            <div className="space-y-3 text-sm sm:text-base text-text-2 leading-relaxed">
+              <div>
+                <p className="font-medium text-text-2">No Partnership or Agency</p>
+                <p className="mt-1">Nothing in this Agreement creates a partnership, joint venture, employment, or agency relationship between My Delivery Fleet and User.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Force Majeure</p>
+                <p className="mt-1">My Delivery Fleet shall not be liable for failure or delay in performance caused by events beyond its reasonable control, including acts of God, natural disasters, labor disputes, internet or power outages, pandemics, government actions, or third-party platform failures.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Service Suspension &amp; Termination</p>
+                <p className="mt-1">My Delivery Fleet reserves the right to pause, suspend, or terminate Services at any time, with or without notice, for any reason, including non-payment or suspected misuse. Furthermore, My Delivery Fleet may terminate or suspend your access immediately if your conduct, or the conduct of your employees and staff toward Delivery Persons, creates a safety or reputational risk (&quot;Brand Matter&quot;), violates the Uber Community Guidelines, or if a Delivery Partner restricts your access to their network. You agree that My Delivery Fleet shall have no liability to you for any lost revenue resulting from such suspension.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Survival</p>
+                <p className="mt-1">Sections relating to liability limitations, indemnification, arbitration, data rights, payment obligations, and governing law shall survive termination of this Agreement.</p>
+              </div>
+              <div>
+                <p className="font-medium text-text-2">Entire Agreement</p>
+                <p className="mt-1">This Agreement constitutes the entire agreement between the parties and supersedes all prior agreements or understandings. In the event of a conflict between this Agreement and the Uber Direct Terms regarding physical delivery mechanics or prohibited items, the Uber Direct Terms shall prevail. In the event of a conflict regarding financial liability, software usage, or indemnification between you and My Delivery Fleet, this Agreement shall prevail.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </main>

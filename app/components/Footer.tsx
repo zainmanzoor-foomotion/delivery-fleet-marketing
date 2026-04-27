@@ -1,24 +1,33 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 
 const productLinks = [
   { label: 'How it Works', href: '#how-it-works' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '#calculator' },
   { label: 'Marketing', href: '#marketing' },
 ]
 
 const companyLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact', href: '#contact' },
 ]
 
-function scrollToHash(href: string) {
-  const el = document.getElementById(href.slice(1))
-  el?.scrollIntoView({ behavior: 'smooth' })
-}
-
 export default function Footer() {
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    if (!href.startsWith('#')) return
+    e.preventDefault()
+    const id = href.slice(1)
+    if (pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      router.push(`/#${id}`)
+    }
+  }
+
   return (
     <footer className="w-full bg-[#FAFAFB]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 mt-20">
@@ -27,15 +36,15 @@ export default function Footer() {
 
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2 mb-4">
-            <Image
-              src="/Logo.svg"
-              alt="Logo"
-              width={80}
-              height={80}
-              className="w-12 h-9.5"
-              priority
-            />
-              <span className="text-xl sm:text-2xl font-bold text-text-1">
+              <Image
+                src="/Logo.svg"
+                alt="Logo"
+                width={80}
+                height={80}
+                className="w-12 h-9.5"
+                priority
+              />
+              <span className="text-xl sm:text-2xl font-extrabold italic text-text-1 font-cabinet">
                 My Delivery Fleet
               </span>
             </Link>
@@ -53,7 +62,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      onClick={() => scrollToHash(link.href)}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                       className="text-sm sm:text-md text-text-2 hover:text-text-1 transition-colors"
                     >
                       {link.label}
@@ -70,7 +79,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      onClick={() => link.href.startsWith('#') && scrollToHash(link.href)}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                       className="text-sm sm:text-md text-text-2 hover:text-text-1 transition-colors"
                     >
                       {link.label}

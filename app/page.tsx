@@ -4,6 +4,7 @@ import BoostSales from './components/BoostSales'
 import SmartMarketing from './components/SmartMarketing'
 import SavingsCalculator from './components/SavingsCalculator'
 import CutCosts from './components/CutCosts'
+import ContactForm from './components/ContactForm'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <CutCosts/>
         <SmartMarketing />
         <SavingsCalculator />
+        <ContactForm />
       </main>
     </>
   )

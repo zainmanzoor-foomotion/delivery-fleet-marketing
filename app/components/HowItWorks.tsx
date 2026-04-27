@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { TrackingIcon } from '@/components/icons/tracking'
 import { DollarIcon } from '@/components/icons/dollar'
 import { DispatchIcon } from '@/components/icons/dispatch'
@@ -46,6 +46,8 @@ const steps = [
 export default function HowItWorks() {
   const [active, setActive] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { amount: 0.5 })
 
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current)
@@ -55,9 +57,10 @@ export default function HowItWorks() {
   }
 
   useEffect(() => {
+    if (!isInView) return
     startTimer()
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
-  }, [])
+  }, [isInView])
 
   const handleClick = (index: number) => {
     setActive(index)
@@ -65,7 +68,7 @@ export default function HowItWorks() {
   }
 
   return (
-    <section id="how-it-works" className="w-full px-4 py-9 sm:py-14 overflow-hidden">
+    <section ref={sectionRef} id="how-it-works" className="w-full px-4 py-9 sm:py-14 overflow-hidden">
       <div className="mx-auto max-w-3xl text-center mb-7 sm:mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
           How It Works

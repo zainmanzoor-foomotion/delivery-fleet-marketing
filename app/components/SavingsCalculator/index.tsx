@@ -27,31 +27,31 @@ const OVERHEAD_PER_DAY = 10
 
 export default function SavingsCalculator() {
   // Operational basics
-  const [avgOrderValue, setAvgOrderValue] = useState(0)
-  const [customerDeliveryFee, setCustomerDeliveryFee] = useState(0)
+  const [avgOrderValue, setAvgOrderValue] = useState(40)
+  const [customerDeliveryFee, setCustomerDeliveryFee] = useState(2.99)
 
   // In-house drivers
   const [inHouseEnabled, setInHouseEnabled] = useState(true)
-  const [inHouseOrders, setInHouseOrders] = useState(0)
+  const [inHouseOrders, setInHouseOrders] = useState(10)
   const [inHousePayModel, setInHousePayModel] = useState('Hourly Wage')
   // Hourly fields
-  const [inHouseWage, setInHouseWage] = useState(0)
-  const [inHouseHrs, setInHouseHrs] = useState(0)
+  const [inHouseWage, setInHouseWage] = useState(10)
+  const [inHouseHrs, setInHouseHrs] = useState(10)
   // Hybrid fields (Wage + Fee Share)
-  const [inHouseBaseWage, setInHouseBaseWage] = useState(0)
-  const [inHouseHybridHours, setInHouseHybridHours] = useState(0)
-  const [inHouseFeeShare, setInHouseFeeShare] = useState(0)
+  const [inHouseBaseWage, setInHouseBaseWage] = useState(10)
+  const [inHouseHybridHours, setInHouseHybridHours] = useState(10)
+  const [inHouseFeeShare, setInHouseFeeShare] = useState(2)
 
   // On-demand
   const [onDemandEnabled, setOnDemandEnabled] = useState(true)
-  const [onDemandOrders, setOnDemandOrders] = useState(0)
-  const [onDemandDispatch, setOnDemandDispatch] = useState(0)
+  const [onDemandOrders, setOnDemandOrders] = useState(10)
+  const [onDemandDispatch, setOnDemandDispatch] = useState(7.99)
 
   // 3rd party
   const [thirdPartyEnabled, setThirdPartyEnabled] = useState(true)
-  const [thirdPartyOrders, setThirdPartyOrders] = useState(0)
-  const [thirdPartyCurrentPct, setThirdPartyCurrentPct] = useState(0)
-  const [thirdPartySelfDeliveryPct, setThirdPartySelfDeliveryPct] = useState(0)
+  const [thirdPartyOrders, setThirdPartyOrders] = useState(10)
+  const [thirdPartyCurrentPct, setThirdPartyCurrentPct] = useState(30)
+  const [thirdPartySelfDeliveryPct, setThirdPartySelfDeliveryPct] = useState(15)
 
   // Growth engines
   const [smartMarketing, setSmartMarketing] = useState(false)
@@ -340,11 +340,11 @@ export default function SavingsCalculator() {
                     className="sr-only"
                   />
                   <div className={cn(
-                    'mt-0.5 h-5 w-5 shrink-0 rounded border-2 bg-white flex items-center justify-center transition-colors',
+                    'mt-0.5 h-5 w-5 shrink-0 rounded border bg-primary/10 flex items-center justify-center transition-colors',
                     smartMarketing ? 'border-primary' : 'border-[#CBD5E1]',
                   )}>
                     {smartMarketing && (
-                      <svg viewBox="0 0 12 10" className="h-3 w-3 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg viewBox="0 0 12 10" className="h-2 w-2 text-text-1" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="1 5 4.5 8.5 11 1" />
                       </svg>
                     )}
@@ -366,11 +366,11 @@ export default function SavingsCalculator() {
                     className="sr-only"
                   />
                   <div className={cn(
-                    'mt-0.5 h-5 w-5 shrink-0 rounded border-2 bg-white flex items-center justify-center transition-colors',
+                    'mt-0.5 h-5 w-5 shrink-0 rounded border bg-primary/10 flex items-center justify-center transition-colors',
                     radiusExpansion ? 'border-primary' : 'border-[#CBD5E1]',
                   )}>
                     {radiusExpansion && (
-                      <svg viewBox="0 0 12 10" className="h-3 w-3 text-primary" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg viewBox="0 0 12 10" className="h-2 w-2 text-text-1" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="1 5 4.5 8.5 11 1" />
                       </svg>
                     )}

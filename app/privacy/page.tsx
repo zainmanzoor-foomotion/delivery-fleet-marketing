@@ -59,13 +59,13 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-white">
-      <div className="mx-auto max-w-4xl px-6 pt-10">
-        <h1 className="text-3xl sm:text-[54px] font-bold text-text-1 mb-3">Privacy Policy</h1>
-        <p className="text-sm sm:text-2xl text-text-2 mb-8">The Effective date of this Policy is April 12, 2025</p>
+      <div className="mx-auto max-w-7xl px-6 pt-15">
+        <h1 className="text-3xl sm:text-[54px] font-bold text-text-1">Privacy Policy</h1>
+        <p className="text-sm sm:text-base text-text-2 py-8 ">The Effective date of this Policy is April 12, 2025</p>
       </div>
 
       {/* Intro */}
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-4 text-sm sm:text-base text-text-2 leading-relaxed">
           <p>
             Protecting your private information is our priority. This Statement of Privacy applies to the http://www.dashboard.My Delivery Fleet.com and My Delivery Fleet Inc. and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to My Delivery Fleet include http://www.My Delivery Fleet.com and My Delivery Fleet, Inc. The My Delivery Fleet website is a restaurant food delivery management site. By using the My Delivery Fleet website, you consent to the data practices described in this statement. This Privacy Policy applies to every My Delivery Fleet application, whether accessed directly or through a third party marketplace or platform (collectively, &ldquo;Platforms&rdquo;).
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
       </div>
 
       {/* Sections */}
-      <div className="mx-auto max-w-4xl px-6 py-10">
+      <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="flex flex-col gap-8">
           {sections.map(({ title, paragraphs }) => (
             <div key={title}>

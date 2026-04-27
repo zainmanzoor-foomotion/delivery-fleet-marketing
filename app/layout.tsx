@@ -33,6 +33,9 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", geistMono.variable, inter.variable, "font-sans", geist.variable)}
     >
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
         <Navbar/>
         {children}
