@@ -61,7 +61,7 @@ export default function Header() {
             variant="ghost"
             className="text-text-1 w-full sm:w-50 h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
           >
-            How it works
+            How It Works
           </Button>
         </a>
       </div>
