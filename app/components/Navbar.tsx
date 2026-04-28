@@ -37,7 +37,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="z-50 w-full bg-white">
+    <header className="sticky top-0 z-50 w-full bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex h-25 items-center justify-between">
 
