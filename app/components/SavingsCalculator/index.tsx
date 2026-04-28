@@ -216,7 +216,7 @@ export default function SavingsCalculator() {
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs sm:text-sm font-medium text-text-2">Pay Model</label>
                         <Select value={inHousePayModel} onValueChange={setInHousePayModel}>
-                          <SelectTrigger className="h-8 w-full rounded-xl text-xs sm:text-sm text-text-1">
+                          <SelectTrigger className="h-8 w-full rounded-md sm:rounded-xl text-xs sm:text-sm text-text-1">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>

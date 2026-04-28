@@ -47,7 +47,7 @@ export function CurrencyInput({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         onKeyDown={handleKeyDown}
-        className={cn('h-10 text-xs sm:text-sm text-text-1 rounded-xl', className)}
+        className={cn('h-8 sm:h-10 text-xs sm:text-sm text-text-1 rounded-md sm:rounded-xl', className)}
       />
     </div>
   )

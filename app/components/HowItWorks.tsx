@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { TrackingIcon } from '@/components/icons/tracking'
 import { DollarIcon } from '@/components/icons/dollar'
 import { DispatchIcon } from '@/components/icons/dispatch'
@@ -39,7 +39,7 @@ const steps = [
     description: 'Receive the order and keep 100% of the ticket price. No commissions, no percentage fees—just pure revenue.',
     image: '/Group 5943.png',
     imgClassName: 'absolute z-10 left-0 right-0 px-16',
-    imgStyle: { height: '75%', top: '10%', transform: 'translateY(-50%)' },
+    imgStyle: { height: '75%', top: '50%', transform: 'translateY(-50%)' },
   },
 ]
 
@@ -115,47 +115,47 @@ export default function HowItWorks() {
         {/* Right — image panel (lg+) */}
         <div className="hidden lg:block relative min-h-125 w-full">
           <div className="absolute inset-0 rounded-3xl bg-[#FAFAFB]" />
-          <AnimatePresence mode="wait">
+          {steps.map((step, index) => (
             <motion.div
-              key={active}
-              className={steps[active].imgClassName}
-              style={steps[active].imgStyle}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              key={index}
+              className={step.imgClassName}
+              style={{ ...step.imgStyle, zIndex: active === index ? 2 : 1 }}
+              animate={{ opacity: active === index ? 1 : 0 }}
+              initial={false}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
               <Image
-                src={steps[active].image!}
-                alt={steps[active].title}
+                src={step.image!}
+                alt={step.title}
                 fill
+                priority={index === 0}
                 className="object-contain object-center rounded-xl"
               />
             </motion.div>
-          </AnimatePresence>
+          ))}
         </div>
 
         {/* Mobile image panel — fills remaining height */}
         <div className="flex-1 min-h-0 lg:hidden relative w-full">
           <div className="absolute inset-0 rounded-2xl bg-[#FAFAFB]" />
-          <AnimatePresence mode="wait">
+          {steps.map((step, index) => (
             <motion.div
-              key={active}
-              className={steps[active].imgClassName}
-              style={steps[active].imgStyle}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              key={index}
+              className={step.imgClassName}
+              style={{ ...step.imgStyle, zIndex: active === index ? 2 : 1 }}
+              animate={{ opacity: active === index ? 1 : 0 }}
+              initial={false}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
               <Image
-                src={steps[active].image!}
-                alt={steps[active].title}
+                src={step.image!}
+                alt={step.title}
                 fill
+                priority={index === 0}
                 className="object-contain object-center rounded-xl"
               />
             </motion.div>
-          </AnimatePresence>
+          ))}
         </div>
 
       </div>

@@ -25,7 +25,7 @@ export function NumInput({
         step={step}
         min={min}
         onChange={(e) => onChange(Number(e.target.value))}
-        className={cn('h-10 text-xs sm:text-sm text-text-1 rounded-xl', className)}
+        className={cn('h-10 text-xs sm:text-sm text-text-1 rounded-md sm:rounded-xl', className)}
       />
     </div>
   )
