@@ -6,22 +6,22 @@ import { cn } from "@/lib/utils";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const inter = Inter({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-	variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin'],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 })
 
 export const metadata: Metadata = {
-	title: 'My Delivery Fleet',
-	description: '',
+  title: 'My Delivery Fleet',
+  description: '',
 }
 export default function RootLayout({
   children,
@@ -37,9 +37,9 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
-        <Navbar/>
+        <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

@@ -68,20 +68,20 @@ export default function HowItWorks() {
   }
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="w-full px-4 py-9 sm:py-14 overflow-hidden">
-      <div className="mx-auto max-w-3xl text-center mb-7 sm:mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
+    <section ref={sectionRef} id="how-it-works" className="h-screen flex flex-col w-full px-4 py-10 sm:py-16 overflow-hidden">
+      <div className="mx-auto w-full max-w-3xl text-center mb-2 sm:mb-4 md:mb-10 shrink-0">
+        <h2 className="text-xl sm:text-2xl md:text-[54px] font-bold text-text-1">
           How It Works
         </h2>
-        <p className="mt-3 text-sm sm:text-base md:text-xl text-text-2 max-w-3xl mx-auto">
+        <p className="mt-3 text-[11px] sm:text-sm md:text-xl text-text-2 max-w-3xl mx-auto">
           A seamless process designed to maximize your margins and build your customer database.
         </p>
       </div>
 
-      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10 items-center">
+      <div className="flex-1 min-h-0 mx-auto w-full max-w-7xl flex flex-col gap-2 sm:gap-3 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-center">
 
         {/* Left — clickable steps */}
-        <div className="flex flex-col gap-1.5 sm:gap-2.5">
+        <div className="shrink-0 flex flex-col gap-1.5 sm:gap-2.5">
           {steps.map(({ icon: Icon, title, description }, index) => {
             const isActive = active === index
             return (
@@ -98,13 +98,13 @@ export default function HowItWorks() {
                 </div>
                 <div>
                   <span
-                    className={`text-base sm:text-2xl font-medium transition-colors duration-200 ${isActive ? 'text-text-1 font-semibold' : 'text-text-2'
+                    className={`text-sm sm:text-xl font-medium transition-colors duration-200 ${isActive ? 'text-text-1 font-semibold' : 'text-text-2'
                       }`}
                   >
                     {title}
                   </span>
                   {isActive && (
-                    <p className="mt-1.5 text-xs sm:text-[16px] text-text-2">{description}</p>
+                    <p className="mt-1.5 text-[10px] sm:text-[14px] text-text-2">{description}</p>
                   )}
                 </div>
               </button>
@@ -112,7 +112,7 @@ export default function HowItWorks() {
           })}
         </div>
 
-        {/* Right — image panel (hidden on mobile, shown on lg+) */}
+        {/* Right — image panel (lg+) */}
         <div className="hidden lg:block relative min-h-125 w-full">
           <div className="absolute inset-0 rounded-3xl bg-[#FAFAFB]" />
           <AnimatePresence mode="wait">
@@ -135,8 +135,8 @@ export default function HowItWorks() {
           </AnimatePresence>
         </div>
 
-        {/* Mobile image panel — compact height */}
-        <div className="lg:hidden relative w-full" style={{ height: 234 }}>
+        {/* Mobile image panel — fills remaining height */}
+        <div className="flex-1 min-h-0 lg:hidden relative w-full">
           <div className="absolute inset-0 rounded-2xl bg-[#FAFAFB]" />
           <AnimatePresence mode="wait">
             <motion.div

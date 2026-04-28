@@ -82,15 +82,15 @@ function InteractiveSlider({
     const pct = ((value - min) / (max - min)) * 100
 
     return (
-        <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-3">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-3">
             <div className="flex items-center justify-between">
-                <p className="text-xs sm:text-sm font-medium text-text-1">{label}</p>
-                <p className="text-xs sm:text-sm font-semibold text-primary">{format(value)}</p>
+                <p className="text-[11px] sm:text-sm font-medium text-text-1">{label}</p>
+                <p className="text-[11px] sm:text-sm font-semibold text-primary">{format(value)}</p>
             </div>
             <div className="relative flex items-center" style={{ height: 20 }}>
-                <div className="absolute inset-x-0 h-1 rounded-full bg-[#E5E7EB]" />
+                <div className="absolute inset-x-0 h-0.5 sm:h-1 rounded-full bg-[#E5E7EB]" />
                 <div
-                    className="absolute left-0 h-1 rounded-full bg-primary"
+                    className="absolute left-0 h-0.5 sm:h-1 rounded-full bg-primary"
                     style={{ width: `${pct}%` }}
                 />
                 <input
@@ -100,12 +100,12 @@ function InteractiveSlider({
                     step={step}
                     value={value}
                     onChange={(e) => onChange(Number(e.target.value))}
-                    className="absolute inset-0 w-full opacity-0 cursor-pointer z-10"
+                    className="h-3 sm:h-5 absolute inset-0 w-full opacity-0 cursor-pointer z-10"
                     style={{ height: 20 }}
                 />
                 <div
-                    className="absolute top-1/2 -translate-y-1/2 rounded-full bg-white border-[3px] border-primary shadow-md pointer-events-none z-20"
-                    style={{ width: 20, height: 20, left: `calc(${pct}% - ${(pct / 100) * 20}px)` }}
+                    className="absolute w-4 h-4 sm:h-5 sm:w-5 top-1/2 -translate-y-1/2 rounded-full bg-white border-2 sm:border-[3px] border-primary shadow-md pointer-events-none z-20"
+                    style={{ left: `calc(${pct}% - ${(pct / 100) * 20}px)` }}
                 />
             </div>
         </div>
@@ -123,30 +123,30 @@ export default function CutCosts() {
     const savingsPct = thirdPartyCost > 0 ? (youSavePerOrder / thirdPartyCost) * 100 : 0
 
     return (
-        <section className="w-full px-4 py-10 sm:py-16">
+        <section id="cut-costs" className="min-h-screen sm:min-h-screen flex justify-center items-center w-full px-4 py-10 sm:py-16">
             <div className="mx-auto max-w-7xl rounded-2xl border-2 border-[#E5E7EB] p-3 sm:p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 sm:gap-4 items-center">
 
                     {/* Left */}
                     <div className="flex flex-col gap-5 sm:gap-10 p-3 sm:p-6 rounded-xl">
                         <div className="flex items-center gap-4 sm:gap-8">
                             <div className='border border-[#E5E7EB] rounded-xl p-3 sm:p-5'>
-                                <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full bg-[#2563EB] flex items-center justify-center">
-                                    <TickDownIcon stroke='white' />
+                                <div className="h-6 w-6 sm:h-12 sm:w-12 shrink-0 rounded-full bg-[#2563EB] flex items-center justify-center">
+                                    <TickDownIcon size={12} stroke='white' />
                                 </div>
                             </div>
-                            <h2 className="text-3xl sm:text-[44px] font-bold text-text-1">Cut Costs</h2>
+                            <h2 className="text-xl sm:text-3xl md:text-[44px] font-bold text-text-1">Cut Costs</h2>
                         </div>
 
-                        <div className="flex flex-col gap-5 sm:gap-8">
+                        <div className="flex flex-col gap-3 sm:gap-8">
                             {features.map(({ title, description }) => (
                                 <div key={title} className="flex gap-3 sm:gap-6">
                                     <div className="mt-0.5 shrink-0 h-fit p-1.5 sm:p-2 rounded-md bg-[#EFF6FF]">
                                         <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#2563EB]" strokeWidth={3} />
                                     </div>
                                     <div>
-                                        <p className="text-base sm:text-2xl font-semibold text-text-1 mb-1">{title}</p>
-                                        <p className="text-xs sm:text-[16px] text-text-2 leading-relaxed">{description}</p>
+                                        <p className="text-sm sm:text-xl font-semibold text-text-1 mb-1">{title}</p>
+                                        <p className="text-[10px] sm:text-[14px] text-text-2 leading-relaxed">{description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -176,26 +176,26 @@ export default function CutCosts() {
 
                         <div className="grid grid-cols-2 gap-3">
                             <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-2">
-                                <p className="text-sm font-medium text-text-1">Third-party Apps</p>
-                                <p className="text-xl sm:text-[32px] font-medium text-text-1">
+                                <p className="text-[11px] sm:text-sm font-medium text-text-1">Third-party Apps</p>
+                                <p className="text-lg sm:text-[32px] font-medium text-text-1">
                                     <AnimatedCurrency value={thirdPartyCost} />
                                 </p>
-                                <p className="text-sm text-text-2">30% per order</p>
+                                <p className="text-[11px] sm:text-sm text-text-2">30% per order</p>
                             </div>
                             <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-4 flex flex-col gap-1 sm:gap-2">
-                                <p className="text-sm font-medium text-text-1">With Us</p>
-                                <p className="text-xl sm:text-[32px] font-medium text-text-1">
+                                <p className="text-[11px] sm:text-sm font-medium text-text-1">With Us</p>
+                                <p className="text-lg sm:text-[32px] font-medium text-text-1">
                                     <AnimatedCurrency value={MDF_FEE} />
                                 </p>
-                                <p className="text-sm font-medium text-[#3FC060]">Flat Fee Always (As low as $6.49)</p>
+                                <p className="text-[7px] sm:text-sm font-medium text-[#3FC060]">Flat Fee Always (As low as $6.49)</p>
                             </div>
                         </div>
 
                         <motion.div
                             className="rounded-xl bg-primary p-3 sm:p-4 sm:py-6"
-                            initial={{ opacity: 0, scale: 0.85 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, amount: 0.75 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                             style={{ transformOrigin: 'center' }}
                         >
@@ -205,16 +205,16 @@ export default function CutCosts() {
                                     { label: 'Savings Per Day', value: savingsPerDay, decimals: 2 },
                                     { label: 'Savings Per Year', value: savingsPerYear, decimals: 0 },
                                 ] as const).map(({ label, value, decimals }) => (
-                                    <div key={label} className="flex flex-col gap-4 py-1 sm:py-2">
-                                        <p className="text-[9px] sm:text-xs font-medium text-white leading-tight">{label}</p>
-                                        <p className="text-base sm:text-[28px] font-medium text-white">
+                                    <div key={label} className="flex flex-col gap-1 sm:gap-4 py-1 sm:py-2">
+                                        <p className="text-[8px] sm:text-xs font-medium text-white leading-tight">{label}</p>
+                                        <p className="text-sm sm:text-[28px] font-medium text-white">
                                             <AnimatedCurrency value={value} decimals={decimals} compact />
                                         </p>
                                     </div>
                                 ))}
-                                <div className="flex flex-col gap-1 bg-[#0E6CE6] rounded-xl p-2 py-3 items-start xl:items-center justify-center">
-                                    <p className="text-[9px] sm:text-xs font-medium text-white">Savings</p>
-                                    <p className="text-xl sm:text-[28px] font-medium text-white">
+                                <div className="flex flex-col gap-1 bg-[#0E6CE6] rounded-xl py-2 p-2 sm:py-3 items-start xl:items-center justify-center">
+                                    <p className="text-[8px] sm:text-xs font-medium text-white">Savings</p>
+                                    <p className="text-sm sm:text-[28px] font-medium text-white">
                                         <AnimatedPercent value={savingsPct} />
                                     </p>
                                 </div>

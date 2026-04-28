@@ -20,19 +20,24 @@ export default function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
 
-  const handleNavClick = (e: React.MouseEvent, href: string) => {
+  const handleNavClick = (e: React.MouseEvent, href: string, closeMobile = false) => {
     if (!href.startsWith('#')) return
     e.preventDefault()
     const id = href.slice(1)
     if (pathname === '/') {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      if (closeMobile) {
+        setMobileOpen(false)
+        setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 220)
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }
     } else {
       router.push(`/#${id}`)
     }
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
+    <header className="z-50 w-full bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex h-25 items-center justify-between">
 
@@ -79,7 +84,7 @@ export default function Navbar() {
           </div>
 
           <button
-            className="lg:hidden rounded-md p-2 text-text-1 hover:text-text-1/70 hover:bg-gray-100 transition-colors"
+            className="lg:hidden rounded-md p-3 text-text-1 hover:text-text-1/70 hover:bg-gray-100 transition-colors"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
@@ -100,7 +105,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              onClick={(e) => { handleNavClick(e, link.href); setMobileOpen(false) }}
+              onClick={(e) => handleNavClick(e, link.href, true)}
               className="rounded-md px-3 py-2 text-sm font-medium text-text-1 hover:text-text-2 hover:bg-gray-50 transition-colors"
             >
               {link.label}

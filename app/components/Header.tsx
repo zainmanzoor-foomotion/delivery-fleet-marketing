@@ -33,10 +33,10 @@ export default function Header() {
   }, [mobileStarted])
 
   return (
-    <section className="flex flex-col items-center justify-center px-4 py-8 md:py-10 text-center overflow-x-hidden">
+    <section id="hero" className="min-h-screen flex flex-col items-center px-4 py-8 md:py-10 text-center overflow-x-hidden">
 
       <div className="mb-8 bg-green-100 inline-flex items-center rounded-full border border-[#3FC060] px-4 py-1.5">
-        <span className="text-sm font-medium text-text-1 tracking-wide">
+        <span className="text-xs sm:text-sm font-medium text-text-1 tracking-wide">
           $0 Commissions. $0 Subscription.
         </span>
       </div>
@@ -52,21 +52,21 @@ export default function Header() {
 
       <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row">
         <a href='https://app.mydeliveryfleet.com/sign-up' target='_blank'>
-          <Button className="w-full sm:w-60 h-12 sm:h-15 text-base sm:text-lg px-6">
+          <Button className="w-full sm:w-60 h-10 sm:h-15 text-sm sm:text-lg px-6">
             Start Free Trial
           </Button>
         </a>
         <a href="#how-it-works">
           <Button
             variant="ghost"
-            className="text-text-1 w-full sm:w-50 h-12 sm:h-15 text-base sm:text-lg px-6 border border-[#CBD5E1]"
+            className="text-text-1 w-full sm:w-50 h-10 sm:h-15 text-sm sm:text-lg px-6 border border-[#CBD5E1]"
           >
             How It Works
           </Button>
         </a>
       </div>
 
-      <div ref={containerRef} className='mt-5 w-full max-w-6xl relative h-40 sm:h-70 md:h-90 lg:h-130 overflow-hidden'>
+      <div ref={containerRef} className='mt-5 w-full max-w-6xl relative h-[25vh] sm:h-70 md:h-90 lg:h-130 overflow-hidden'>
 
         {/* Step 1: Center dashboard — zoom in immediately on viewport enter */}
         <motion.div

@@ -16,13 +16,13 @@ export function ResultRow({
       bold && 'border-t border-[#E5E7EB]',
     )}>
       <span className={cn(
-        'text-md text-text-2',
+        'text-xs sm:text-md text-text-2',
         bold && 'font-normal text-text-1',
       )}>
         {label}
       </span>
       <span className={cn(
-        'text-md',
+        'text-xs sm:text-md',
         bold ? 'font-normal text-text-1' : 'font-normal text-text-1',
       )}>
         {value}

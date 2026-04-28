@@ -18,14 +18,14 @@ export function NumInput({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-text-2">{label}</label>
+      <label className="text-xs sm:text-sm font-medium text-text-2">{label}</label>
       <Input
         type="number"
         value={value}
         step={step}
         min={min}
         onChange={(e) => onChange(Number(e.target.value))}
-        className={cn('h-10 text-sm text-text-1 rounded-xl', className)}
+        className={cn('h-10 text-xs sm:text-sm text-text-1 rounded-xl', className)}
       />
     </div>
   )

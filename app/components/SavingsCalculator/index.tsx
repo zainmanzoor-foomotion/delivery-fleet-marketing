@@ -31,7 +31,7 @@ export default function SavingsCalculator() {
   const [customerDeliveryFee, setCustomerDeliveryFee] = useState(2.99)
 
   // In-house drivers
-  const [inHouseEnabled, setInHouseEnabled] = useState(true)
+  const [inHouseEnabled, setInHouseEnabled] = useState(false)
   const [inHouseOrders, setInHouseOrders] = useState(10)
   const [inHousePayModel, setInHousePayModel] = useState('Hourly Wage')
   // Hourly fields
@@ -43,12 +43,12 @@ export default function SavingsCalculator() {
   const [inHouseFeeShare, setInHouseFeeShare] = useState(2)
 
   // On-demand
-  const [onDemandEnabled, setOnDemandEnabled] = useState(true)
+  const [onDemandEnabled, setOnDemandEnabled] = useState(false)
   const [onDemandOrders, setOnDemandOrders] = useState(10)
   const [onDemandDispatch, setOnDemandDispatch] = useState(7.99)
 
   // 3rd party
-  const [thirdPartyEnabled, setThirdPartyEnabled] = useState(true)
+  const [thirdPartyEnabled, setThirdPartyEnabled] = useState(false)
   const [thirdPartyOrders, setThirdPartyOrders] = useState(10)
   const [thirdPartyCurrentPct, setThirdPartyCurrentPct] = useState(30)
   const [thirdPartySelfDeliveryPct, setThirdPartySelfDeliveryPct] = useState(15)
@@ -132,10 +132,10 @@ export default function SavingsCalculator() {
   const totalDailyProfit = opSavingsDaily + marketingRevDaily + radiusRevDaily
   const totalAnnualProfit = totalDailyProfit * 365
 
-  // Badge "Current:" values (what each channel costs you net per order today)
-  const inHouseCurrentCost = inHouseEnabled ? ihTotalDailyCost : 0
-  const onDemandCurrentCost = onDemandEnabled ? odTotalDailyCost : 0
-  const thirdPartyCurrentCost = thirdPartyEnabled ? mpTotalDailyCost : 0
+  // Badge "Current:" values — cost per order (matches reference HTML mini-stat logic)
+  const inHouseCurrentCost = inHouseEnabled && inHouseOrders > 0 ? ihTotalDailyCost / inHouseOrders : 0
+  const onDemandCurrentCost = onDemandEnabled ? odCPO : 0
+  const thirdPartyCurrentCost = thirdPartyEnabled ? mpCPO : 0
 
   return (
     <section id="calculator" className="w-full px-4 py-16 sm:py-18.5">
@@ -153,19 +153,19 @@ export default function SavingsCalculator() {
       {/* Calculator card */}
       <motion.div
         className="mx-auto max-w-7xl rounded-[20px] border border-[#E5E7EB] overflow-hidden"
-        initial={{ scale: 1.05, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
+        initial={{ y: 24, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] divide-y lg:divide-y-0 lg:divide-x divide-[##E5E7EB]">
 
           {/* ── LEFT PANEL ───────────────────────────────────────────────── */}
-          <div className="py-6 px-8 flex flex-col gap-5">
+          <div className="py-4 px-4 sm:py-6 sm:px-8 flex flex-col gap-5">
 
             {/* Operational Basics */}
             <div className="rounded-xl py-2">
-              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Operational Basics</h3>
+              <h3 className="text-sm sm:text-lg font-medium text-text-1 mb-4">Operational Basics</h3>
               <div className="grid grid-cols-2 gap-4">
                 <CurrencyInput
                   label="Average Order Value"
@@ -184,7 +184,7 @@ export default function SavingsCalculator() {
 
             {/* Delivery methods */}
             <div className="rounded-xl py-2">
-              <p className="text-base sm:text-lg font-medium text-text-1 mb-4">
+              <p className="text-sm sm:text-lg font-medium text-text-1 mb-4">
                 How do you currently deliver your orders?
               </p>
 
@@ -194,7 +194,7 @@ export default function SavingsCalculator() {
                 <div className="border border-[#E5E7EB] rounded-xl p-3 flex flex-col gap-3">
                   <div>
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-text-1">In-House Drivers</p>
+                      <p className="text-xs sm:text-sm font-medium text-text-1">In-House Drivers</p>
                       <button
                         type="button"
                         role="switch"
@@ -205,18 +205,18 @@ export default function SavingsCalculator() {
                         <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${inHouseEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
                       </button>
                     </div>
-                    <p className="text-sm font-normal mt-1">
+                    <p className="text-xs sm:text-sm font-normal mt-1">
                       Current: <span className="text-[#EA332D]">{fmt(inHouseCurrentCost)}</span>
                     </p>
                   </div>
 
                   {inHouseEnabled && (
-                    <div className="flex flex-col gap-3">
+                    <div className="grid grid-cols-2 sm:grid-cols-1 gap-3">
                       <NumInput label="Orders/Day" value={inHouseOrders} onChange={setInHouseOrders} className="h-8" />
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-sm font-medium text-text-2">Pay Model</label>
+                        <label className="text-xs sm:text-sm font-medium text-text-2">Pay Model</label>
                         <Select value={inHousePayModel} onValueChange={setInHousePayModel}>
-                          <SelectTrigger className="h-8 w-full rounded-xl text-sm text-text-1">
+                          <SelectTrigger className="h-8 w-full rounded-xl text-xs sm:text-sm text-text-1">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -237,7 +237,9 @@ export default function SavingsCalculator() {
                         <>
                           <CurrencyInput label="Base Wage ($)" value={inHouseBaseWage} onChange={setInHouseBaseWage} className="h-8" />
                           <NumInput label="Driver Hrs/Day" value={inHouseHybridHours} onChange={setInHouseHybridHours} className="h-8" />
-                          <CurrencyInput label="Fee Share / Delivery" value={inHouseFeeShare} onChange={setInHouseFeeShare} className="h-8" />
+                          <div className="col-span-2 sm:col-span-1">
+                            <CurrencyInput label="Fee Share / Delivery" value={inHouseFeeShare} onChange={setInHouseFeeShare} className="h-8" />
+                          </div>
                         </>
                       )}
                     </div>
@@ -251,7 +253,7 @@ export default function SavingsCalculator() {
                   <div className="border border-[#E5E7EB] rounded-xl p-3 flex flex-col gap-3">
                     <div>
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-text-1">On-Demand Service</p>
+                        <p className="text-xs sm:text-sm font-medium text-text-1">On-Demand Service</p>
                         <button
                           type="button"
                           role="switch"
@@ -262,13 +264,13 @@ export default function SavingsCalculator() {
                           <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${onDemandEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
                         </button>
                       </div>
-                      <p className="text-sm font-normal mt-1">
+                      <p className="text-xs sm:text-sm font-normal mt-1">
                         Current: <span className="text-[#EA332D]">{fmt(onDemandCurrentCost)}</span>
                       </p>
                     </div>
 
                     {onDemandEnabled && (
-                      <div className="flex flex-col gap-3">
+                      <div className="grid grid-cols-2 sm:grid-cols-1 gap-3">
                         <NumInput label="Orders/Day" value={onDemandOrders} onChange={setOnDemandOrders} className="h-8" />
                         <CurrencyInput label="Dispatch Fee" value={onDemandDispatch} onChange={setOnDemandDispatch} className="h-8" />
                       </div>
@@ -279,7 +281,7 @@ export default function SavingsCalculator() {
                   <div className="border border-[#E5E7EB] rounded-xl p-3 flex flex-col gap-3">
                     <div>
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-text-1">3rd Party Orders</p>
+                        <p className="text-xs sm:text-sm font-medium text-text-1">3rd Party Orders</p>
                         <button
                           type="button"
                           role="switch"
@@ -290,7 +292,7 @@ export default function SavingsCalculator() {
                           <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${thirdPartyEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
                         </button>
                       </div>
-                      <p className="text-sm font-normal mt-1">
+                      <p className="text-xs sm:text-sm font-normal mt-1">
                         Current: <span className="text-[#EA332D]">{fmt(thirdPartyCurrentCost)}</span>
                       </p>
                       {!thirdPartyEnabled && (
@@ -328,7 +330,7 @@ export default function SavingsCalculator() {
 
             {/* Growth Engines */}
             <div className="rounded-xl py-2">
-              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
+              <h3 className="text-sm sm:text-lg font-medium text-text-1 mb-4">Activate Growth Engines</h3>
               <div className="flex flex-col md:flex-row gap-3">
 
                 {/* Smart Marketing */}
@@ -350,8 +352,8 @@ export default function SavingsCalculator() {
                     )}
                   </div>
                   <div>
-                    <p className="text-sm sm:text-[16px] font-medium text-text-1">Smart Marketing</p>
-                    <p className="text-sm text-text-2 mt-1">
+                    <p className="text-xs sm:text-[16px] font-medium text-text-1">Smart Marketing</p>
+                    <p className="text-xs sm:text-sm text-text-2 mt-1">
                       Engage customers on the live tracking page to drive repeat orders.
                     </p>
                   </div>
@@ -376,8 +378,8 @@ export default function SavingsCalculator() {
                     )}
                   </div>
                   <div>
-                    <p className="text-sm sm:text-[16px] font-medium text-text-1">Radius Expansion</p>
-                    <p className="text-sm text-text-2 mt-1">
+                    <p className="text-xs sm:text-[16px] font-medium text-text-1">Radius Expansion</p>
+                    <p className="text-xs sm:text-sm text-text-2 mt-1">
                       Leverage on-demand drivers to deliver farther and reach new zip codes.
                     </p>
                   </div>
@@ -388,11 +390,11 @@ export default function SavingsCalculator() {
           </div>
 
           {/* ── RIGHT PANEL ──────────────────────────────────────────────── */}
-          <div className="p-6 flex flex-col gap-5">
+          <div className="p-4 sm:p-6 flex flex-col gap-5">
 
             {/* Estimated Results */}
             <div>
-              <h3 className="text-base sm:text-lg font-medium text-text-1 mb-3 pt-0">Estimated Results</h3>
+              <h3 className="text-sm sm:text-lg font-medium text-text-1 mb-3 pt-0">Estimated Results</h3>
               <div className="rounded-xl py-4 px-6 border border-[#E5E7EB] overflow-hidden">
                 <ResultRow label="Current Avg Cost / Order" value={fmt(currentAvgCPO)} />
                 <ResultRow label="MDF Cost / Order" value={fmt(mdfAvgCPO)} />
@@ -478,7 +480,7 @@ export default function SavingsCalculator() {
               <button
                 type="button"
                 onClick={() => setShowDisclaimer((v) => !v)}
-                className="flex w-full items-center justify-start gap-2 py-3 text-md font-regular text-text-1"
+                className="flex w-full items-center justify-start gap-2 py-3 text-xs sm:text-md font-regular text-text-1"
               >
                 <motion.span
                   animate={{ rotate: showDisclaimer ? 180 : 0 }}
@@ -507,7 +509,7 @@ export default function SavingsCalculator() {
                     'Credit Card Processing fees (approx 2.5–3%) are not included.',
                     'Liability: Results are directional estimates only.',
                   ].map((item) => (
-                    <li key={item} className="text-sm text-text-2">
+                    <li key={item} className="text-xs sm:text-sm text-text-2">
                       {item}
                     </li>
                   ))}

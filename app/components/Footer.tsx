@@ -29,7 +29,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="w-full bg-[#FAFAFB]">
+    <footer id="footer" className="w-full bg-[#FAFAFB]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 mt-20">
 
         <div className="flex flex-col items-start gap-10 py-14 sm:flex-row sm:justify-between max-w-5xl">

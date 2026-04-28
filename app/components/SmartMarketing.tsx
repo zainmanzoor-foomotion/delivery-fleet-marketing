@@ -83,7 +83,7 @@ export default function SmartMarketing() {
 
         {/* Section 3 — Features: 20vh */}
         <div className="h-[48vh] sm:h-[20vh] flex items-center">
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-10">
+          <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-10">
             {features.map(({ icon: Icon, title, description }) => (
               <div key={title} className="flex flex-col items-center text-center gap-2">
                 <div className="h-11 w-11 sm:h-14 sm:w-14 border border-[#E5E7EB] rounded-2xl flex items-center justify-center">

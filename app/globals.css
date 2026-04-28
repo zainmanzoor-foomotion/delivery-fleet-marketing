@@ -133,6 +133,7 @@
     overflow-y: scroll;
     max-width: 100%;
     scroll-behavior: smooth;
+    scroll-padding-top: 0em;
   }
   body {
     overflow-x: hidden;
