@@ -29,11 +29,12 @@ export default function FullPageScroll() {
       t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
 
     const scrollToSection = (index: number) => {
+      const scrollPadding = index === 0 ? 0 : parseFloat(getComputedStyle(document.documentElement).fontSize) * 2
       const targetY =
         index === 0
           ? 0
           : (document.getElementById(SECTION_IDS[index])?.getBoundingClientRect().top ?? 0) +
-            window.scrollY
+            window.scrollY - scrollPadding
 
       const startY = window.scrollY
       const distance = targetY - startY
