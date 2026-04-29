@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistMono.variable, inter.variable, "font-sans", geist.variable)}
+      className={cn("scroll-pt-[5vh] sm:scroll-pt-8 h-full", "antialiased", geistMono.variable, inter.variable, "font-sans", geist.variable)}
     >
       <head>
         <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet" />

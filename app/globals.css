@@ -133,7 +133,7 @@
     /* overflow-y: scroll; */
     max-width: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 2em;
+    /* scroll-padding-top: 2em; */
   }
   body {
     /* overflow-x: hidden; */

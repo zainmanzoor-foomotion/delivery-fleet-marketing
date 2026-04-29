@@ -136,7 +136,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Mobile image panel — fills remaining height */}
-        <div className="flex-1 min-h-0 lg:hidden relative w-full">
+        <div className="flex-1 my-10 min-h-0 lg:hidden relative w-full">
           <div className="absolute inset-0 rounded-2xl bg-[#FAFAFB]" />
           {steps.map((step, index) => (
             <motion.div

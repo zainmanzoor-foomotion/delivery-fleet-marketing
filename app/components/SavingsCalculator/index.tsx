@@ -467,12 +467,13 @@ export default function SavingsCalculator() {
               >
                 Download PDF Report
               </Button>
-
-              <Button
-                className="w-full h-10 sm:h-12 text-base sm:text-md px-6"
-              >
-                Sign up for Free
-              </Button>
+              <a href='https://app.mydeliveryfleet.com/sign-up' target='_blank'>
+                <Button
+                  className="w-full h-10 sm:h-12 text-base sm:text-md px-6"
+                >
+                  Sign up for Free
+                </Button>
+              </a>
             </div>
 
             {/* Assumptions & Disclaimers */}

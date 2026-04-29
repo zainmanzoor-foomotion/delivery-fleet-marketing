@@ -15,7 +15,7 @@ export default function Header() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [mobileStarted, setMobileStarted] = useState(false)
   const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { amount: 0,once: true })
+  const isInView = useInView(containerRef, { amount: 0, once: true })
 
   // Step 1: center (0s), Step 2: left card (delay 0.8s), Step 3: phone appears + starts cycling (delay 1.6s)
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function Header() {
         </a>
       </div>
 
-      <div ref={containerRef} className='mt-5 w-full max-w-6xl relative h-[25vh] sm:h-70 md:h-90 lg:h-130 overflow-hidden'>
+      <div ref={containerRef} className='mt-15 w-full max-w-6xl relative h-[25vh] sm:h-70 md:h-90 lg:h-130 overflow-hidden'>
 
         {/* Step 1: Center dashboard — zoom in immediately on viewport enter */}
         <motion.div

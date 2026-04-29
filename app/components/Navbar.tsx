@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="mx-auto max-w-7xl h-[10vh] px-6 lg:px-10">
         <div className="flex h-25 items-center justify-between">
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
