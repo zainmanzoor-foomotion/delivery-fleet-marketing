@@ -22,6 +22,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'My Delivery Fleet',
   description: '',
+  icons: {
+    icon: '/Logo.svg',
+  },
 }
 export default function RootLayout({
   children,
