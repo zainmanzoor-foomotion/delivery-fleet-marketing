@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useState, useEffect, useRef } from 'react'
 
@@ -81,6 +81,7 @@ export default function Header() {
             width={800}
             height={600}
             className='w-full h-auto object-contain rounded-xl'
+            priority
           />
         </motion.div>
 
@@ -97,6 +98,7 @@ export default function Header() {
             width={260}
             height={400}
             className='w-full h-auto object-contain rounded-xl'
+            priority
           />
         </motion.div>
 
@@ -107,25 +109,24 @@ export default function Header() {
           animate={isInView ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
           transition={{ duration: 0.8, delay: 1.6, ease: [0.33, 1, 0.68, 1] }}
         >
-          <AnimatePresence mode="popLayout">
+          {mobileScreens.map((src, index) => (
             <motion.div
-              key={activeIndex}
-              initial={{ y: '100%', opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: '-100%', opacity: 0 }}
-              transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
+              key={index}
               className="absolute inset-0"
+              animate={{ opacity: index === activeIndex ? 1 : 0 }}
+              initial={false}
+              transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
             >
               <Image
-                src={mobileScreens[activeIndex]}
-                alt={`Mobile screen ${activeIndex + 1}`}
+                src={src}
+                alt={`Mobile screen ${index + 1}`}
                 width={260}
                 height={400}
                 className='w-full h-full object-contain rounded-xl'
-                priority={activeIndex === 0}
+                priority
               />
             </motion.div>
-          </AnimatePresence>
+          ))}
         </motion.div>
 
       </div>
