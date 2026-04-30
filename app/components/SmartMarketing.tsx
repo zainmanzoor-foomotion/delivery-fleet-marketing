@@ -33,7 +33,7 @@ const features = [
 
 export default function SmartMarketing() {
   return (
-    <section id="marketing" className="w-full px-4 py-10 sm:py-16 flex flex-col">
+    <section id="marketing" className="w-full px-4 py-14 sm:py-16 flex flex-col">
       <div className="mx-auto w-full max-w-7xl flex flex-col gap-5">
 
         {/* Section 1 — Title: 12vh */}
