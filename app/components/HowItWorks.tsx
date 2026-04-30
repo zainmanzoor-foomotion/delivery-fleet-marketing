@@ -68,7 +68,7 @@ export default function HowItWorks() {
   }
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="h-screen flex flex-col w-full px-4 py-10 sm:py-16 overflow-hidden">
+    <section ref={sectionRef} id="how-it-works" className="h-screen flex flex-col w-full px-4 py-12 sm:py-16 overflow-hidden">
       <div className="mx-auto w-full max-w-3xl text-center mb-2 sm:mb-4 md:mb-10 shrink-0">
         <h2 className="text-xl sm:text-2xl md:text-[54px] font-bold text-text-1">
           How It Works
