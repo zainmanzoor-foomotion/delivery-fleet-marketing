@@ -37,7 +37,7 @@ export default function SmartMarketing() {
       <div className="mx-auto w-full max-w-7xl flex flex-col gap-5">
 
         {/* Section 1 — Title: 12vh */}
-        <div className="h-[12vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto w-full">
+        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto w-full">
           <h2 className="text-2xl sm:text-3xl md:text-[54px] font-bold text-text-1">
             Smart Marketing Built-In
           </h2>
@@ -48,7 +48,7 @@ export default function SmartMarketing() {
         </div>
 
         {/* Section 2 — Images: 60vh */}
-        <div className="h-[30vh] sm:h-[55vh] rounded-2xl bg-[#FAFAFB] flex justify-center items-end gap-2 overflow-hidden">
+        <div className="h-90 sm:h-130 rounded-2xl bg-[#FAFAFB] flex justify-center items-end gap-2 overflow-hidden">
           {/* Left — 80% of panel height */}
           <div className="w-[28%] sm:w-auto h-[80%] flex justify-end items-end">
             <Image
@@ -82,7 +82,7 @@ export default function SmartMarketing() {
         </div>
 
         {/* Section 3 — Features: 20vh */}
-        <div className="h-[48vh] sm:h-[20vh] flex items-start">
+        <div className="flex items-start">
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-10">
             {features.map(({ icon: Icon, title, description }) => (
               <div key={title} className="flex flex-col items-center text-center gap-2">
