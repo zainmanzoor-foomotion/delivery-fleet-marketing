@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
@@ -17,8 +17,24 @@ const navLinks = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled((document.documentElement.scrollTop || document.body.scrollTop) > 40)
+    onScroll()
+    document.addEventListener('scroll', onScroll, { passive: true })
+    return () => document.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (pathname !== '/') return
+    const target = sessionStorage.getItem('scrollTarget')
+    if (!target) return
+    sessionStorage.removeItem('scrollTarget')
+    setTimeout(() => document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' }), 100)
+  }, [pathname])
 
   const handleNavClick = (e: React.MouseEvent, href: string, closeMobile = false) => {
     if (!href.startsWith('#')) return
@@ -32,12 +48,13 @@ export default function Navbar() {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
       }
     } else {
-      router.push(`/#${id}`)
+      sessionStorage.setItem('scrollTarget', id)
+      router.push('/')
     }
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
+    <header className={cn("sticky top-0 z-50 w-full bg-white transition-shadow", scrolled && "border-b border-[#E5E7EB]")}>
       <div className="mx-auto max-w-7xl h-[10vh] px-6 lg:px-10">
         <div className="flex h-25 items-center justify-between">
 
@@ -47,7 +64,7 @@ export default function Navbar() {
               alt="Logo"
               width={80}
               height={80}
-              className="w-10 h-8"
+              className="w-8 h-8"
               priority
             />
             <span className="text-lg font-extrabold italic text-text-1 tracking-tight font-cabinet">

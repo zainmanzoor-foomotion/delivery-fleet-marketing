@@ -24,7 +24,8 @@ export default function Footer() {
     if (pathname === '/') {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     } else {
-      router.push(`/#${id}`)
+      sessionStorage.setItem('scrollTarget', id)
+      router.push('/')
     }
   }
 
