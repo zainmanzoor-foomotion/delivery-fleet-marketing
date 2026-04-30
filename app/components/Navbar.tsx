@@ -54,9 +54,9 @@ export default function Navbar() {
   }
 
   return (
-    <header className={cn("sticky top-0 z-50 w-full bg-white transition-shadow", scrolled && "border-b border-[#E5E7EB]")}>
+    <header className={cn("h-20 sticky top-0 z-50 w-full bg-white transition-shadow", scrolled && "border-b border-[#E5E7EB]")}>
       <div className="mx-auto max-w-7xl h-[10vh] px-6 lg:px-10">
-        <div className="flex h-25 items-center justify-between">
+        <div className="flex h-full items-center justify-between">
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
