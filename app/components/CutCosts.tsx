@@ -132,7 +132,8 @@ export default function CutCosts() {
                         <div className="flex items-center gap-4 sm:gap-8">
                             <div className='border border-[#E5E7EB] rounded-xl p-3 sm:p-5'>
                                 <div className="h-6 w-6 sm:h-12 sm:w-12 shrink-0 rounded-full bg-[#2563EB] flex items-center justify-center">
-                                    <TickDownIcon size={12} stroke='white' />
+                                    <span className="sm:hidden"><TickDownIcon size={12} stroke='white' /></span>
+                                    <span className="hidden sm:flex"><TickDownIcon stroke='white' /></span>
                                 </div>
                             </div>
                             <h2 className="text-xl sm:text-3xl md:text-[44px] font-bold text-text-1">Cut Costs</h2>

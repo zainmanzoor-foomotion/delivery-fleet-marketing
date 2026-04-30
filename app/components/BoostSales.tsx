@@ -146,7 +146,7 @@ export default function BoostSales() {
             </div>
 
             <div className="rounded-xl border border-[#E5E7EB] bg-white p-3 sm:p-5">
-                <p className="text-xs sm:text-base font-medium text-text-1 mb-3 sm:mb-4">Monthly Orders</p>
+              <p className="text-xs sm:text-base font-medium text-text-1 mb-3 sm:mb-4">Monthly Orders</p>
               <ChartContainer config={chartConfig} className="h-30 sm:h-55.5 w-full pointer-events-none">
                 <BarChart data={chartData} barSize={70} barCategoryGap="5%">
                   <XAxis
@@ -173,7 +173,8 @@ export default function BoostSales() {
             <div className="flex items-center gap-4 sm:gap-8">
               <div className='border border-[#E5E7EB] rounded-xl p-3 sm:p-5'>
                 <div className="h-6 w-6 sm:h-12 sm:w-12 shrink-0 rounded-full bg-[#3FC060] flex items-center justify-center">
-                  <TickIcon size={12} stroke='white' />
+                  <span className="sm:hidden"><TickIcon size={12} stroke='white' /></span>
+                  <span className="hidden sm:flex"><TickIcon stroke='white' /></span>
                 </div>
               </div>
               <h2 className="text-xl sm:text-3xl md:text-[44px] font-bold text-text-1">Boost Sales</h2>
