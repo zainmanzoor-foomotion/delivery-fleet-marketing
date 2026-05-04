@@ -68,7 +68,7 @@ export default function HowItWorks() {
   }
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="h-screen flex flex-col w-full px-4 py-12 sm:py-16 overflow-hidden">
+    <section ref={sectionRef} id="how-it-works" className="min-h-screen max-h-auto flex flex-col w-full px-4 py-12 sm:py-16 overflow-hidden">
       <div className="mx-auto w-full max-w-3xl text-center mb-2 sm:mb-4 md:mb-10 shrink-0">
         <h2 className="text-xl sm:text-2xl md:text-[54px] font-bold text-text-1">
           How It Works
@@ -136,7 +136,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Mobile image panel — fills remaining height */}
-        <div className="flex-1 my-10 min-h-0 lg:hidden relative w-full">
+        <div className="flex-1 my-10 min-h-80 lg:hidden relative w-full">
           <div className="absolute inset-0 rounded-2xl bg-[#FAFAFB]" />
           {steps.map((step, index) => (
             <motion.div

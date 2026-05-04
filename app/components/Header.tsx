@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useState, useEffect, useRef } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 
 const mobileScreens = [
   '/22 2.png',
@@ -16,6 +17,19 @@ export default function Header() {
   const [mobileStarted, setMobileStarted] = useState(false)
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { amount: 0, once: true })
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleHowItWorksClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const id = 'how-it-works'
+    if (pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      sessionStorage.setItem('scrollTarget', id)
+      router.push('/')
+    }
+  }
 
   // Step 1: center (0s), Step 2: left card (delay 0.8s), Step 3: phone appears + starts cycling (delay 1.6s)
   useEffect(() => {
@@ -56,14 +70,13 @@ export default function Header() {
             Start Free Trial
           </Button>
         </a>
-        <a href="#how-it-works">
-          <Button
-            variant="ghost"
-            className="text-text-1 w-full sm:w-50 h-10 sm:h-15 text-sm sm:text-lg px-6 border border-[#CBD5E1]"
-          >
-            How It Works
-          </Button>
-        </a>
+        <Button
+          variant="ghost"
+          onClick={handleHowItWorksClick}
+          className="text-text-1 w-full sm:w-50 h-10 sm:h-15 text-sm sm:text-lg px-6 border border-[#CBD5E1]"
+        >
+          How It Works
+        </Button>
       </div>
 
       <div ref={containerRef} className='mt-15 w-full max-w-6xl relative h-[25vh] sm:h-70 md:h-90 lg:h-130 overflow-hidden'>
